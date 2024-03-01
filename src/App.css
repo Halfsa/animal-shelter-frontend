@@ -1,0 +1,365 @@
+:root{
+    --navColor: palegoldenrod;
+    --bgColor: #fbffdb;
+}
+.input{
+    margin-left: 10px;
+}
+.btn-confirm{
+    background-color: #3ed2e5;
+    border: none;
+    box-shadow: 1px 1px 4px #47939b;
+    color: #d9e0ea;
+    margin: 5px;
+}
+.btn-confirm:hover{
+    animation-name: btn-hover;
+    animation-duration: 0.2s;
+    background-color: aquamarine;
+    position: relative;
+    border: none;
+    box-shadow: 0 0 15px 3px aliceblue;
+    transform: scale(105%);
+    color: white;
+    /*  width: 430px;
+      height: 420px;
+      background-image: image("https://http.cat/200");
+      position: absolute;
+      animation-name: spinner-grow;
+      animation-duration:10s;
+      animation-iteration-count: infinite;*/
+}
+.btn-confirm:active{
+    background-color: red;
+}
+
+
+
+/*
+https://png.pngtree.com/background/20210714/original/pngtree-cartoon-fox-lion-giraffe-owl-animal-background-picture-image_1236670.jpg
+"https://img.freepik.com/free-vector/hand-drawn-wildlife-background_52683-85493.jpg?w=996&t=st=1707817595~exp=1707818195~hmac=afed48ae78fb9b929927574cc62bc5c009c94497623e3262d7a92a56eae6abc6
+https://img.freepik.com/free-vector/hand-drawn-world-animal-day-background_23-2149060909.jpg?w=740&t=st=1707817714~exp=1707818314~hmac=6cc841e8219e3d8c1ea4cb1a59d2b527971fbe5397b10d617df8d167bedaa63b
+https://img.freepik.com/premium-vector/animals-banner-vector-illustration_29937-1.jpg?w=360*/
+body{
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+}
+.color{
+    background: var(--bgColor);
+}
+.image{
+    background-image: url("../public/login_bg.jpg");
+}
+.login{
+    width: 20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+}
+input{
+    font-size: 14px;
+    padding: 5px;
+}
+label{
+    font-size: 12px;
+    display: block;
+
+}
+/*.loginLabel{
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+.loginInput{
+    display: block;
+    margin: auto;
+}*/
+.aaa{
+    justify-content: space-around;
+}
+h1{
+    text-align: center;
+    font-family: Cambria;
+    border-bottom: 1px solid black;
+}
+.body-h1{
+    color: darkslategray;
+    border-bottom: 2px solid lightgray;
+    height: 37px;
+    font-size: 30px;
+}
+.form-control{
+    background-color: rgba(104, 188, 211, 0.78);
+    box-shadow: 1px 1px 6px dimgrey;
+}
+.required-field{
+    color: red;
+    font-size: 14px;
+}
+.navbar{
+    background-image: linear-gradient(90deg,var(--navColor) 1%, rgba(140, 255, 0, 0.97));
+    box-shadow: 1px 1px 5px 0.5px darkslategrey;
+}
+.card-img{
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+}
+.carousel-card{
+    border-radius: 0;
+    --bs-card-inner-border-radius: 0;
+    --bs-card-border-color: none;
+}
+.carousel-control-prev{
+    top: 45%;
+    height: 50px;
+}
+.carousel-control-next{
+    top: 45%;
+    height: 50px;
+}
+.content-card{
+    width: 18rem;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    animation: ease-in;
+    animation-duration: 100ms;
+    animation-name: card-hover-out;
+}
+.content-card:hover{
+    animation: ease-out;
+    animation-duration: 100ms;
+    animation-name: card-hover-in;
+    transform: scale(103%);
+}
+.navbar-fixed-top{
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 1030;
+    margin-bottom: 30px;
+}
+.carousel{
+    padding-top: 56px;
+    padding-bottom: 50px;
+}
+@media screen and (max-width: 1200px){
+    .login{
+        width: 50%;
+    }
+}
+
+
+.ho{
+    margin-top: 20px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+
+}
+div{
+    display: block;
+}
+
+.testImg{
+    box-sizing: border-box;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    height: 103.5px;
+    left: 20%;
+    position: absolute;
+    top: 1px;
+    transform: translateX(-50%);
+    width: auto;
+
+}
+.testImg:hover{
+    animation: alternate;
+    animation-duration: 1ms;
+    animation-iteration-count: infinite;
+    animation-name: hamster-tremble;
+}
+.hhh{
+    padding-top: 40px;
+}
+.footer-container{
+    margin-top: 56px;
+    background-color: rgba(2, 255, 103, 0.17);
+
+}
+footer.my-4{
+    margin-top:0!important;
+    margin-bottom: 0!important;
+}
+.adoptionBody{
+    padding-top: 56px;
+}
+.adoptionBody > .form-control{
+    background: rgba(255, 255, 255, 0);
+    align-content: center;
+    align-items: center;
+}
+.adoptionBody > .form-control > label > input{
+    margin: 10px;
+}
+
+.animal-card{
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    animation: ease-in;
+    animation-duration: 100ms;
+    animation-name: card-hover-out;
+}
+.animal-img{
+    height: 10rem;
+    object-fit: cover;
+    width: 100%;
+    padding-top: 10px;
+}
+.animal-list{
+    display: flex;
+    align-content: center;
+
+}
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #ccfff7;
+    color: red;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ccfff7 transparent transparent transparent;
+}
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+@media screen and (max-width: 540px) {
+    .login{
+        width: 100%;
+    }
+    .card-img{
+        height: 250px;
+    }
+    .testImg{
+        height: 70px;
+    }
+    .hhh{
+        padding-top: 16px;
+    }
+}
+@keyframes card-hover-in {
+    from{
+        transform: scale(100%);
+    }
+    to{
+        transform:scale(103%);
+    }
+}@keyframes card-hover-out {
+     from{
+         transform:scale(103%);
+     }
+     to{
+         transform: scale(100%);
+     }
+ }
+@keyframes hamster-tremble {
+    to{
+        rotate: 2deg;
+    }
+}
+@keyframes btn-hover {
+    from{
+        background-color:rgb(13,202,240);
+        transform: scale(100%);
+        box-shadow: 0 0 0 0 aliceblue;
+        color: #d9e0ea;
+    }
+    to {
+        background-color: aquamarine;
+        transform: scale(105%);
+        box-shadow: 0 0 15px 3px aliceblue;
+        color: white;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*.rotatingDiv{
+  width: 430px;
+  height: 420px;
+  position: relative;
+  animation-name: example,spinner-grow;
+  animation-duration:5s;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+}
+.rotatingBackwardsDiv{
+  width: 430px;
+  height: 420px;
+  position: relative;
+  animation-name: example,spinner-grow;
+  animation-duration:100s;
+  animation-iteration-count: infinite;
+}*/
+/*@keyframes example {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:400px; top:0px;}
+  50%  {background-color:blue; left:400px; top:400px;}
+  75%  {background-color:green; left:0px; top:400px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+@keyframes spinner-grow {
+  from{transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
+@keyframes img-grow {
+  from{transform: scale(0%);}
+  to{transform: scale(100%);}
+}*/
