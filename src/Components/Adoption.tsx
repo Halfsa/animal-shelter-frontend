@@ -1,14 +1,12 @@
 import Navbar from "./navbar";
 import Footer from "./footer";
-import AdoptionBody from "./adoptionBody";
+import AdoptionFilter from "./adoptionFilter.tsx";
 
 function Adoption(){
-    const body = document.getElementById("body")!;
-    body.classList.replace("image", "color");
     return(
         <div>
             <Navbar/>
-            <AdoptionBody/>
+            <AdoptionFilter/>
             <Footer/>
         </div>
     )

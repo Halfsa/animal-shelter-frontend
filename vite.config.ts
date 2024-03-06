@@ -9,6 +9,10 @@ export default defineConfig({
           '/auth/login': {
               target: 'http://localhost:3001/',
               changeOrigin:true,
+          },
+          '/auth/register': {
+              target: 'http://localhost:3001/',
+              changeOrigin:true,
           }
       }
   },

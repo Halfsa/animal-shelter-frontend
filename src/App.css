@@ -206,9 +206,11 @@ footer.my-4{
 .adoptionBody > .form-control > label > input{
     margin: 10px;
 }
-
-.animal-card{
+.row{
     margin: auto;
+}
+.animal-card{
+    margin:5px;
     margin-top: 10px;
     margin-bottom: 10px;
     animation: ease-in;
@@ -217,14 +219,13 @@ footer.my-4{
 }
 .animal-img{
     height: 10rem;
-    object-fit: cover;
     width: 100%;
     padding-top: 10px;
 }
 .animal-list{
+    margin: auto;
     display: flex;
     align-content: center;
-
 }
 .popup {
     position: relative;

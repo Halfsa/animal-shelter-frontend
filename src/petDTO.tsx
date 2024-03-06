@@ -8,3 +8,8 @@ export interface Pet{
     sex:string,
     status:string,
 }
+export interface Breed{
+    breedId: number,
+    name:string,
+    description:string
+}

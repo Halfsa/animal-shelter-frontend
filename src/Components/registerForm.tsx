@@ -9,6 +9,8 @@ interface Props{
     username:string|undefined,
     email:string|undefined,
     password:string|undefined,
+    errorPassword:string[]|undefined,
+    disablePopup:()=>void,
 }
 function RegisterForm(props:Props){
 console.log(useWindowWidth());
@@ -19,18 +21,20 @@ console.log(useWindowWidth());
             <form className={'container form-control'}>
                 <h1>REGISTER</h1>
                 <div className={"container-fluid aaa row row-cols-lg-2 row-cols-xl-1 row-cols-sm-1 m-auto p-2"}>
-                    <div className={"col"}>
+                    <div className={"col popup"}>
                         <label className={"form-label"}>
                             Username: <i title={"This field is required"} className={"required-field"}>*</i>
                         </label>
-                        <input type={"text"} placeholder={"Enter your username"}>
+                        <input value={props.username} onChange={props.handleUsernameChange} type={"text"}
+                               placeholder={"Enter your username"}>
                         </input>
                     </div>
-                    <div className={"col"}>
+                    <div className={"col popup"}>
                         <label className={"form-label"}>
                             E-mail:
                         </label>
-                        <input type={"email"} placeholder={"example@example.com"}/>
+                        <input value={props.email} onChange={props.handleEmailChange} type={"email"}
+                               placeholder={"example@example.com"}/>
                     </div>
                 </div>
                 <div className={"container-fluid aaa row row-cols-1 m-auto p-2"}>
@@ -39,11 +43,14 @@ console.log(useWindowWidth());
                             Password: <i title={"This field is required"} className={"required-field"}>*</i>
                         </label>
                     </div>
-                    <div>
-                        <input type={"password"}/>
+                    <div className={"popup"}>
+                        <span onClick={props.disablePopup} className={props.errorPassword ? "popuptext show" : "popuptext"}
+                              id={"hibaPopup"}>{props.errorPassword ? props.errorPassword[0] : ""}</span>
+                        <input value={props.password} onChange={props.handlePasswordChange} type={"password"}/>
                     </div>
                     <div>
-                        <input type={"submit"} onClick={props.handleSubmit} value={"Sign up"} className={"btn btn-outline-light btn-confirm"}/>
+                        <input type={"submit"} onClick={props.handleSubmit} value={"Sign up"}
+                               className={"btn btn-outline-light btn-confirm"}/>
                     </div>
                 </div>
 

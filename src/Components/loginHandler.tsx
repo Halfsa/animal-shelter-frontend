@@ -72,7 +72,14 @@ function LoginHandler(){
         setErrorPassword(undefined);
     }
     return(
-        <LoginForm disablePopup={disablePopup} errorUname={errorUname} errorPassword={errorPassword} username={username} password={password} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleSubmit={(ev)=>LoginFetch(username,password,ev)}/>
+        <LoginForm disablePopup={disablePopup}
+                   errorUname={errorUname}
+                   errorPassword={errorPassword}
+                   username={username}
+                   password={password}
+                   handleUsernameChange={handleUsernameChange}
+                   handlePasswordChange={handlePasswordChange}
+                   handleSubmit={(ev)=> LoginFetch(username,password,ev)}/>
     )
 }
 
