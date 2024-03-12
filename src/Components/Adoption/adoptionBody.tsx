@@ -71,7 +71,7 @@ function AdoptionBody(props:Props){
                 </label>
             </form>
             <div
-                className={"container animal-list row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 "}>
+                className={"container-fluid animal-list row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 "}>
                 {props.allatok !== undefined&&props.allatok.length !== 0?
                     props.allatok.map((pet)=>{
                         let petBreedName = '';
@@ -83,24 +83,24 @@ function AdoptionBody(props:Props){
                         const years = props.calcAge(pet);
                         return(
                             <div key={pet.petId}
-                                 className="card col col-auto animal-card">
+                                 className="card col animal-card">
                                 <img src={(pet.imageUrl === null) ? empty : pet.imageUrl.toString()}
                                      className="card-img-top animal-img" alt="Error when loading image"/>
                                 <div className="card-body">
                                     <div className="card-text">
-                                        <h5>
+                                        <h6>
                                             <b className={"petCardName"}>{pet.name}</b>
                                             <img alt={pet.status} style={{marginLeft: "10px"}} width={"20px"}
                                                  height={"20px"}
                                                  src={(pet.sex === "OTHER") ? unknown : (pet.sex === "MALE" ? male : female)}/>
-                                            <br/><br/>
+                                            <br/>
                                             {(years < 1) ? (years * 12 < 1) ?
                                                 Math.ceil(years * 365) + (Math.ceil(years*365) === 1? " day" : " days" ):
                                                 Math.floor(years * 12) + (Math.floor(years*12) === 1? " month": " months") :
                                                 Math.floor(years) + (Math.floor(years) ===1?" year": " years")} old
                                             <br/>
                                             {petBreedName}
-                                        </h5>
+                                        </h6>
                                         <p>
                                             {pet.description}
                                         </p>

@@ -1,7 +1,7 @@
 function Body(){
     return(
         <div className={"container-fluid position-relative hhh"}>
-            <img className={"testImg"} src={"https://images.vexels.com/media/users/3/281852/isolated/preview/4e9648b2e1579595b087531c51dfb09d-hamster-guinea-pig-pet-animals.png"}/>
+            <img alt={"haha"} className={"testImg"} src={"https://images.vexels.com/media/users/3/281852/isolated/preview/4e9648b2e1579595b087531c51dfb09d-hamster-guinea-pig-pet-animals.png"}/>
             <h1 className={"body-h1"}>
                 Newspage
             </h1>

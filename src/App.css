@@ -224,9 +224,11 @@ footer.my-4{
     padding-top: 56px;
 }
 .adoptionBody > .form-control{
-    background: rgba(255, 255, 255, 0);
+    background: white;
     align-content: center;
     align-items: center;
+    box-shadow: none;
+    border-radius: 0px;
 }
 .adoptionBody > .form-control > label > input{
     margin: 10px;
@@ -235,12 +237,22 @@ footer.my-4{
     margin: auto;
 }
 .animal-card{
-    margin:5px;
+    margin:auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    width:13rem;
+    background-color: #f9f9f9;
     animation: ease-in;
     animation-duration: 100ms;
     animation-name: card-hover-out;
+    font-size: small;
+}
+.card-body{
+    padding: 5px;
+}
+.animal-card:hover{
+    background-color: #f1f1f1;
+    cursor: pointer;
 }
 .petCardName{
     border-bottom: 1px solid gray;
