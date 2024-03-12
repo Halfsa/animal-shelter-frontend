@@ -1,10 +1,10 @@
-import {ReactNode} from "react";
+/*import {ReactNode} from "react";
 import empty from "../empty.jpg";
 import unknown from "../unknown.svg";
 import male from "../male.png";
 import female from "../female.png";
 import GetBreedList from "./getBreedList.tsx";
-import GetPetList from "./getPetList.tsx";
+import GetPetList from "./getPetList.tsx";*/
 /* async function checkImage(url){
 
      const res = await fetch(url);
@@ -12,7 +12,7 @@ import GetPetList from "./getPetList.tsx";
 
      return buff.type.startsWith('image/')
 
-}*/
+}
 function CardFill() {
     const allatok: ReactNode[] = [];
     for (const pet of GetPetList()) {
@@ -62,4 +62,4 @@ function CardFill() {
 
 
 
-export default CardFill;
+export default CardFill;*/

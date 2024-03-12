@@ -102,6 +102,31 @@ h1{
     background-image: linear-gradient(90deg,var(--navColor) 1%, rgba(140, 255, 0, 0.97));
     box-shadow: 1px 1px 5px 0.5px darkslategrey;
 }
+.signout{
+    border: 0px;
+    background-color: #f9f9f9;
+}
+.navbar-contentus{
+    display: flex;
+    align-items: center;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+
+
+.dropdown-content h5{
+    text-align: center;
+    text-decoration: underline;
+}
+.dropdown-content p{
+    text-align: center;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 .card-img{
     object-fit: cover;
     width: 100%;
@@ -179,7 +204,7 @@ div{
 }
 .testImg:hover{
     animation: alternate;
-    animation-duration: 1ms;
+    animation-duration: 10ms;
     animation-iteration-count: infinite;
     animation-name: hamster-tremble;
 }
@@ -217,6 +242,10 @@ footer.my-4{
     animation-duration: 100ms;
     animation-name: card-hover-out;
 }
+.petCardName{
+    border-bottom: 1px solid gray;
+
+}
 .animal-img{
     height: 10rem;
     width: 100%;
@@ -247,6 +276,15 @@ footer.my-4{
     left: 50%;
     margin-left: -80px;
 }
+.notFoundDiv{
+    color: red;
+    text-align:center;
+    margin: auto;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 70%;
+    font-family: "Amiri Quran";
+}
 .popup .popuptext::after {
     content: "";
     position: absolute;
@@ -261,6 +299,12 @@ footer.my-4{
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
+}
+.gone{
+    display: none;
+}
+.ungone{
+    display: initial;
 }
 
 /* Add animation (fade in the popup) */
@@ -285,6 +329,54 @@ footer.my-4{
     }
     .hhh{
         padding-top: 16px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        margin-top: 8px;
+        left: 10%;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: 200px;
+
+    }
+    .dropdown-content::after{
+        content: "";
+        position: absolute;
+        right: 90%;
+        bottom: 100%;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent #f9f9f9 transparent;
+
+    }
+}
+@media screen and (min-width: 576px) {
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        margin-top: 8px;
+        right: 10%;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: 200px;
+
+    }
+    .dropdown-content::after{
+        content: "";
+        position: absolute;
+        left: 90%;
+        bottom: 100%;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent #f9f9f9 transparent;
+
     }
 }
 @keyframes card-hover-in {

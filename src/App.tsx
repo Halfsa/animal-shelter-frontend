@@ -5,10 +5,10 @@ import {
     Route,
     Navigate,
 } from "react-router-dom";
-import Home from "./Components/Home";
-import Adoption from "./Components/Adoption";
-import LoginHandler from "./Components/loginHandler.tsx";
-import RegisterHandler from "./Components/registerHandler.tsx";
+import Home from "./Components/Home/Home.tsx";
+import Adoption from "./Components/Adoption/Adoption.tsx";
+import LoginHandler from "./Components/Login/loginHandler.tsx";
+import RegisterHandler from "./Components/Register/registerHandler.tsx";
 
 function App() {
    /* const body = document.getElementById("body")!;

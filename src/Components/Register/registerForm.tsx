@@ -1,4 +1,4 @@
-import useWindowWidth from "../window-width";
+import useWindowWidth from "../../window-width.tsx";
 import React from "react";
 
 interface Props{

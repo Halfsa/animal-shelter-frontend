@@ -6,12 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
       proxy: {
-          '/auth/login': {
+          '/auth': {
               target: 'http://localhost:3001/',
               changeOrigin:true,
           },
-          '/auth/register': {
-              target: 'http://localhost:3001/',
+          '/user':{
+              target:'http://localhost:3001/',
               changeOrigin:true,
           }
       }

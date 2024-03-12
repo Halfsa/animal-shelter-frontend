@@ -11,5 +11,16 @@ export interface Pet{
 export interface Breed{
     breedId: number,
     name:string,
-    description:string
+    description:string,
+    speciesId:number,
+}
+export interface Species{
+    speciesId:number,
+    name:string,
+    description:string,
+}
+export interface User{
+    username:string,
+    name:string,
+    email:string,
 }

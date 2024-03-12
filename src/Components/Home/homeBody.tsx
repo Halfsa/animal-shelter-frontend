@@ -28,7 +28,7 @@ function Body(){
                         <div className="card-body">
                             <h5 className="card-title">Easter sales</h5>
                             <p className="card-text">Spring is here, so that must mean Easter is also near. Surprise yourself or your family with one of our adorable bunnies. </p>
-                            <a href="/" className="btn btn-success btn-outline-warning">Details</a>
+                            <a href="/public" className="btn btn-success btn-outline-warning">Details</a>
                         </div>
                     </div>
                 </div>
