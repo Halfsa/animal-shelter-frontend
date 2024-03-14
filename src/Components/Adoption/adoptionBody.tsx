@@ -1,9 +1,9 @@
 import React from "react";
 import {Breed, Pet, Species} from "../../petDTO.tsx";
-import empty from "../../empty.jpg";
-import unknown from "../../unknown.svg";
-import male from "../../male.png";
-import female from "../../female.png";
+import empty from "../../assets/empty.jpg";
+import unknown from "../../assets/unknown.svg";
+import male from "../../assets/male.png";
+import female from "../../assets/female.png";
 interface Props{
     allatok:Pet[]|undefined;
     breedList:Breed[];
@@ -18,6 +18,7 @@ interface Props{
     femaleCheck:boolean;
     maleCheck:boolean;
     calcAge: (pet:Pet)=>number;
+    toggleDetailPage:(petId:number)=>void;
 }
 function AdoptionBody(props:Props){
     return (
@@ -83,7 +84,8 @@ function AdoptionBody(props:Props){
                         const years = props.calcAge(pet);
                         return(
                             <div key={pet.petId}
-                                 className="card col animal-card">
+                                 className="card col animal-card"
+                            onClick={()=>props.toggleDetailPage(pet.petId)}>
                                 <img src={(pet.imageUrl === null) ? empty : pet.imageUrl.toString()}
                                      className="card-img-top animal-img" alt="Error when loading image"/>
                                 <div className="card-body">

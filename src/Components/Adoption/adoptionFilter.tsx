@@ -5,7 +5,7 @@ import GetPetList from "../getPetList.tsx";
 import {Breed, Pet} from "../../petDTO.tsx";
 import GetSpeciesList from "../getSpeciesList.tsx";
 
-function AdoptionFilter(){
+function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>void}){
     const [yoo,setYoo] = useState<Pet[]>();
     const [order,setOrder] = useState('namAsc');
     const [speciesFilter,setSpeciesFilter] = useState('all');
@@ -164,7 +164,8 @@ function AdoptionFilter(){
             breedList={breeds}
             breedNeeded={breedNeeded}
             allatok={yoo}
-            calcAge={calcAge}/>
+            calcAge={calcAge}
+            toggleDetailPage={toggleDetailPage}/>
     )
 }
 export default AdoptionFilter;

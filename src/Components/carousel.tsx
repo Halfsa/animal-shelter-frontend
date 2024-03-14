@@ -20,7 +20,7 @@ function Carousel() {
                         <h5 className="card-title">Help us help them</h5>
                         <p className="card-text">Thousands of animals await adoptions at our shelter each coming day.
                             Assist us in making these animals comfortable while they are waiting.</p>
-                        <p className="card-text"><a href={"/adoption"} className={"btn btn-light btn-outline-dark"}>Donate now</a></p>
+                        <p className="card-text"><a href={"/donation"} className={"btn btn-light btn-outline-dark"}>Donate now</a></p>
                     </div>
                 </div>
             </div>

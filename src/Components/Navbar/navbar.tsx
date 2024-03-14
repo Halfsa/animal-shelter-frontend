@@ -1,4 +1,6 @@
 import GetProfile from "../getProfile.tsx";
+import profileImg from "../../assets/profile-icon.png";
+import editImg from "../../assets/edit-icon-png-3587.png";
 interface Props{
     path:string;
     handleSignOut:()=>void;
@@ -27,12 +29,14 @@ function Navbar(props:Props){
                         {yoohoo ? <div className={"dropdown"}>
                             <a className="dropbtn">
                                 <img alt={"show profile"} width={30}
-                                     src={"https://cdn-icons-png.flaticon.com/512/149/149071.png"}/>
+                                     src={profileImg}/>
                             </a>
                             <div className={"dropdown-content"}>
                                 <h5>{yoohoo.username}</h5>
                                 <p>{yoohoo.email ? yoohoo.email : <i>No email added</i>}</p>
                                 <button className={"signout"} onClick={props.handleSignOut}>Sign out</button>
+                                <a href={'/edit'}><img width={15} src={editImg}/> edit
+                                    profile</a>
                             </div>
                         </div> : <a className="btn btn-outline-success" href={"/login"}>Login</a>}
                     </form>
