@@ -4,6 +4,7 @@ import empty from "../../assets/empty.jpg";
 import unknown from "../../assets/unknown.svg";
 import male from "../../assets/male.png";
 import female from "../../assets/female.png";
+import paw from "../../assets/paw.png";
 interface Props{
     allatok:Pet[]|undefined;
     breedList:Breed[];
@@ -108,6 +109,10 @@ function AdoptionBody(props:Props){
                                         </p>
                                     </div>
                                 </div>
+                                <img src={paw} className={"paws"} id={"paw"}/>
+                                <img src={paw} className={"paws"} id={"paw2"}/>
+                                <img src={paw} className={"paws"} id={"paw3"}/>
+                                <img src={paw} className={"paws"} id={"paw4"}/>
                             </div>)
                     }): <div className={'container notFoundDiv'}>No results found</div>}
             </div>

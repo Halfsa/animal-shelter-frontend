@@ -46,7 +46,9 @@ body{
     width: 100%;
 }
 .color{
-    background: var(--bgColor);
+    /*background: var(--bgColor);*/
+    /*background-blend-mode: lighten;*/
+
 }
 .image{
     background-image: url("assets/login_bg.jpg");
@@ -236,8 +238,9 @@ div{
 }
 .footer-container{
     margin-top: 56px;
-    background-color: rgba(2, 255, 103, 0.17);
-
+    background-color: rgb(162, 255, 36);
+    background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
+    background-blend-mode: darken;
 }
 footer.my-4{
     margin-top:0!important;
@@ -264,18 +267,70 @@ footer.my-4{
     margin-top: 10px;
     margin-bottom: 10px;
     width:13rem;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     animation: ease-in;
     animation-duration: 100ms;
     animation-name: card-hover-out;
     font-size: small;
+    overflow: hidden;
 }
+.paws{
+    z-index: 0;
+    filter:
+        grayscale(0%)
+        opacity(6%)
+        sepia(100);
+    opacity: 100%;
+    width: 50px;
+    position: absolute;
+}
+#paw{
+    transform: rotate(35deg);
+    top: 86%;
+    left: 32%;
+}#paw2{
+    transform: rotate(35deg);
+    top: 77%;
+    left: 66%;
+}#paw3{
+    transform: rotate(35deg);
+    top: 56%;
+    left: 52%;
+}#paw4{
+    transform: rotate(35deg);
+    top: 46%;
+    left: 86%;
+}
+
 .card-body{
     padding: 5px;
+    z-index: 1;
 }
 .animal-card:hover{
     background-color: #f1f1f1;
     cursor: pointer;
+}
+.animal-card:hover .paws{
+    filter: opacity(10%);
+}
+.animal-card:hover #paw{
+    animation: walk 3s linear infinite 0.25s;
+}.animal-card:hover #paw2{
+    animation: walk 3s linear infinite 0.50s;
+}.animal-card:hover #paw3{
+    animation: walk 3s linear infinite 0.75s;
+}.animal-card:hover #paw4{
+    animation: walk 3s linear infinite 1s;
+}
+@keyframes walk {
+    /* appear */
+    50% {
+        filter:
+                brightness(0)
+                opacity(25%);
+    }
+    /* disappear */
+
 }
 .petCardName{
     border-bottom: 1px solid gray;
@@ -285,6 +340,7 @@ footer.my-4{
     height: 10rem;
     width: 100%;
     padding-top: 10px;
+    z-index: 1;
 }
 .animal-list{
     margin: auto;

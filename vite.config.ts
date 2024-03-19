@@ -13,6 +13,10 @@ export default defineConfig({
           '/user':{
               target:'http://localhost:3001/',
               changeOrigin:true,
+          },
+          '/pet':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
           }
       }
   },

@@ -1,5 +1,5 @@
 import AdoptionBody from "./adoptionBody.tsx";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import GetBreedList from "../getBreedList.tsx";
 import GetPetList from "../getPetList.tsx";
 import {Breed, Pet} from "../../petDTO.tsx";
@@ -21,6 +21,8 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
     if (allatok.length >0 && yoo === undefined){
         setYoo(sortList(allatok,"namAsc"))
     }
+
+
     function calcAge(pet:Pet){
         const currentDate: Date = new Date();
         const dateOfBirth: Date = new Date((pet.birthDate === null) ? currentDate : pet.birthDate.slice(0, 10));
