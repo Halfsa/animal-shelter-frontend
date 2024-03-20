@@ -5,6 +5,7 @@ import unknown from "../../assets/unknown.svg";
 import male from "../../assets/male.png";
 import female from "../../assets/female.png";
 import paw from "../../assets/paw.png";
+import getBreedList from "../getBreedList.tsx";
 interface Props{
     allatok:Pet[]|undefined;
     breedList:Breed[];
@@ -22,6 +23,7 @@ interface Props{
     toggleDetailPage:(petId:number)=>void;
 }
 function AdoptionBody(props:Props){
+    console.log(props.breedNeeded)
     return (
         <div className={"adoptionBody"}>
             <form className={"form-control d-flex"}>
@@ -51,7 +53,6 @@ function AdoptionBody(props:Props){
                 <label>Female<br/>
                     <input checked={props.femaleCheck} onChange={props.handleCheckFemale} id={"checkBoxFemale"} type={"checkbox"}/>
                 </label>
-                <label> <br/>
                     <select onChange={props.handleOrderChange} defaultValue={'default'}>
                         <option value={'namAsc'}>
                             Name ↑
@@ -67,10 +68,9 @@ function AdoptionBody(props:Props){
                         </option>
 
                     </select>
-                </label>
-                <label> <br/>
+                <br/>
                     <input onClick={props.handleFilterButton} type={"submit"} value={'search'}/>
-                </label>
+                <input className={"input"} type={"text"} id={"animal-search-bar"} placeholder={"Keresés..."}/>
             </form>
             <div
                 className={"container-fluid animal-list row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 "}>
@@ -109,10 +109,10 @@ function AdoptionBody(props:Props){
                                         </p>
                                     </div>
                                 </div>
-                                <img src={paw} className={"paws"} id={"paw"}/>
-                                <img src={paw} className={"paws"} id={"paw2"}/>
-                                <img src={paw} className={"paws"} id={"paw3"}/>
-                                <img src={paw} className={"paws"} id={"paw4"}/>
+                                <img alt={"paw"} src={paw} className={"paws"} id={"paw"}/>
+                                <img alt={"paw"} src={paw} className={"paws"} id={"paw2"}/>
+                                <img alt={"paw"} src={paw} className={"paws"} id={"paw3"}/>
+                                <img alt={"paw"} src={paw} className={"paws"} id={"paw4"}/>
                             </div>)
                     }): <div className={'container notFoundDiv'}>No results found</div>}
             </div>

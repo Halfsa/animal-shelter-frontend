@@ -4,15 +4,18 @@ import GetBreedList from "../getBreedList.tsx";
 import GetPetList from "../getPetList.tsx";
 import {Breed, Pet} from "../../petDTO.tsx";
 import GetSpeciesList from "../getSpeciesList.tsx";
+import {useNavigate} from "react-router-dom";
 
-function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>void}){
+function AdoptionFilter(){
+    const navigate = useNavigate();
     const [yoo,setYoo] = useState<Pet[]>();
-    const [order,setOrder] = useState('namAsc');
-    const [speciesFilter,setSpeciesFilter] = useState('all');
-    const [breedFilter,setBreedFilter] = useState('any');
+    const order = useRef('namAsc');
+    const speciesFilter = useRef('all');
+    const breedFilter = useRef('any');
     const [checkMale,setCheckMale]=useState(false);
     const [checkFemale,setCheckFemale]=useState(false);
     const [breedNeeded,setBreedNeeded]=useState<Breed[]>([]);
+    const [searchBarInput,setSearchBarInput] = useState('')
     const allatok = GetPetList();
     const speciesSelected = React.useRef<string>('all');
     const breedSelected = React.useRef<string>('any');
@@ -30,10 +33,13 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
         const years = ((milisecDiff / 1000) / 31556926)
         return years;
     }
+    function handleSearchBarChange(e:React.ChangeEvent<HTMLInputElement>){
+
+    }
     function handleBreedChange(e:React.ChangeEvent<HTMLSelectElement>){
         breedSelected.current = e.target.value;
         console.log(e.target.value)
-        setBreedFilter(e.target.value)
+        breedFilter.current =(e.target.value)
     }
     function handleCheckMale(){
         setCheckMale(!checkMale);
@@ -44,22 +50,22 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
         setCheckMale(false);
     }function handleOrderChange(e:React.ChangeEvent<HTMLSelectElement>){
         console.log(e.target.value);
-        setOrder(e.target.value);
+        order.current=(e.target.value);
     }
     function handleFilterButton(e:React.MouseEvent<HTMLInputElement>){
         e.preventDefault();
         if (yoo !== undefined){
            let filterThisBitch:Pet[]|undefined = [];
            allatok.map((pet)=>{
-              if (speciesFilter === "all"){
+              if (speciesFilter.current === "all"){
                   breedSelected.current = 'any';
-                  setBreedFilter("any")
+                  breedFilter.current =("any")
                   filterThisBitch!.push(pet);
               } else {
                   if (pet.breedId !== null){
                       breeds.map((breed)=>{
                           if (breed.breedId === pet.breedId){
-                              if (breed.speciesId.toString() === speciesFilter){
+                              if (breed.speciesId.toString() === speciesFilter.current){
                                   filterThisBitch!.push(pet)
                               }
                           }
@@ -71,7 +77,7 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
                if (breedSelected.current === "any"){
                    return pet
                } else{
-                   if (pet.breedId !== null && pet.breedId.toString() === breedFilter){
+                   if (pet.breedId !== null && pet.breedId.toString() === breedFilter.current){
                        return pet
                    }
                }
@@ -90,7 +96,7 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
                })
 
             }
-           sortList(filterThisBitch,order);
+           sortList(filterThisBitch,order.current);
            setYoo(filterThisBitch);
            console.log(filterThisBitch);
            console.log(yoo)
@@ -139,7 +145,7 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
     }
     function handleSpeciesChange(e:React.ChangeEvent<HTMLSelectElement>){
         console.log(e.target.value)
-        setSpeciesFilter(e.target.value)
+        speciesFilter.current =(e.target.value)
         speciesSelected.current = e.target.value;
 
         const mmm:Breed[] = []
@@ -151,6 +157,10 @@ function AdoptionFilter({toggleDetailPage}:{toggleDetailPage:(petId:number)=>voi
             })
         }
         setBreedNeeded(mmm);
+    }
+    function toggleDetailPage(id:number){
+        sessionStorage.setItem('selected-pet',id.toString());
+        navigate(`/pet/detail`);
     }
     return(
         <AdoptionBody

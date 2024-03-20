@@ -256,9 +256,16 @@ footer.my-4{
     box-shadow: none;
     border-radius: 0px;
 }
-.adoptionBody > .form-control > label > input{
-    margin: 10px;
+.adoptionBody >.form-control >label{
+    margin: auto 5px auto 10px;
 }
+.adoptionBody >.form-control >input{
+    margin: auto 10px auto 10px;
+}
+#animal-search-bar{
+    margin: auto 5px auto auto;
+}
+
 .row{
     margin: auto;
 }
@@ -331,6 +338,10 @@ footer.my-4{
     }
     /* disappear */
 
+}
+.selectedImage{
+    width: 100%;
+    margin: 0px;
 }
 .petCardName{
     border-bottom: 1px solid gray;

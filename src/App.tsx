@@ -9,8 +9,11 @@ import Home from "./Components/Home/Home.tsx";
 import Adoption from "./Components/Adoption/Adoption.tsx";
 import LoginHandler from "./Components/Login/loginHandler.tsx";
 import RegisterHandler from "./Components/Register/registerHandler.tsx";
+import PetProfile from "./Components/PetProfile/PetProfile.tsx";
+import PetProfileAssembler from "./Components/PetProfile/PetProfileAssembler.tsx";
 
 function App() {
+    console.log(sessionStorage.getItem('selected-pet'))
    /* const body = document.getElementById("body")!;
     const [currentPath, setCurrentPath] = useState("/");
     switch (currentPath) {
@@ -30,7 +33,6 @@ function App() {
     if (window.location.pathname !== currentPath){
         setCurrentPath(window.location.pathname);
     }*/
-
     return (
         <>
             <Router>
@@ -62,6 +64,7 @@ function App() {
                         path="/adoption"
                         element={<Adoption/>}
                     />
+                    <Route path={`/pet/detail`} element={<PetProfileAssembler/>}/>
 
                     {/* If any route mismatches the upper
           route endpoints then, redirect triggers
