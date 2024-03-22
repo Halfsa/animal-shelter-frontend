@@ -263,7 +263,7 @@ footer.my-4{
     margin: auto 10px auto 10px;
 }
 #animal-search-bar{
-    margin: auto 5px auto auto;
+   margin-top: auto;margin-bottom: auto;
 }
 
 .row{
@@ -347,6 +347,25 @@ footer.my-4{
     border-bottom: 1px solid gray;
 
 }
+#breedDescription{
+    margin: 0px 0px 10px 10px;
+    border: 2px solid darkgreen;
+    background-color: #e5ffbe;
+    border-radius: 5px;
+    padding: 10px;
+}
+#status > span.INSHELTER{
+    color: limegreen;
+}#status > span{
+    color: black;
+}
+ p > q{
+     font-style: italic;
+     margin: 5px;
+ }
+ .selectedPet-content >h2{
+     margin-top: 10px;
+ }
 .animal-img{
     height: 10rem;
     width: 100%;

@@ -7,7 +7,6 @@ function GetBreedList(){
         fetch("http://localhost:3001/breed", {})
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setBreed(data);
             })
             .catch((error) => console.log(error));

@@ -17,6 +17,10 @@ export default defineConfig({
           '/pet':{
               target:'http://localhost:3001/',
               changeOrigin:true,
+          },
+          '/media':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
           }
       }
   },

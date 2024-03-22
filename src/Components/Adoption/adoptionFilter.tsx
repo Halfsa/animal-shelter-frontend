@@ -15,7 +15,7 @@ function AdoptionFilter(){
     const [checkMale,setCheckMale]=useState(false);
     const [checkFemale,setCheckFemale]=useState(false);
     const [breedNeeded,setBreedNeeded]=useState<Breed[]>([]);
-    const [searchBarInput,setSearchBarInput] = useState('')
+    const searchBarInput= useRef('')
     const allatok = GetPetList();
     const speciesSelected = React.useRef<string>('all');
     const breedSelected = React.useRef<string>('any');
@@ -34,7 +34,8 @@ function AdoptionFilter(){
         return years;
     }
     function handleSearchBarChange(e:React.ChangeEvent<HTMLInputElement>){
-
+        searchBarInput.current = e.target.value;
+        console.log(searchBarInput.current)
     }
     function handleBreedChange(e:React.ChangeEvent<HTMLSelectElement>){
         breedSelected.current = e.target.value;
@@ -96,6 +97,11 @@ function AdoptionFilter(){
                })
 
             }
+            filterThisBitch = filterThisBitch.filter((pet)=>{
+                if (pet.name.trim().toLowerCase().includes(searchBarInput.current.trim().toLowerCase())){
+                    return pet;
+                }
+            })
            sortList(filterThisBitch,order.current);
            setYoo(filterThisBitch);
            console.log(filterThisBitch);
@@ -160,7 +166,7 @@ function AdoptionFilter(){
     }
     function toggleDetailPage(id:number){
         sessionStorage.setItem('selected-pet',id.toString());
-        navigate(`/pet/detail`);
+        navigate(`/detail`);
     }
     return(
         <AdoptionBody
@@ -177,7 +183,8 @@ function AdoptionFilter(){
             breedNeeded={breedNeeded}
             allatok={yoo}
             calcAge={calcAge}
-            toggleDetailPage={toggleDetailPage}/>
+            toggleDetailPage={toggleDetailPage}
+            handleSearchBarChange={handleSearchBarChange}/>
     )
 }
 export default AdoptionFilter;

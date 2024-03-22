@@ -1,5 +1,7 @@
 import GetProfile from "../getProfile.tsx";
+// @ts-ignore
 import profileImg from "../../assets/profile-icon.png";
+// @ts-ignore
 import editImg from "../../assets/edit-icon-png-3587.png";
 interface Props{
     path:string;

@@ -7,7 +7,6 @@ function GetPetList() {
         fetch("http://localhost:3001/pet", {})
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setPet(data as Pet[]);
             })
             .catch((error) => console.log(error));

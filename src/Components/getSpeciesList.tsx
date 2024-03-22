@@ -7,7 +7,6 @@ function GetSpeciesList(){
         fetch("http://localhost:3001/species", {})
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 setSpecies(data);
             })
             .catch((error) => console.log(error));

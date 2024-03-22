@@ -1,11 +1,15 @@
 import React from "react";
 import {Breed, Pet, Species} from "../../petDTO.tsx";
+// @ts-ignore
 import empty from "../../assets/empty.jpg";
+// @ts-ignore
 import unknown from "../../assets/unknown.svg";
+// @ts-ignore
 import male from "../../assets/male.png";
+// @ts-ignore
 import female from "../../assets/female.png";
+// @ts-ignore
 import paw from "../../assets/paw.png";
-import getBreedList from "../getBreedList.tsx";
 interface Props{
     allatok:Pet[]|undefined;
     breedList:Breed[];
@@ -21,56 +25,59 @@ interface Props{
     maleCheck:boolean;
     calcAge: (pet:Pet)=>number;
     toggleDetailPage:(petId:number)=>void;
+    handleSearchBarChange:(e:React.ChangeEvent<HTMLInputElement>)=>void;
 }
 function AdoptionBody(props:Props){
-    console.log(props.breedNeeded)
     return (
         <div className={"adoptionBody"}>
             <form className={"form-control d-flex"}>
+                <input name={'searchBar'} onChange={props.handleSearchBarChange} className={"input"} type={"text"} id={"animal-search-bar"}
+                       placeholder={"Search..."}/>
                 <label> Species: <br/>
-                    <select defaultValue={'all'} onChange={props.handleSpeciesChange}>
+                    <select name={'selectSpecies'} defaultValue={'all'} onChange={props.handleSpeciesChange}>
                         <option value={'all'}>all</option>
-                        {props.speciesList.map((species)=>{
-                            return(
+                        {props.speciesList.map((species) => {
+                            return (
                                 <option value={species.speciesId} key={species.speciesId}>{species.name}</option>
                             )
                         })}
                     </select>
                 </label>
-                <label className={props.breedNeeded.length === 0? "gone":"ungone"}> Breed: <br/>
-                    <select defaultValue={'any'} onChange={props.handleBreedChange}>
+                <label className={props.breedNeeded.length === 0 ? "gone" : "ungone"}> Breed: <br/>
+                    <select name={'selectBreed'} defaultValue={'any'} onChange={props.handleBreedChange}>
                         <option value={'any'}>any</option>
-                        {props.breedNeeded.map((breed)=>{
-                            return(
+                        {props.breedNeeded.map((breed) => {
+                            return (
                                 <option value={breed.breedId} key={breed.breedId}>{breed.name}</option>
                             )
                         })}
                     </select>
                 </label>
                 <label>Male<br/>
-                    <input checked={props.maleCheck} onChange={props.handleCheckMale} id={"checkBoxMale"} type={"checkbox"}/>
+                    <input checked={props.maleCheck} onChange={props.handleCheckMale} id={"checkBoxMale"}
+                           type={"checkbox"}/>
                 </label>
                 <label>Female<br/>
-                    <input checked={props.femaleCheck} onChange={props.handleCheckFemale} id={"checkBoxFemale"} type={"checkbox"}/>
+                    <input checked={props.femaleCheck} onChange={props.handleCheckFemale} id={"checkBoxFemale"}
+                           type={"checkbox"}/>
                 </label>
-                    <select onChange={props.handleOrderChange} defaultValue={'default'}>
-                        <option value={'namAsc'}>
-                            Name ↑
-                        </option>
-                        <option value={'namDesc'}>
-                            Name ↓
-                        </option>
-                        <option value={'ageAsc'}>
-                            Age ↑
-                        </option>
-                        <option value={'ageDesc'}>
-                            Age ↓
-                        </option>
+                <select name={'selectOrder'} onChange={props.handleOrderChange} defaultValue={'default'}>
+                    <option value={'namAsc'}>
+                        Name ↑
+                    </option>
+                    <option value={'namDesc'}>
+                        Name ↓
+                    </option>
+                    <option value={'ageAsc'}>
+                        Age ↑
+                    </option>
+                    <option value={'ageDesc'}>
+                        Age ↓
+                    </option>
 
-                    </select>
+                </select>
                 <br/>
-                    <input onClick={props.handleFilterButton} type={"submit"} value={'search'}/>
-                <input className={"input"} type={"text"} id={"animal-search-bar"} placeholder={"Keresés..."}/>
+                <input onClick={props.handleFilterButton} type={"submit"} value={'search'}/>
             </form>
             <div
                 className={"container-fluid animal-list row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 "}>
