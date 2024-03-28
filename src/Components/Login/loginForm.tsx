@@ -12,8 +12,8 @@ interface Props{
 }
 function LoginForm(props:Props){
     return(
-        <div className={"container login d-flex align-content-center"}>
-            <form className={'container form-control'}>
+        <div className={"container d-flex align-content-center"}>
+            <form className={'container form-control login'}>
                 <h1>LOGIN</h1>
                 <div className={"container-fluid aaa row row-cols-lg-2 row-cols-xl-1 row-cols-sm-1 m-auto p-2"}>
                     <div className={"container col"}>

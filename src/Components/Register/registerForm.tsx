@@ -18,7 +18,7 @@ console.log(useWindowWidth());
     body.classList.replace("color", "image");
     return (
         <div className={"container login d-flex align-content-center"}>
-            <form className={'container form-control'}>
+            <form className={'container form-control register'}>
                 <h1>REGISTER</h1>
                 <div className={"container-fluid aaa row row-cols-lg-2 row-cols-xl-1 row-cols-sm-1 m-auto p-2"}>
                     <div className={"col popup"}>

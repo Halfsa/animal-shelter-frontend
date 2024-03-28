@@ -1,6 +1,21 @@
 :root{
-    --navColor: palegoldenrod;
-    --bgColor: #fbffdb;
+   /* --background-base-color: #F8FAF9;
+    --Celadon: #3F482C;
+    --font-color:#F8FAF9;
+    --frame-color: #2F362F;*/
+    --background-base-color: #faf3ea;
+    --dark-green-color:#2D2F0A ;
+    --light-green-color: #9eb057;
+    --font-color:#D8AB83;
+    --frame-color: #5E372B  ;
+    /*
+    kutyás palette:
+    5E372B
+    EEDBC1
+    D8AB83
+    758147
+    2D2F0A
+    */
 }
 .input{
     margin-left: 10px;
@@ -47,7 +62,10 @@ body{
 }
 .color{
     /*background: var(--bgColor);*/
-    /*background-blend-mode: lighten;*/
+    /*background-image: url("https://img.freepik.com/free-vector/wild-fun-animal-paw-print-pattern-background-design-vector_1017-47618.jpg");
+    background-color: #eeffe2;
+    background-blend-mode: lighten;*/
+    background-color: var(--background-base-color);
 
 }
 .image{
@@ -67,7 +85,6 @@ input{
 label{
     font-size: 12px;
     display: block;
-
 }
 /*.loginLabel{
     display: block;
@@ -87,12 +104,12 @@ h1{
     border-bottom: 1px solid black;
 }
 .body-h1{
-    color: darkslategray;
-    border-bottom: 2px solid lightgray;
+    color: var(--frame-color);
+    border-bottom: 2px solid var(--font-color);
     height: 37px;
     font-size: 30px;
 }
-.form-control{
+.form-control.login , .form-control.register{
     background-color: rgba(104, 188, 211, 0.78);
     box-shadow: 1px 1px 6px dimgrey;
 }
@@ -101,8 +118,14 @@ h1{
     font-size: 14px;
 }
 .navbar{
-    background-image: linear-gradient(90deg,var(--navColor) 1%, rgba(140, 255, 0, 0.97));
-    box-shadow: 1px 1px 5px 0.5px darkslategrey;
+    background-color: var(--light-green-color);
+    box-shadow: 1px 1px 5px 0.5px var(--dark-green-color);
+}
+.nav-link{
+    color: var(--dark-green-color)!important;
+}
+.nav-link.active{
+    color: var(--background-base-color) !important;
 }
 .signout{
     border: 0px;
@@ -209,7 +232,6 @@ h1{
     width: 100%;
     top: 50%;
     left: 50%;
-
 }
 div{
     display: block;
@@ -237,44 +259,65 @@ div{
     padding-top: 40px;
 }
 .footer-container{
-    margin-top: 56px;
-    background-color: rgb(162, 255, 36);
+   /* background-color: rgb(162, 255, 36);*/
+    background-color: var(--light-green-color);
     background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
     background-blend-mode: darken;
+
 }
 footer.my-4{
     margin-top:0!important;
     margin-bottom: 0!important;
 }
+.text-body-secondary{
+    color: var(--dark-green-color)!important;
+}
 .adoptionBody{
     padding-top: 56px;
 }
-.adoptionBody > .form-control{
+.adoptionBody .filter .form-control{
     background: white;
     align-content: center;
     align-items: center;
     box-shadow: none;
-    border-radius: 0px;
+    border-radius: 0;
+    padding: 15px 0;
+    height: 100%;
+
 }
-.adoptionBody >.form-control >label{
-    margin: auto 5px auto 10px;
-}
+
 .adoptionBody >.form-control >input{
-    margin: auto 10px auto 10px;
+    margin: auto 5px auto 5px;
+}.adoptionBody >.form-control >select{
+    margin: auto 5px auto 5px;
 }
+ .adoptionBody .form-control .container-fluid{
+     display: flex;
+     align-items: center;
+ }
+ .filterInput{
+     background-color: red;
+     margin:5px;
+ }
+ .filter{
+     padding: 0;
+     width: 30%;
+     margin: 0;
+ }
+ #adoptionFilterButton{
+
+ }
 #animal-search-bar{
-   margin-top: auto;margin-bottom: auto;
+    margin-top: auto;margin-bottom: auto;
 }
 
 .row{
     margin: auto;
 }
 .animal-card{
-    margin:auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 9px;
     width:13rem;
-    background-color: #ffffff;
+    background-color: #fffff9;
     animation: ease-in;
     animation-duration: 100ms;
     animation-name: card-hover-out;
@@ -459,6 +502,9 @@ footer.my-4{
     .dropdown-content::after{
         right: 90%;
     }
+    .animal-card{
+        margin: 10px auto;
+    }
 }
 @media screen and (min-width: 576px) {
     .dropdown-content {
@@ -503,7 +549,10 @@ footer.my-4{
     }
 }
 
-
+#checkBoxContainer > input{
+    height: calc(69px / 4.20);
+    width: calc(69px / 4.20);
+}
 
 
 
