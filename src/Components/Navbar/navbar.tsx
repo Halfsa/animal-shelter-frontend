@@ -1,7 +1,7 @@
 import GetProfile from "../getProfile.tsx";
-// @ts-ignore
+// @ts-expect-error image being dumb
 import profileImg from "../../assets/profile-icon.png";
-// @ts-ignore
+// @ts-expect-error image being dumb
 import editImg from "../../assets/edit-icon-png-3587.png";
 interface Props{
     path:string;
@@ -37,7 +37,7 @@ function Navbar(props:Props){
                                 <h5>{yoohoo.username}</h5>
                                 <p>{yoohoo.email ? yoohoo.email : <i>No email added</i>}</p>
                                 <button className={"signout"} onClick={props.handleSignOut}>Sign out</button>
-                                <a href={'/edit'}><img width={15} src={editImg}/> edit
+                                <a href={'/edit'}><img alt={"edit profile"} width={15} src={editImg}/> edit
                                     profile</a>
                             </div>
                         </div> :<div className={"logregButtons"}>
