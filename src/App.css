@@ -3,11 +3,12 @@
     --Celadon: #3F482C;
     --font-color:#F8FAF9;
     --frame-color: #2F362F;*/
-    --background-base-color: #faf3ea;
-    --dark-green-color:#2D2F0A ;
-    --light-green-color: #9eb057;
-    --font-color:#D8AB83;
-    --frame-color: #5E372B  ;
+    --background-base-color: #ffffff;
+    --dark-green-color: #2c1703 ;
+    --light-green-color: #946A44;
+    --font-color:#2D3331;
+    --frame-color: #D9AD93 ;
+    --navbar-margin:56px;
     /*
     kutyás palette:
     5E372B
@@ -104,7 +105,7 @@ h1{
     border-bottom: 1px solid black;
 }
 .body-h1{
-    color: var(--frame-color);
+    color: var(--font-color);
     border-bottom: 2px solid var(--font-color);
     height: 37px;
     font-size: 30px;
@@ -135,6 +136,17 @@ h1{
     display: flex;
     align-items: center;
 }
+.loginBtn{
+    border: 1px solid var(--dark-green-color);
+    margin-left: 5px;
+    position: relative;
+}
+
+.loginBtn:hover{
+    background-color: var(--dark-green-color);
+    background-blend-mode: hue;
+    color: var(--frame-color);
+}
 
 .dropdown{
     position: relative;
@@ -150,6 +162,7 @@ h1{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     width: 200px;
+    right: 10%;
 
 }
 .dropdown-content::after{
@@ -159,6 +172,7 @@ h1{
     border-width: 8px;
     border-style: solid;
     border-color: transparent transparent #f9f9f9 transparent;
+    left: 90%;
 
 }
 .dropdown-content a{
@@ -217,7 +231,7 @@ h1{
     margin-bottom: 30px;
 }
 .carousel{
-    padding-top: 56px;
+    padding-top: var(--navbar-margin);
     padding-bottom: 50px;
 }
 @media screen and (max-width: 1200px){
@@ -273,19 +287,23 @@ footer.my-4{
     color: var(--dark-green-color)!important;
 }
 .adoptionBody{
-    padding-top: 56px;
+    padding-top: var(--navbar-margin);
 }
-.adoptionBody .filter .form-control{
-    background: white;
-    align-content: center;
-    align-items: center;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 15px 0;
-    height: 100%;
-
+.adoptionImage{
+    width: 100%;
+    /*
+        filter: brightness(80%);
+     */
 }
-
+/*
+.adoptionImageOverlayText{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
+    color: #ffffff;
+    text-shadow: 0 0 12px white;
+}
+*/
 .adoptionBody >.form-control >input{
     margin: auto 5px auto 5px;
 }.adoptionBody >.form-control >select{
@@ -295,17 +313,54 @@ footer.my-4{
      display: flex;
      align-items: center;
  }
- .filterInput{
-     background-color: red;
-     margin:5px;
- }
+.filterInput{
+    width: 100%;
+}
  .filter{
      padding: 0;
-     width: 30%;
      margin: 0;
+     background-color: var(--background-base-color);
+     width: 20%;
+     height: auto;
+     border-right: 1px solid lightgray;
  }
- #adoptionFilterButton{
+.adoptionBody .filter .form-control{
+    display: block;
+    box-shadow: none;
+    border-radius: 0 0 10px 0;
+    padding: 15px 0;
+    position: sticky;
+    top:56px;
+    border: 0;
+}
+.checkbox-labels{
+    font-size: 14px;
+    width: 50%;
+}
+.checkbox-labels p{
+    font-size: 14px;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.filter-section{
+    margin: 15px;
+    padding: 0;
+    display: flex;
+    align-content: center;
+    width: auto;
+}
+#checkBoxContainer label input{
+    height: calc(69px / 4.20);
+    width: calc(69px / 4.20);
+    display: flex;
+    margin: auto;
+}
 
+ #adoptionFilterButton{
+    background-color: #ffffff;
+     border-radius: 14px;
+     margin-top: 20px;
  }
 #animal-search-bar{
     margin-top: auto;margin-bottom: auto;
@@ -315,7 +370,7 @@ footer.my-4{
     margin: auto;
 }
 .animal-card{
-    margin: 9px;
+    margin: 3px;
     width:13rem;
     background-color: #fffff9;
     animation: ease-in;
@@ -443,11 +498,9 @@ footer.my-4{
 .notFoundDiv{
     color: red;
     text-align:center;
-    margin: auto;
     font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 70%;
-    font-family: "Amiri Quran";
+    margin: 10px auto auto;
+    font-family: "Amiri Quran", serif;
 }
 .popup .popuptext::after {
     content: "";
@@ -465,7 +518,7 @@ footer.my-4{
     animation: fadeIn 1s
 }
 .gone{
-    display: none;
+    display: none!important;
 }
 .ungone{
     display: initial;
@@ -495,23 +548,24 @@ footer.my-4{
         padding-top: 16px;
     }
 }
+
 @media screen and (max-width: 576px) {
-    .dropdown-content {
-        left: 10%;
-    }
-    .dropdown-content::after{
-        right: 90%;
-    }
     .animal-card{
         margin: 10px auto;
     }
-}
-@media screen and (min-width: 576px) {
-    .dropdown-content {
-        right: 10%;
+    .filter{
+        width: 100%;
     }
-    .dropdown-content::after{
-        left: 90%;
+    .loginBtn{
+        position: initial;
+    }
+    .logregButtons{
+        position: relative;
+        left: 68%;
+    }
+    .profileImage{
+        position: relative;
+        left: 91%;
     }
 }
 @keyframes card-hover-in {
@@ -549,10 +603,6 @@ footer.my-4{
     }
 }
 
-#checkBoxContainer > input{
-    height: calc(69px / 4.20);
-    width: calc(69px / 4.20);
-}
 
 
 

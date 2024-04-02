@@ -10,6 +10,8 @@ import male from "../../assets/male.png";
 import female from "../../assets/female.png";
 // @ts-expect-error image being stupid
 import paw from "../../assets/paw.png";
+// @ts-expect-error image being stupid
+import happyDogs from "../../assets/happy-dogs.jpg";
 interface Props{
     allatok:Pet[]|undefined;
     breedList:Breed[];
@@ -29,15 +31,23 @@ interface Props{
 }
 function AdoptionBody(props:Props){
     return (
-        <div className={"adoptionBody row"}>
-            <div className={"container col filter"}>
-                <form className={"form-control"}>
-                    <div className={"container-fluid"}>
-                        <input className={"filterInput"} name={'searchBar'} onChange={props.handleSearchBarChange}
-                               type={"text"} id={"animal-search-bar"}
-                               placeholder={"Search by name..."}/>
-                    </div>
-                    <div className={"container-fluid"}>
+        <div className={"adoptionBody"}>
+            <div className={"container-fluid card p-0"}>
+                <img alt={"Many dogs await adoption"} className={"adoptionImage"} src={happyDogs}/>
+                <div className=" container card-img-overlay">
+                    <h5 className="adoptionImageOverlayText"></h5>
+                </div>
+            </div>
+            <div className={"row"}>
+                <div className={"container filter"}>
+                    <form className={"form-control"}>
+                        <div className={"container-fluid filter-section"}>
+                            <input className={"filterInput"} name={'searchBar'} onChange={props.handleSearchBarChange}
+                                   type={"text"} id={"animal-search-bar"}
+                                   placeholder={"Search by name..."}/>
+                        </div>
+                        <div className={"container-fluid filter-section"}>
+                        <label className={"input-labels"}>species: <br/>
                         <select className={"form-select-sm filterInput"} name={'selectSpecies'} defaultValue={'all'}
                                 onChange={props.handleSpeciesChange}>
                             <option value={'all'}>all</option>
@@ -47,10 +57,12 @@ function AdoptionBody(props:Props){
                                 )
                             })}
                         </select>
+                        </label>
                     </div>
-                    <div className={"container-fluid"}>
+                    <div className={(props.breedNeeded.length === 0 ? "gone" : "ungone") + " container-fluid filter-section"}>
+                        <label className={" input-labels"}>breed:
                         <select
-                            className={(props.breedNeeded.length === 0 ? "gone" : "ungone") + " form-select-sm filterInput"}
+                            className={" form-select-sm filterInput"}
                             name={'selectBreed'} defaultValue={'any'} onChange={props.handleBreedChange}>
                             <option value={'any'}>any</option>
                             {props.breedNeeded.map((breed) => {
@@ -60,16 +72,23 @@ function AdoptionBody(props:Props){
                                 )
                             })}
                         </select>
+                        </label>
                     </div>
-                    <div id="checkBoxContainer" className={"container-fluid"}>
-                        <input className={"filterInput"} checked={props.maleCheck} onChange={props.handleCheckMale}
-                               id={"checkBoxMale"}
-                               type={"checkbox"}/>
-                        <input className={"filterInput"} checked={props.femaleCheck} onChange={props.handleCheckFemale}
-                               id={"checkBoxFemale"}
-                               type={"checkbox"}/>
+                    <div id="checkBoxContainer" className={"container-fluid filter-section"}>
+                        <label className={"checkbox-labels"}><p>male</p>
+                            <input className={"filterInput"} checked={props.maleCheck}
+                                   onChange={props.handleCheckMale}
+                                   id={"checkBoxMale"}
+                                   type={"checkbox"}/>
+                        </label>
+                        <label className={"checkbox-labels"}> <p>female</p>
+                            <input className={"filterInput"} checked={props.femaleCheck}
+                                   onChange={props.handleCheckFemale}
+                                   id={"checkBoxFemale"}
+                                   type={"checkbox"}/>
+                        </label>
                     </div>
-                    <div className={"container-fluid"}>
+                    <div className={"container-fluid filter-section"}>
                         <select className={"form-select-sm filterInput"} name={'selectOrder'}
                                 onChange={props.handleOrderChange}
                                 defaultValue={'default'}>
@@ -138,6 +157,7 @@ function AdoptionBody(props:Props){
                                 <img alt={"paw"} src={paw} className={"paws"} id={"paw4"}/>
                             </div>)
                     }) : <div className={'container notFoundDiv'}>No results found</div>}
+                </div>
             </div>
         </div>
     )

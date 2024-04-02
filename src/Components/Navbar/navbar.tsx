@@ -28,7 +28,7 @@ function Navbar(props:Props){
                         </li>
                     </ul>
                     <form className="d-flex">
-                        {yoohoo ? <div className={"dropdown"}>
+                        {yoohoo ? <div className={"dropdown profileImage"}>
                             <a className="dropbtn">
                                 <img alt={"show profile"} width={30}
                                      src={profileImg}/>
@@ -40,9 +40,13 @@ function Navbar(props:Props){
                                 <a href={'/edit'}><img width={15} src={editImg}/> edit
                                     profile</a>
                             </div>
-                        </div> : <a className="btn btn-outline-success" href={"/login"}>Login</a>}
-                    </form>
-                </div>
+                        </div> :<div className={"logregButtons"}>
+                            <a className="btn loginBtn" href={"/login"}>Login</a>
+                            <a className="btn loginBtn" href={"/register"}>Register
+                    </a></div>
+                    }
+                </form>
+            </div>
             </div>
         </nav>
     )

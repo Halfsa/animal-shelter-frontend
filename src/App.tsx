@@ -35,25 +35,14 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    {/* This route is for home component
-          with exact path "/", in component props
-          we passes the imported component*/}
                     <Route
                         path="/"
                         element={<Home/>}
                     />
-
-                    {/* This route is for about component
-          with exact path "/about", in component
-          props we passes the imported component*/}
                     <Route
                         path="/register"
                         element={<RegisterHandler />}
                     />
-
-                    {/* This route is for contactus component
-          with exact path "/contactus", in
-          component props we passes the imported component*/}
                     <Route
                         path="/login"
                         element={<LoginHandler />}
@@ -62,12 +51,9 @@ function App() {
                         path="/adoption"
                         element={<Adoption/>}
                     />
-                    <Route path={`/detail`} element={<PetProfileAssembler/>}/>
-
-                    {/* If any route mismatches the upper
-          route endpoints then, redirect triggers
-          and redirects app to home component with to="/" */}
-                    {/* <Redirect to="/" /> */}
+                    <Route
+                        path={`/detail`}
+                        element={<PetProfileAssembler/>}/>
                     <Route
                         path="*"
                         element={<Navigate to="/" />}
