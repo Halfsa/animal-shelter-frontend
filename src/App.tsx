@@ -10,6 +10,7 @@ import Adoption from "./Components/Adoption/Adoption.tsx";
 import LoginHandler from "./Components/Login/loginHandler.tsx";
 import RegisterHandler from "./Components/Register/registerHandler.tsx";
 import PetProfileAssembler from "./Components/PetProfile/PetProfileAssembler.tsx";
+import EditProfileAssembler from "./Components/EditProfile/EditProfileAssembler.tsx";
 
 function App() {
    /* const body = document.getElementById("body")!;
@@ -31,6 +32,7 @@ function App() {
     if (window.location.pathname !== currentPath){
         setCurrentPath(window.location.pathname);
     }*/
+
     return (
         <>
             <Router>
@@ -53,7 +55,11 @@ function App() {
                     />
                     <Route
                         path={`/detail`}
-                        element={<PetProfileAssembler/>}/>
+                        element={<PetProfileAssembler/>}
+                    />
+                    <Route
+                        path={`/profile/edit`}
+                        element={<EditProfileAssembler/>}/>
                     <Route
                         path="*"
                         element={<Navigate to="/" />}

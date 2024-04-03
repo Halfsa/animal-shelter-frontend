@@ -1,9 +1,7 @@
-import axios from "axios";
-import { useState} from "react";
-import {Pet} from "../../petDTO.tsx";
 // @ts-expect-error cant find the pic for some reason
 import empty from "../../assets/empty.jpg";
 import GetBreedList from "../getBreedList.tsx";
+import GetPet from "../getPet.tsx";
 function PetProfile(){
     let petId:number = -1;
    // const [imageSrc,setImageSrc] = useState('');
@@ -57,18 +55,6 @@ function PetProfile(){
             </div>
         </div>
     )
-    function GetPet(id:number){
-    const [pet,setPet] = useState<Pet|undefined>(undefined);
-            axios.get(`/pet/${id}`).then((res)=>{
-                if (pet === undefined){
-                setPet(res.data)
-                }
-                return res.data;
-            })
-                .catch( (e) => {
-                    console.log(e)
-                })
-        return pet;
-    }
+
 }
 export default PetProfile;

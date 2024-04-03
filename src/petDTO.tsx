@@ -24,3 +24,12 @@ export interface User{
     name:string,
     email:string,
 }
+export interface Location{
+    name:string,
+    country:string,
+    state:string|null,
+    city:string,
+    zipCode:number,
+    address:string,
+    addressExtra:string|null,
+}

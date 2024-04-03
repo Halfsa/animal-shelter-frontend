@@ -21,6 +21,10 @@ export default defineConfig({
           '/media':{
               target:'http://localhost:3001/',
               changeOrigin:true,
+          },
+          '/location/my':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
           }
       }
   },
