@@ -1,14 +1,12 @@
 import {useEffect, useState} from "react";
 import {Breed} from "../petDTO.tsx";
+import axios from "axios";
 
 function GetBreedList(){
     const [breed, setBreed] = useState<Breed[]>([]);
     useEffect(() => {
-        fetch("http://localhost:3001/breed", {})
-            .then((response) => response.json())
-            .then((data) => {
-                setBreed(data);
-            })
+        axios.get("/breed", {})
+            .then((response) => setBreed(response.data))
             .catch((error) => console.log(error));
     }, []);
 

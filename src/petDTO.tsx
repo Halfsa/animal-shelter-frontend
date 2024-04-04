@@ -2,7 +2,7 @@ export interface Pet{
     birthDate: string,
     breedId: number,
     description: string,
-    imageUrl: URL,
+    imageUrls: string[],
     name:string,
     petId:number,
     sex:string,
@@ -25,6 +25,7 @@ export interface User{
     email:string,
 }
 export interface Location{
+    locationId:number,
     name:string,
     country:string,
     state:string|null,

@@ -25,7 +25,14 @@ export default defineConfig({
           '/location/my':{
               target:'http://localhost:3001/',
               changeOrigin:true,
+          }, '/breed':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
+          }, '/species':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
           }
+
       }
   },
 })

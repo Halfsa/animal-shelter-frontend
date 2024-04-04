@@ -19,20 +19,20 @@ function LoginHandler(){
         setPassword(e.target.value);
         console.log(e.target.value);
     }
+
     function FetchLogin(username:string|undefined,password:string|undefined){
-        axios.defaults.withCredentials = true;
         axios.post('/auth/login', {
             username: username,
             password: password,
-        })
-            .then(function (response) {
+        }).then(function (response) {
                 console.log(response.data.message);
+                localStorage.setItem("access_token",response.data.access_token);
+                localStorage.setItem("refresh_token",response.data.refresh_token);
                 setUsername('');
                 setPassword('');
                 navigate('/')
                 return response.data.message;
-            })
-            .catch(function (error) {
+            }).catch(function (error) {
                 console.log(error.response.data.message);
                 if (typeof error.response.data.message === "string"){
                     setErrorUname([error.response.data.message])
@@ -62,7 +62,8 @@ function LoginHandler(){
                 return error.response.data.message;
             });
     }
-    function LoginFetch(username:string|undefined,password:string|undefined,ev:React.MouseEvent<HTMLInputElement>) {
+
+    function handleLogin(username:string|undefined,password:string|undefined,ev:React.MouseEvent<HTMLInputElement>) {
         ev.preventDefault();
         FetchLogin(username,password);
 
@@ -79,7 +80,7 @@ function LoginHandler(){
                    password={password}
                    handleUsernameChange={handleUsernameChange}
                    handlePasswordChange={handlePasswordChange}
-                   handleSubmit={(ev)=> LoginFetch(username,password,ev)}/>
+                   handleSubmit={(ev)=> handleLogin(username,password,ev)}/>
     )
 }
 

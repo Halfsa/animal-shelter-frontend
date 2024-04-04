@@ -129,7 +129,7 @@ function AdoptionBody(props:Props){
                             <div key={pet.petId}
                                  className="card col animal-card"
                                  onClick={() => props.toggleDetailPage(pet.petId)}>
-                                <img src={(pet.imageUrl === null) ? empty : pet.imageUrl.toString()}
+                                <img src={(pet.imageUrls.length ===0) ? empty : pet.imageUrls[0].toString()}
                                      className="card-img-top animal-img" alt="Error when loading image"/>
                                 <div className="card-body">
                                     <div className="card-text">

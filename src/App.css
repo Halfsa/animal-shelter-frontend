@@ -101,7 +101,7 @@ label{
 }
 h1{
     text-align: center;
-    font-family: Cambria;
+    font-family: Cambria, serif;
     border-bottom: 1px solid black;
 }
 .body-h1{
@@ -162,6 +162,7 @@ h1{
     z-index: 1;
     width: 200px;
     right: 10%;
+    border-radius: 3px;
 
 }
 .dropdown-content::after{
@@ -482,6 +483,7 @@ footer.my-4{
 .animal-list{
     margin: auto;
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
 }
 .popup {
@@ -564,6 +566,16 @@ footer.my-4{
     text-align: center;
     max-width: 250px;
     margin-top: 5px;
+}
+.help{
+    display: inline-block!important;
+}
+.editImg{
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    margin-left: 5px;
+    vertical-align: top;
+    margin-top: 6px;
 }
 .profileBody{
     margin-top: var(--navbar-margin);
