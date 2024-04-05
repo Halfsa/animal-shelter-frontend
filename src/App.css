@@ -186,9 +186,7 @@ h1{
 .dropdown-content p{
     text-align: center;
 }
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+
 .dropdown-content div{
     display: flex;
     align-content: center;

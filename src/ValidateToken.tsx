@@ -22,7 +22,7 @@ function ValidateToken(){
                 console.log(e)
             })
         }}
-    }, );
+    });
     return returnedToken;
 }
 export default ValidateToken;

@@ -1,12 +1,12 @@
-import axios from "axios";
 import React, {useState} from "react";
 import LoginForm from "./loginForm.tsx";
+import LoginPost from "./LoginPost.tsx";
 import {useNavigate} from "react-router-dom";
 
 function LoginHandler(){
+    const navigate = useNavigate();
     const [username,setUsername]=useState<string>();
     const [password,setPassword] = useState<string>();
-    const navigate = useNavigate();
     const [errorUname,setErrorUname]=useState<string[]|undefined>(undefined);
     const [errorPassword,setErrorPassword]=useState<string[]|undefined>(undefined);
     const body = document.getElementById("body")!;
@@ -19,54 +19,17 @@ function LoginHandler(){
         setPassword(e.target.value);
         console.log(e.target.value);
     }
-
-    function FetchLogin(username:string|undefined,password:string|undefined){
-        axios.post('/auth/login', {
-            username: username,
-            password: password,
-        }).then(function (response) {
-                console.log(response.data.message);
-                localStorage.setItem("access_token",response.data.access_token);
-                localStorage.setItem("refresh_token",response.data.refresh_token);
-                setUsername('');
-                setPassword('');
-                navigate('/')
-                return response.data.message;
-            }).catch(function (error) {
-                console.log(error.response.data.message);
-                if (typeof error.response.data.message === "string"){
-                    setErrorUname([error.response.data.message])
-                    setErrorPassword(undefined);
-                    return;
-                }
-                const listusz: string[] = error.response.data.message;
-                let unameErrors:string[]|undefined = [];
-                let passwordErrors:string[]|undefined = [];
-                listusz.map((error)=>{
-                    if (error.trim().toLowerCase().includes("username")){
-                        unameErrors?.push(error);
-                    }
-                    else if (error.trim().toLowerCase().includes("password")){
-                        passwordErrors?.push(error);
-                    }
-                })
-                if (unameErrors.length === 0) {
-                    unameErrors = undefined
-                }if (passwordErrors.length === 0) {
-                    passwordErrors = undefined
-                }
-                setErrorUname(unameErrors);
-                setErrorPassword(passwordErrors);
-                console.log(unameErrors);
-                console.log(passwordErrors);
-                return error.response.data.message;
-            });
-    }
-
     function handleLogin(username:string|undefined,password:string|undefined,ev:React.MouseEvent<HTMLInputElement>) {
         ev.preventDefault();
-        FetchLogin(username,password);
-
+            LoginPost({
+            username:username,
+            password:password,
+            setUsername: setUsername,
+            setPassword:setPassword,
+            setErrorUsername:setErrorUname,
+            setErrorPassword:setErrorPassword,
+            navigate:navigate,
+        });
     }
     function disablePopup(){
         setErrorUname(undefined);
