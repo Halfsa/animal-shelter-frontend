@@ -3,14 +3,14 @@ import empty from "../../assets/empty.jpg";
 import GetBreedList from "../getBreedList.tsx";
 import GetPet from "../getPet.tsx";
 function PetProfile(){
-    let petId:number = -1;
+    let petId:string = '-1';
    // const [imageSrc,setImageSrc] = useState('');
     const selectedPet = sessionStorage.getItem('selected-pet');
     if (selectedPet !== null)
     {
-        petId = Number.parseInt(selectedPet);
+        petId = (selectedPet);
     }
-    if (petId === -1){
+    if (petId === '-1'){
         return(
             <div>Baj van</div>
         );
@@ -42,7 +42,7 @@ function PetProfile(){
     }*/
     return(
         <div className={"container-fluid adoptionBody p-0"}>
-            <img alt={"selected animal's image"} className={"selectedImage"} src={pet?.imageUrl === null || pet?.imageUrl ===undefined? empty:pet.imageUrl.toString()}/>
+            <img alt={"selected animal's image"} className={"selectedImage"} src={pet? pet.imageUrls.length !==0?pet?.imageUrls[0]:empty:empty}/>
             <div className={"container selectedPet-content"}>
                 <h2>{pet?.name}</h2>
                 <p><b>sex: </b> {pet?.sex}</p>

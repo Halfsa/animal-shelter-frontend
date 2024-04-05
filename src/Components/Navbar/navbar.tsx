@@ -10,6 +10,7 @@ interface Props{
     displayPopup: ()=>void;
     dropdownContent:React.RefObject<HTMLDivElement>;
     yoohoo:User|undefined;
+    redirectToProfile:()=>void;
 }
 function Navbar({yoohoo,...props}:Props){
     return (
@@ -42,7 +43,7 @@ function Navbar({yoohoo,...props}:Props){
                                     <img className={"dropdownProfile"} alt={"your profile image"} width={60}
                                           src={profileImg}/>
                                 </div>
-                                <h5>{yoohoo.username}</h5>
+                                <h5 onClick={props.redirectToProfile}>{yoohoo.username}</h5>
                                 <p>{yoohoo.email ? yoohoo.email : <i>No email added</i>}</p>
                                 <button className={"signout"} onClick={props.handleSignOut}>Sign out</button>
                                 <a href={'/profile/edit'}><img alt={"edit profile"} width={15} src={editImg}/> edit

@@ -29,7 +29,7 @@ function NavbarHandler(){
         dropdownContent.current!.style.display = isPopupDisplayed.current?"block":"none";
     }
     return(
-        <Navbar dropdownContent={dropdownContent} yoohoo={yoohoo} displayPopup={displayPopup} handleSignOut={handleSignOut} path={currentPath}/>
+        <Navbar redirectToProfile={()=>navigate("/profile/edit")} dropdownContent={dropdownContent} yoohoo={yoohoo} displayPopup={displayPopup} handleSignOut={handleSignOut} path={currentPath}/>
     )
 }
 export default NavbarHandler
