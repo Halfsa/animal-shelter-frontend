@@ -22,12 +22,13 @@ function EditProfile(){
         setIsEditing(editingThisObject);
     }
 
+    const name = nameRef.current? nameRef.current.value:"";
     useEffect(() => {
         imgRef.current!.style.left = nameRef.current!.offsetLeft + nameRef.current!.offsetWidth+"px";
         imgRef.current!.style.top = nameRef.current!.offsetTop +"px";
         spanElm.current!.textContent = nameRef.current!.value; // the hidden span takes the value of the input;
         nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
-    }, [width, nameRef.current? nameRef.current.value:"", user]);
+    }, [width, name, user]);
     return (
         //not adoption body
         <div className={"profileBody"}>
