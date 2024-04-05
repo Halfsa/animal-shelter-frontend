@@ -1,31 +1,32 @@
 export interface Pet{
     birthDate: string,
-    breedId: number,
+    breedId: string,
     description: string,
     imageUrls: string[],
     name:string,
-    petId:number,
+    petId:string,
     sex:string,
     status:string,
 }
 export interface Breed{
-    breedId: number,
+    breedId: string,
     name:string,
     description:string,
-    speciesId:number,
+    speciesId:string,
 }
 export interface Species{
-    speciesId:number,
+    speciesId:string,
     name:string,
     description:string,
 }
 export interface User{
     username:string,
+    profileImageUrl:string|null,
     name:string,
     email:string,
 }
 export interface Location{
-    locationId:number,
+    locationId:string,
     name:string,
     country:string,
     state:string|null,
