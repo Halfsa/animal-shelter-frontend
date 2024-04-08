@@ -25,6 +25,12 @@ export interface User{
     name:string,
     email:string,
 }
+export interface UpdateUser{
+    username:string,
+    profileImageUrl:string|null,
+    name:string,
+    email:string,
+}
 export interface Location{
     locationId:string,
     name:string,

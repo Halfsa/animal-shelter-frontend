@@ -1,43 +1,37 @@
-import GetMyLocation from "../getMyLocation.tsx";
-import GetProfile from "../getProfile.tsx";
 import LocationDisplay from "./LocationDisplay.tsx";
 // @ts-expect-error akcsaalkjkcsjlajcaslkj
 import placeholderImage from "../../assets/profile-icon.png";
 // @ts-expect-error akcsaalkjkcsjlajcaslkj
 import edit from "../../assets/edit-icon-png-3587.png";
-import windowWidth from "../../window-width.tsx";
-import {useEffect, useRef, useState} from "react";
+import React from "react";
+import {Location, User} from "../../petDTO.tsx";
+interface Props{
+    EditUserProfile: ()=>void;
+    changesMade:boolean;
+    //username:React.RefObject<HTMLInputElement>;
+    email:React.RefObject<HTMLInputElement>;
+    //profileImageUrl:React.RefObject<HTMLImageElement>;
+    fullName:React.RefObject<HTMLInputElement>;
+    username:React.RefObject<HTMLInputElement>;
+    image:React.RefObject<HTMLImageElement>;
+    spanElm:React.RefObject<HTMLSpanElement>;
+    handleEdit:(value:string)=>void;
+    isEditing:string|undefined;
+    userLocation:Location[]|undefined;
+    width:number;
+    user:User|undefined;
 
-function EditProfile(){
-    const user = GetProfile();
-    const userLocation = GetMyLocation();
-    const width = windowWidth();
-    const [isEditing,setIsEditing] = useState<string>();
-    const imgRef = useRef<HTMLImageElement>(null);
-    const nameRef = useRef<HTMLInputElement>(null);
-    const spanElm = useRef<HTMLSpanElement>(null)
-    function handleEdit(editingThisObject:string){
-        nameRef.current!.select();
-        nameRef.current!.className = "userName select"
-        setIsEditing(editingThisObject);
-    }
-
-    const name = nameRef.current? nameRef.current.value:"";
-    useEffect(() => {
-        imgRef.current!.style.left = nameRef.current!.offsetLeft + nameRef.current!.offsetWidth+"px";
-        imgRef.current!.style.top = nameRef.current!.offsetTop +"px";
-        spanElm.current!.textContent = nameRef.current!.value; // the hidden span takes the value of the input;
-        nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
-    }, [width, name, user]);
+}
+function EditProfile(props:Props){
     return (
         //not adoption body
         <div className={"profileBody"}>
-        <div className={"container-fluid nameHere"}  style={{height: width/3.3}}>
-            <div className={"userDiv"} style={{width: width / 3}}>
-                <img alt={"ProfileImage"} className={"bigProfileImage"} width={width / 3} src={user&&user.profileImageUrl?user.profileImageUrl:placeholderImage}/>
-                <input className={"userName noSelect"} ref={nameRef} readOnly={!(isEditing === "username")}
-                       value={user ? user.username : ""}/><span ref={spanElm} className={"measure"}></span>
-                <img ref={imgRef} alt={"edit"} src={edit} onClick={() => handleEdit("username")} width={13} className={"editImg"}/>
+        <div className={"container-fluid nameHere"}  style={{height: props.width/3.3}}>
+            <div className={"userDiv"} style={{width: props.width / 3}}>
+                <img alt={"ProfileImage"} ref={props.image} className={"bigProfileImage"} width={props.width / 3} src={props.user&&props.user.profileImageUrl?props.user.profileImageUrl:placeholderImage}/>
+                <input className={"userName noSelect"} ref={props.username} readOnly={!(props.isEditing === "username")}
+                       value={props.user ? props.user.username : ""}/><span ref={props.spanElm} className={"measure"}></span>
+                <img ref={props.image} alt={"edit"} src={edit} onClick={() => props.handleEdit("username")} width={13} className={"editImg"}/>
             </div>
         </div>
             <div className={"container"}>
@@ -45,20 +39,33 @@ function EditProfile(){
                     <tbody>
                     <tr className="row">
                         <td className={"col"}>Full name</td>
-                        <td className={"col"}>{user ? user.name : ""}</td>
+                        <td className={"col"}><input ref={props.fullName} value={props.user ? props.user.name : ""}/></td>
                     </tr>
                     <tr className={"row"}>
                         <td className={"col"}>E-mail</td>
-                        <td className={"col"}>{user?user.email?user.email:<i className={"notAddedText"}>No email added</i>:""}</td>
+                        <td className={"col"}>{props.user?props.user.email?<input ref={props.email} value={props.user.email}/>:<i className={"notAddedText"}>No email added</i>:""}</td>
                     </tr>
-                    <tr className="row">
-                        <td className={"col"}>Locations</td>
-                        {userLocation?userLocation.map((thisLocation)=>{return(<LocationDisplay key={thisLocation.locationId} location={thisLocation}/>)}):<td>No locations added</td>}
-                    </tr>
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+                    <div className="row">
+                        <p className={"col"}>Locations</p>
+                        {props.userLocation?props.userLocation.map((thisLocation)=>{return(<LocationDisplay key={thisLocation.locationId} location={thisLocation}/>)}):<p>No locations added</p>}
+                    </div>
         </div>
+            {props.changesMade &&
+                <div className={"submitChanges"}>
+                    <p>
+                        Changes have been made. Do you wish to save them?
+                    </p>
+                    <button onClick={props.EditUserProfile}>
+                        save changes
+                    </button>
+                    X
+                </div>
+            }
+
         </div>
     )
 }
+
 export default EditProfile;
