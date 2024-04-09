@@ -8,20 +8,20 @@ function LocationDisplay(props:Props){
         <div className={"locationDiv"}>
             <div className={"row"}>
                 <p className={"col"}>country:</p>
-                <input className={"col"} type={"text"} defaultValue={props.location.country}/>
+                <input className={"col inputWithoutBorder"} type={"text"} defaultValue={props.location.country}/>
             </div>
             <div className={"row"}>
                 <p className={"col"}>state:</p>
-                <input className={"col"} type={"text"} defaultValue={props.location.state ? props.location.state : "No state added"}/>
+                <input className={"col inputWithoutBorder"} type={"text"} defaultValue={props.location.state ? props.location.state : "No state added"}/>
             </div>
             <div className="row">
-                <p className={"col"}>city:</p> <input className={"col"} type={"text"} defaultValue={props.location.city}/>
+                <p className={"col inputWithoutBorder"}>city:</p> <input className={"col"} type={"text"} defaultValue={props.location.city}/>
             </div>
             <div className="row">
-                <p className={"col"}>zipCode:</p> <input className={"col"} type={"text"} defaultValue={props.location.zipCode}/>
+                <p className={"col inputWithoutBorder"}>zipCode:</p> <input className={"col"} type={"text"} defaultValue={props.location.zipCode}/>
             </div>
             <div className="row">
-                <p className={"col"}>address:</p> <input className={"col"} type={"text"} defaultValue={props.location.address}/>
+                <p className={"col inputWithoutBorder"}>address:</p> <input className={"col"} type={"text"} defaultValue={props.location.address}/>
             </div>
         </div>
     )

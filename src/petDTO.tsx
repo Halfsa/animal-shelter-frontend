@@ -29,7 +29,7 @@ export interface UpdateUser{
     username:string,
     profileImageUrl:string|null,
     name:string,
-    email:string,
+    email:string|null,
 }
 export interface Location{
     locationId:string,
