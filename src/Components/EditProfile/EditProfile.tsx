@@ -34,8 +34,11 @@ function EditProfile(props:Props){
         <div className={"container-fluid nameHere"}  style={{height: props.width/3.3}}>
             <div className={"userDiv"} style={{width: props.width / 3}}>
                 <img alt={"ProfileImage"} ref={props.userImage} className={"bigProfileImage"} width={props.width / 3} src={props.user&&props.user.profileImageUrl?props.user.profileImageUrl:placeholderImage}/>
-                <input className={`${props.isEditing?"select":"noSelect"} userName`} ref={props.username} onChange={props.usernameChange} readOnly={!(props.isEditing === "username")}
-                       value={props.usernameValue}/><span ref={props.spanElm} className={"measure"}></span>
+                <input className={`${props.isEditing?"select":"noSelect"} userName`}
+                       ref={props.username} onChange={props.usernameChange}
+                       readOnly={!(props.isEditing === "username")}
+                       value={props.usernameValue}/>
+                <span ref={props.spanElm} className={"measure"}></span>
                 <img ref={props.editImage} alt={"edit"} src={edit} onClick={() => props.handleEdit("username")} width={13} className={"editImg"}/>
             </div>
         </div>

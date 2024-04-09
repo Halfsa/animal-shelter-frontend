@@ -4,7 +4,7 @@ import EditProfile from "./EditProfile.tsx";
 import GetProfile from "../getProfile.tsx";
 import GetMyLocation from "../getMyLocation.tsx";
 import windowWidth from "../../window-width.tsx";
-import axios from "axios";
+import editMyProfile from "./EditMyProfile.ts";
 import ValidateToken from "../../ValidateToken.tsx";
 
 function EditProfileHandler (){
@@ -22,33 +22,7 @@ function EditProfileHandler (){
     const user = GetProfile();
     const userLocation = GetMyLocation();
     const width = windowWidth();
-    if (user && (usernameValue === undefined || nameValue === undefined)){
-        setUsernameValue(user.username)
-        setNameValue(user.name)
-    }
 
-    function handleEdit(editingThisObject:string){
-        setIsEditing(editingThisObject);
-        switch (editingThisObject){
-            case "username":{
-                nameRef.current!.select();
-                break;
-            }
-            case "name":{
-                fullName.current!.select();
-            }
-        }
-
-    }
-
-    function usernameChange(e:React.ChangeEvent<HTMLInputElement>) {
-        setUsernameValue(e.target.value)
-        nameRef.current!.value = e.target.value
-    }
-    function nameChange(e:React.ChangeEvent<HTMLInputElement>){
-        setNameValue(e.target.value)
-        fullName.current!.value = e.target.value
-    }
     useEffect(() => {
         if (
             usernameValue !== (user? user.username: undefined)||
@@ -62,6 +36,32 @@ function EditProfileHandler (){
         spanElm.current!.textContent = usernameValue? usernameValue:null // the hidden span takes the value of the input;
         nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
     }, [width, changesMade, usernameValue,nameValue, user]);
+
+    if (user && (usernameValue === undefined || nameValue === undefined)){
+        setUsernameValue(user.username)
+        setNameValue(user.name)
+    }
+    function usernameChange(e:React.ChangeEvent<HTMLInputElement>) {
+        setUsernameValue(e.target.value)
+        nameRef.current!.value = e.target.value
+    }
+    function nameChange(e:React.ChangeEvent<HTMLInputElement>){
+        setNameValue(e.target.value)
+        fullName.current!.value = e.target.value
+    }
+    function handleEdit(editingThisObject:string){
+        setIsEditing(editingThisObject);
+        switch (editingThisObject){
+            case "username":{
+                nameRef.current!.select();
+                break;
+            }
+            case "name":{
+                fullName.current!.select();
+            }
+        }
+
+    }
     function EditUserProfile(){
         const newValues:UpdateUser = {
             username:nameRef.current!.value,
@@ -71,26 +71,9 @@ function EditProfileHandler (){
         }
         setIsEditing(undefined)
         console.log(newValues)
-        editMyProfile({...newValues});
+        editMyProfile({...newValues},sendThisToken);
     }
-    const editMyProfile =async (newValues:UpdateUser)=>{
-        await axios.put('/user/me',{
-            "username": newValues.username,
-            "email": newValues.email,
-            "name": newValues.name,
-            //  "profileImageUrl": newValues.profileImageUrl
-        },{
-            headers: {
-                Authorization: `Bearer ${sendThisToken}`
-            }
-        }).then(res=>{
-            console.log(res);
-            return res.data;
-        }).catch(err=>{
-            console.log(err)
-            return err;
-        })
-    }
+
     return(
         <EditProfile
             usernameValue={usernameValue}
