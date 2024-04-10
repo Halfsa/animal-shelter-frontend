@@ -1,8 +1,10 @@
 import React from "react";
-
-function PlusButton(){
+interface Props{
+    onClick:(whatAreWeEditing:string)=>void;
+}
+function PlusButton(props:Props){
     return (
-        <button className={"plusButton"}> + </button>
+        <button className={"plusButton"} onClick={props.onClick}> + </button>
     )
 }
 

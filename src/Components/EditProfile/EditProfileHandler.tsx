@@ -20,27 +20,34 @@ function EditProfileHandler (){
     const [changesMade,setChangesMade] = useState<boolean>(false)
     const [usernameValue,setUsernameValue] = useState<string|false>(false)
     const [nameValue,setNameValue] = useState<string|false>(false)
+    const [emailValue,setEmailValue]= useState<string|false>(false)
+    const [imgUrl,setImgUrl] = useState<string|false>(false)
     const user = GetProfile();
     const userLocation = GetMyLocation();
     const width = windowWidth();
-
     useEffect(() => {
+        console.log("runs")
         if (
             usernameValue !== (user? user.username: false)||
-            nameValue !== (user? user.name: false)
-
+            nameValue !== (user? user.name: false)||
+            emailValue !== (user?user.email:false)||
+            userImageRef.current?.src !== imgUrl
         ){
-            !changesMade?setChangesMade(true):""
+            !changesMade&&setChangesMade(true)
+        }else {
+            changesMade&&setChangesMade(false)
         }
         imgRef.current!.style.left = nameRef.current!.offsetLeft + nameRef.current!.offsetWidth+"px";
         imgRef.current!.style.top = nameRef.current!.offsetTop +"px";
         spanElm.current!.textContent = usernameValue? usernameValue:null // the hidden span takes the value of the input;
         nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
-    }, [width, changesMade, usernameValue,nameValue, user]);
-
-    if (user && (usernameValue===false || nameValue === false   )){
+    }, [width, changesMade, usernameValue,nameValue,emailValue, user,imgUrl]);
+    if (user && (usernameValue===false || nameValue === false || emailValue === false || imgUrl === false)){
+        console.log(usernameValue + nameValue)
         setUsernameValue(user.username)
         setNameValue(user.name)
+        setEmailValue(user.email)
+        setImgUrl(userImageRef.current?.src)
     }
     function usernameChange(e:React.ChangeEvent<HTMLInputElement>) {
         setUsernameValue(e.target.value)
@@ -49,6 +56,10 @@ function EditProfileHandler (){
     function nameChange(e:React.ChangeEvent<HTMLInputElement>){
         setNameValue(e.target.value)
         fullName.current!.value = e.target.value
+    }
+    function emailChange(e:React.ChangeEvent<HTMLTextAreaElement>){
+        setEmailValue(e.target.value)
+        email.current.value = e.target.value
     }
     function handleEdit(editingThisObject:string){
         console.log(isEditing)
@@ -60,6 +71,11 @@ function EditProfileHandler (){
             }
             case "name":{
                 fullName.current!.select();
+                break;
+            }
+            case "email":{
+                email.current!.select();
+                break;
             }
         }
 
@@ -69,7 +85,7 @@ function EditProfileHandler (){
             username:nameRef.current!.value,
             email:email.current? email.current.value:null,
             profileImageUrl:userImageRef.current!.src,
-            name:fullName.current!.value
+            name:fullName.current?.value,
         }
         setIsEditing(undefined)
         console.log(newValues)
@@ -84,10 +100,11 @@ function EditProfileHandler (){
             data.append ( 'file', files[0] );
         }
         userImageRef.current!.src = await uploadFile(data,sendThisToken);
+        setImgUrl(prevState => {prevState});
     }
-
     return(
         <EditProfile
+            onPlusButtonClick={handleEdit}
             fileInput={fileInput}
             usernameValue={usernameValue}
             usernameChange={usernameChange}
@@ -96,8 +113,10 @@ function EditProfileHandler (){
             EditUserProfile={EditUserProfile}
             changesMade={changesMade}
             email={email}
+            emailValue={emailValue}
+            emailChange={emailChange}
             fullName={fullName}
-            username={nameRef }
+            username={nameRef}
             userImage={userImageRef}
             editImage={imgRef}
             spanElm={spanElm}

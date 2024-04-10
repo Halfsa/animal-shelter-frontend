@@ -16,6 +16,8 @@ interface Props{
     changesMade:boolean;
     //username:React.RefObject<HTMLInputElement>;
     email:React.RefObject<HTMLTextAreaElement>;
+    emailValue:string|false;
+    emailChange:(e:React.ChangeEvent<HTMLTextAreaElement>)=>void;
     //profileImageUrl:React.RefObject<HTMLImageElement>;
     fullName:React.RefObject<HTMLInputElement>;
     username:React.RefObject<HTMLInputElement>;
@@ -27,7 +29,7 @@ interface Props{
     userLocation:Location[]|undefined;
     width:number;
     user:User|undefined;
-
+    onPlusButtonClick:(string:string)=>void;
 }
 function EditProfile(props:Props){
     return (
@@ -56,56 +58,64 @@ function EditProfile(props:Props){
                     <tr className="row">
                         <td className={"col"}>Full name </td>
                         <td className={"col"}>
-                            { props.nameValue ?
-                                <>
-                                    <input
-                                        className={ `${ props.isEditing === "name" ? "select" : "noSelect" } inputWithoutBorder` }
+                                <div className={ "d-flex" }>
+                                    <textarea
+                                        className={ `${ props.isEditing === "name" ? "select" : "noSelect" } ${!props.nameValue? "notAddedText":""} inputWithoutBorder textarea` }
                                         ref={ props.fullName }
                                         readOnly={ ! ( props.isEditing === "name" ) }
-                                        value={ props.nameValue }
+                                        placeholder={props.nameValue?"":"No full name added"}
+                                        value={ props.nameValue? props.nameValue :""}
                                         onChange={ props.nameChange }/>
-                                    <img alt={ "edit" }
-                                         onClick={ () => props.handleEdit ( "name" ) }
-                                         className={ "editImg" } src={ edit }
-                                         width={ 13 }
-                                    />
-                                </>
-                                :
-                                <>
-                                    <i className={ "notAddedText" }>No full name added.</i>
-                                    <PlusButton/>
-                                </>
-
-                            }
-
+                                    { props.nameValue ?
+                                        <div>
+                                        <img alt={ "edit" }
+                                             onClick={ () => props.handleEdit ( "name" ) }
+                                             className={ "editImg" } src={ edit }
+                                             width={ 13 }
+                                        />
+                                        </div>:
+                                        <PlusButton onClick={ () => props.onPlusButtonClick ( "name" ) }/>
+                                    }
+                                </div>
                         </td>
                     </tr>
                     <tr className={ "row" }>
                         <td className={"col"}>E-mail</td>
                         <td className={"col"}>
-                            {props.user&&props.user.email?
-                                <textarea className={"textarea"} readOnly={true} ref={props.email}  value={props.user.email}/>
-                                :
-                                <>
-                                    <i className={ "notAddedText" }>No email added</i>
-                                    <PlusButton/>
-                                </>
-                            }
+                                <div className={"d-flex"}>
+                                    <textarea className={`textarea ${props.isEditing ==="email"?"select":"noSelect"} ${props.emailValue?"":"notAddedText"}`}
+                                              onChange={props.emailChange}
+                                              readOnly={props.isEditing !== "email"}
+                                              ref={props.email}
+                                              value={props.emailValue?props.emailValue:"No email added"}/>
+                                    { props.emailValue ?
+                                        <div>
+                                        <img alt={ "edit" }
+                                             onClick={ () => props.handleEdit ( "email" ) }
+                                             className={ "editImg" } src={ edit }
+                                             width={ 13 }
+                                        />
+                                        </div>:
+                                        <PlusButton onClick={()=>props.onPlusButtonClick("email")}/>
+                                    }
+
+                                </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                    <div className="row">
+                <div className="row">
                         <p className={"col"}>Locations</p>
-                        {props.userLocation?
-                            props.userLocation.map((thisLocation)=>{
-                                return(<LocationDisplay key={thisLocation.locationId} location={thisLocation}/>)})
-                            :
-                            <>
-                                <i className={ "notAddedText" }>No locations added</i>
-                                <PlusButton/>
-                            </>
-                        }
+
+                            {props.userLocation?
+                                props.userLocation.map((thisLocation)=>{
+                                    return(<LocationDisplay key={thisLocation.locationId} location={thisLocation}/>)})
+                                :
+                                <div className={ "col d-flex" }>
+                                    <i className={ "notAddedText" }>No locations added</i>
+                                    <PlusButton/>
+                                </div>
+                            }
                     </div>
             </div>
             {props.changesMade &&

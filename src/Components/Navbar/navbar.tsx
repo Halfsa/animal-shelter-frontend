@@ -34,10 +34,8 @@ function Navbar({yoohoo,...props}:Props){
                     </ul>
                     <form className="d-flex">
                         {yoohoo ? <div className={"dropdown profileImageDiv"}>
-                            <a className="dropbtn">
-                                <img alt={"show profile"} className={"profilePicture"} onClick={props.displayPopup} width={30}
+                                <img alt={"show profile"} className={"profilePicture dropbtn"} onClick={props.displayPopup} width={30}
                                      src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
-                            </a>
                             <div ref={props.dropdownContent} className={"dropdown-content"}>
                                 <div>
                                     <img className={"dropdownProfile profilePicture"} alt={"your profile image"} width={60}
