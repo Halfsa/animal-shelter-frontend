@@ -33,18 +33,18 @@ function Navbar({yoohoo,...props}:Props){
                         </li>
                     </ul>
                     <form className="d-flex">
-                        {yoohoo ? <div className={"dropdown profileImage"}>
+                        {yoohoo ? <div className={"dropdown profileImageDiv"}>
                             <a className="dropbtn">
-                                <img alt={"show profile"} onClick={props.displayPopup} width={30}
-                                     src={profileImg}/>
+                                <img alt={"show profile"} className={"profilePicture"} onClick={props.displayPopup} width={30}
+                                     src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
                             </a>
                             <div ref={props.dropdownContent} className={"dropdown-content"}>
                                 <div>
-                                    <img className={"dropdownProfile"} alt={"your profile image"} width={60}
-                                          src={profileImg}/>
+                                    <img className={"dropdownProfile profilePicture"} alt={"your profile image"} width={60}
+                                          src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
                                 </div>
                                 <h5 onClick={props.redirectToProfile}>{yoohoo.username}</h5>
-                                <p>{yoohoo.email ? yoohoo.email : <i>No email added</i>}</p>
+                                <p>{ yoohoo.email ? <textarea className = {"textarea"} readOnly={true} value={yoohoo.email } ></textarea> : <i>No email added</i> }</p>
                                 <button className={"signout"} onClick={props.handleSignOut}>Sign out</button>
                                 <a href={'/profile/edit'}><img alt={"edit profile"} width={15} src={editImg}/> edit
                                     profile</a>

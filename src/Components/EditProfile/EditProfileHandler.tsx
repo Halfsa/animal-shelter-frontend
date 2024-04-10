@@ -6,10 +6,11 @@ import GetMyLocation from "../getMyLocation.tsx";
 import windowWidth from "../../window-width.tsx";
 import editMyProfile from "./EditMyProfile.ts";
 import ValidateToken from "../../ValidateToken.tsx";
+import uploadFile from "./uploadFile.ts";
 
 function EditProfileHandler (){
     const sendThisToken = ValidateToken();
-    const email = useRef<HTMLInputElement>(null);
+    const email = useRef<HTMLTextAreaElement>(null);
     const fullName = useRef<HTMLInputElement>(null);
     const imgRef = useRef<HTMLImageElement>(null);
     const userImageRef = useRef<HTMLImageElement>(null);
@@ -17,16 +18,16 @@ function EditProfileHandler (){
     const spanElm = useRef<HTMLSpanElement>(null);
     const [isEditing,setIsEditing] = useState<string|undefined>(undefined);
     const [changesMade,setChangesMade] = useState<boolean>(false)
-    const [usernameValue,setUsernameValue] = useState<string|undefined>(undefined)
-    const [nameValue,setNameValue] = useState<string|undefined>(undefined)
+    const [usernameValue,setUsernameValue] = useState<string|false>(false)
+    const [nameValue,setNameValue] = useState<string|false>(false)
     const user = GetProfile();
     const userLocation = GetMyLocation();
     const width = windowWidth();
 
     useEffect(() => {
         if (
-            usernameValue !== (user? user.username: undefined)||
-            nameValue !== (user? user.name: undefined)
+            usernameValue !== (user? user.username: false)||
+            nameValue !== (user? user.name: false)
 
         ){
             !changesMade?setChangesMade(true):""
@@ -37,7 +38,7 @@ function EditProfileHandler (){
         nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
     }, [width, changesMade, usernameValue,nameValue, user]);
 
-    if (user && (usernameValue === undefined || nameValue === undefined)){
+    if (user && (usernameValue===false || nameValue === false   )){
         setUsernameValue(user.username)
         setNameValue(user.name)
     }
@@ -50,6 +51,7 @@ function EditProfileHandler (){
         fullName.current!.value = e.target.value
     }
     function handleEdit(editingThisObject:string){
+        console.log(isEditing)
         setIsEditing(editingThisObject);
         switch (editingThisObject){
             case "username":{
@@ -72,10 +74,21 @@ function EditProfileHandler (){
         setIsEditing(undefined)
         console.log(newValues)
         editMyProfile({...newValues},sendThisToken);
+        setChangesMade(false)
+    }
+    const fileInput= async(e:React.ChangeEvent<HTMLInputElement>)=> {
+        console.log ( e.target.files );
+        const files = e.target.files;
+        const data = new FormData();
+        if (files !== null) {
+            data.append ( 'file', files[0] );
+        }
+        userImageRef.current!.src = await uploadFile(data,sendThisToken);
     }
 
     return(
         <EditProfile
+            fileInput={fileInput}
             usernameValue={usernameValue}
             usernameChange={usernameChange}
             nameValue={nameValue}

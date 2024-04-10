@@ -22,24 +22,6 @@ function PetProfile(){
         return breed.breedId === pet?.breedId;
     })
     const isBreedValid = thisBreed !== undefined && thisBreed !== null;
-        /*function fileInput(e:React.ChangeEvent<HTMLInputElement>){
-        console.log(e.target.files);
-        const files = e.target.files;
-        const data  = new FormData();
-            if (files !== null) {
-                data.append('file', files[0]);
-            }
-        axios.post('/media',
-            data,
-            {headers: {'Content-Type':'image/png'}}).then((data)=>{
-            console.log(data.data.url);
-            setImageSrc(data.data.url);
-            }
-        ).catch(err=>{
-            console.log(err)
-            console.log(err.message)
-        })
-    }*/
     return(
         <div className={"container-fluid adoptionBody p-0"}>
             <img alt={"selected animal's image"} className={"selectedImage"} src={pet? pet.imageUrls.length !==0?pet?.imageUrls[0]:empty:empty}/>

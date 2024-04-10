@@ -147,7 +147,9 @@ h1{
     background-blend-mode: hue;
     color: var(--frame-color);
 }
-
+.profilePicture{
+    border-radius: 50%;
+}
 .dropdown{
     position: relative;
     display: inline-block;
@@ -163,6 +165,7 @@ h1{
     width: 200px;
     right: 10%;
     border-radius: 3px;
+    align-content: center;
 
 }
 .dropdown-content::after{
@@ -556,8 +559,29 @@ footer.my-4{
 .notAddedText{
     color: gray;
 }
+.wrapper-div{
+    /*
+    height: auto;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    */
+}
+.textarea{
+    resize: none;
+    border: 0;
+    height: auto;
+    width: 100%;
+    margin: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.textarea:focus-visible{
+    outline: 0;
+}
 .bigProfileImage{
     max-width: 350px;
+    border-radius: 50%;
 }
 .imageChangeText{
     display: none;
@@ -613,6 +637,12 @@ footer.my-4{
     margin-top: 6px;
     position: absolute;
 }
+.plusButton{
+    border: 0;
+    margin-left: 5px;
+    background-color: transparent;
+    color: red;
+}
 .profileBody{
     margin-top: var(--navbar-margin);
 }
@@ -657,7 +687,7 @@ footer.my-4{
         position: relative;
         left: 68%;
     }
-    .profileImage{
+    .profileImageDiv{
         position: relative;
         left: 91%;
     }
