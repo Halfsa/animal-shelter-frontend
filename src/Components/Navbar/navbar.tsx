@@ -42,7 +42,7 @@ function Navbar({yoohoo,...props}:Props){
                                           src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
                                 </div>
                                 <h5 onClick={props.redirectToProfile}>{yoohoo.username}</h5>
-                                <p>{ yoohoo.email ? <textarea className = {"textarea"} readOnly={true} value={yoohoo.email } ></textarea> : <i>No email added</i> }</p>
+                                <p>{ yoohoo.email ? <textarea name={"dropDownEmail"} className = {"textarea noSelect"} readOnly={true} value={yoohoo.email } ></textarea> : <i>No email added</i> }</p>
                                 <button className={"signout"} onClick={props.handleSignOut}>Sign out</button>
                                 <a href={'/profile/edit'}><img alt={"edit profile"} width={15} src={editImg}/> edit
                                     profile</a>

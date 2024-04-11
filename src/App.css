@@ -166,7 +166,9 @@ h1{
     right: 10%;
     border-radius: 3px;
     align-content: center;
-
+}
+.dropdown-content .textarea{
+    text-align: center;
 }
 .dropdown-content::after{
     content: "";
@@ -569,11 +571,10 @@ footer.my-4{
     */
 }
 .textarea{
-
     resize: none;
     border: 0;
     height: auto;
-    vertical-align: center;
+    horiz-align: center;
     width: 100%;
     margin: auto;
     overflow: hidden;
@@ -640,9 +641,17 @@ footer.my-4{
 }
 .plusButton{
     border: 0;
-    margin-left: 50%;
+    vertical-align: top;
+    height: 50%;
     background-color: transparent;
     color: red;
+    justify-self: end;
+}
+.table-borderless{
+    margin: 0;
+}
+.table-borderless td{
+    padding: 2px;
 }
 .profileBody{
     margin-top: var(--navbar-margin);

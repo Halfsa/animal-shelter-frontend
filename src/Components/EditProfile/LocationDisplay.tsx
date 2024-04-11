@@ -6,23 +6,55 @@ interface Props{
 function LocationDisplay(props:Props){
     return(
         <div className={"locationDiv"}>
-            <div className={"row"}>
-                <p className={"col"}>country:</p>
-                <input className={"col inputWithoutBorder"} type={"text"} defaultValue={props.location.country}/>
-            </div>
-            <div className={"row"}>
-                <p className={"col"}>state:</p>
-                <input className={"col inputWithoutBorder"} type={"text"} defaultValue={props.location.state ? props.location.state : "No state added"}/>
-            </div>
-            <div className="row">
-                <p className={"col inputWithoutBorder"}>city:</p> <input className={"col"} type={"text"} defaultValue={props.location.city}/>
-            </div>
-            <div className="row">
-                <p className={"col inputWithoutBorder"}>zipCode:</p> <input className={"col"} type={"text"} defaultValue={props.location.zipCode}/>
-            </div>
-            <div className="row">
-                <p className={"col inputWithoutBorder"}>address:</p> <input className={"col"} type={"text"} defaultValue={props.location.address}/>
-            </div>
+            <table className={"table table-borderless"}>
+                <tbody>
+                    <tr className={"row"}>
+                        <td className={"col"}>country:</td>
+                        <td className={"col"}>
+                            <textarea name={"country"} readOnly={true} className={ "textarea noSelect inputWithoutBorder" }
+                                      defaultValue={ props.location.country }/>
+                        </td>
+                    </tr>
+                    { props.location.state &&
+                        <tr className={ "row" }>
+                            <td className={ "col" }>state:</td>
+                            <td className={"col"}>
+                                 <textarea name={"country"} readOnly={true}
+                                           className={"textarea noSelect inputWithoutBorder"}
+                                           defaultValue={props.location.state}/>
+                            </td>
+
+                        </tr>
+                    }
+                    <tr className="row">
+                        <td className={"col"}>city:</td>
+                        <td className={"col"}>
+                             <textarea name={"country"} readOnly={true}
+                                       className={"textarea noSelect inputWithoutBorder"}
+                                       defaultValue={props.location.city}/>
+                        </td>
+
+                    </tr>
+                    <tr className="row">
+                        <td className={"col"}>zipCode:</td>
+                        <td className={"col"}>
+                             <textarea name={"country"}
+                                       readOnly={true}
+                                       className={"textarea noSelect inputWithoutBorder"}
+                                       defaultValue={props.location.zipCode}/>
+                        </td>
+
+                    </tr>
+                    <tr className="row">
+                        <td className={"col"}>address:</td>
+                        <td className={"col"}>
+                             <textarea name={"country"} readOnly={true}
+                                       className={"textarea noSelect inputWithoutBorder"}
+                                       defaultValue={props.location.address}/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     )
 }

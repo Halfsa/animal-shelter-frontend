@@ -1,14 +1,16 @@
 import React, {useEffect, useRef, useState} from "react";
 import {UpdateUser} from "../../petDTO.tsx";
 import EditProfile from "./EditProfile.tsx";
-import GetProfile from "../getProfile.tsx";
 import GetMyLocation from "../getMyLocation.tsx";
 import windowWidth from "../../window-width.tsx";
 import editMyProfile from "./EditMyProfile.ts";
 import ValidateToken from "../../ValidateToken.tsx";
 import uploadFile from "./uploadFile.ts";
-
+import getProfile from "../getProfile.tsx";
+import {useNavigate} from "react-router-dom";
+//todo: amikor nem használájuk az oldalt és lejár a token, nem jó a cucc. Talán a useQuery segíthet???
 function EditProfileHandler (){
+    const navigate = useNavigate();
     const sendThisToken = ValidateToken();
     const email = useRef<HTMLTextAreaElement>(null);
     const fullName = useRef<HTMLInputElement>(null);
@@ -22,44 +24,48 @@ function EditProfileHandler (){
     const [nameValue,setNameValue] = useState<string|false>(false)
     const [emailValue,setEmailValue]= useState<string|false>(false)
     const [imgUrl,setImgUrl] = useState<string|false>(false)
-    const user = GetProfile();
+    const user = getProfile()
     const userLocation = GetMyLocation();
     const width = windowWidth();
     useEffect(() => {
-        console.log("runs")
+        /*
         if (
             usernameValue !== (user? user.username: false)||
             nameValue !== (user? user.name: false)||
-            emailValue !== (user?user.email:false)||
-            userImageRef.current?.src !== imgUrl
+            emailValue !== (user?user.email:false)
         ){
-            !changesMade&&setChangesMade(true)
-        }else {
-            changesMade&&setChangesMade(false)
+            if (!changesMade){
+                setChangesMade(true)
+            }
         }
+         */
         imgRef.current!.style.left = nameRef.current!.offsetLeft + nameRef.current!.offsetWidth+"px";
         imgRef.current!.style.top = nameRef.current!.offsetTop +"px";
         spanElm.current!.textContent = usernameValue? usernameValue:null // the hidden span takes the value of the input;
         nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
-    }, [width, changesMade, usernameValue,nameValue,emailValue, user,imgUrl]);
-    if (user && (usernameValue===false || nameValue === false || emailValue === false || imgUrl === false)){
-        console.log(usernameValue + nameValue)
-        setUsernameValue(user.username)
-        setNameValue(user.name)
-        setEmailValue(user.email)
-        setImgUrl(userImageRef.current?.src)
-    }
+    }, [width, changesMade, usernameValue, user]);
+    useEffect ( () => {
+       if (user && (usernameValue===false || nameValue === false || emailValue === false || imgUrl === false)){
+            setUsernameValue(user.username)
+            setNameValue(user.name)
+            setEmailValue(user.email)
+            setImgUrl(userImageRef.current?.src)
+        }
+    }, [emailValue,nameValue,usernameValue,imgUrl,user] );
     function usernameChange(e:React.ChangeEvent<HTMLInputElement>) {
-        setUsernameValue(e.target.value)
-        nameRef.current!.value = e.target.value
+            setUsernameValue ( e.target.value )
+            nameRef.current!.value = e.target.value
+            setChangesMade(true);
     }
     function nameChange(e:React.ChangeEvent<HTMLInputElement>){
         setNameValue(e.target.value)
         fullName.current!.value = e.target.value
+        setChangesMade(true);
     }
     function emailChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setEmailValue(e.target.value)
         email.current.value = e.target.value
+        setChangesMade(true);
     }
     function handleEdit(editingThisObject:string){
         console.log(isEditing)
@@ -80,17 +86,27 @@ function EditProfileHandler (){
         }
 
     }
-    function EditUserProfile(){
+    const EditUserProfile= async ()=>{
+        if ( nameRef.current.value.length ===0){
+            return;
+        }
+        if (user?.email? email.current.value.length ===0:false){
+            return;
+        }
+        if (user?.name? fullName.current.value.length ===0:false){
+            return;
+        }
         const newValues:UpdateUser = {
             username:nameRef.current!.value,
-            email:email.current? email.current.value:null,
+            email:email.current.value.length === 0?null:email.current.value,
             profileImageUrl:userImageRef.current!.src,
-            name:fullName.current?.value,
+            name:fullName.current.value.length===0?null:fullName.current.value,
         }
-        setIsEditing(undefined)
         console.log(newValues)
-        editMyProfile({...newValues},sendThisToken);
+        await editMyProfile({...newValues},sendThisToken);
         setChangesMade(false)
+        setIsEditing(undefined)
+        navigate("/")
     }
     const fileInput= async(e:React.ChangeEvent<HTMLInputElement>)=> {
         console.log ( e.target.files );
@@ -99,12 +115,19 @@ function EditProfileHandler (){
         if (files !== null) {
             data.append ( 'file', files[0] );
         }
+        if (files === null||files.length === 0){
+            return
+        }
         userImageRef.current!.src = await uploadFile(data,sendThisToken);
-        setImgUrl(prevState => {prevState});
+        console.log(changesMade)
+        setChangesMade(true)
+    }
+    function onPlusButtonClick(){
+
     }
     return(
         <EditProfile
-            onPlusButtonClick={handleEdit}
+            onPlusButtonClick={onPlusButtonClick}
             fileInput={fileInput}
             usernameValue={usernameValue}
             usernameChange={usernameChange}

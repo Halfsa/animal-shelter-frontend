@@ -6,7 +6,7 @@ const EditMyProfile =async (newValues:UpdateUser,sendThisToken:string|null)=>{
         "username": newValues.username,
         "email": newValues.email,
         "name": newValues.name,
-        //  "profileImageUrl": newValues.profileImageUrl
+        "profileImageUrl": newValues.profileImageUrl
     },{
         headers: {
             Authorization: `Bearer ${sendThisToken}`

@@ -53,77 +53,88 @@ function EditProfile(props:Props){
             </div>
         </div>
             <div className={"container"}>
-                <table className={"table"}>
+                <table className={ "table" }>
                     <tbody>
-                    <tr className="row">
-                        <td className={"col"}>Full name </td>
-                        <td className={"col"}>
+                        <tr className="row">
+                            <td className={ "col" }>Full name</td>
+                            <td className={ "col" }>
                                 <div className={ "d-flex" }>
-                                    <textarea
-                                        className={ `${ props.isEditing === "name" ? "select" : "noSelect" } ${!props.nameValue? "notAddedText":""} inputWithoutBorder textarea` }
-                                        ref={ props.fullName }
-                                        readOnly={ ! ( props.isEditing === "name" ) }
-                                        placeholder={props.nameValue?"":"No full name added"}
-                                        value={ props.nameValue? props.nameValue :""}
-                                        onChange={ props.nameChange }/>
+                                        <textarea
+                                            name={ "name" }
+                                            className={ `${ props.isEditing === "name" ? "select" : "noSelect" } ${ ! props.nameValue ? "notAddedText" : "" } textarea` }
+                                            ref={ props.fullName }
+                                            readOnly={ ! ( props.isEditing === "name" ) }
+                                            placeholder={ props.nameValue ? "" : "No full name added" }
+                                            value={ props.nameValue ? props.nameValue : "" }
+                                            onChange={ props.nameChange }/>
                                     { props.nameValue ?
                                         <div>
-                                        <img alt={ "edit" }
-                                             onClick={ () => props.handleEdit ( "name" ) }
-                                             className={ "editImg" } src={ edit }
-                                             width={ 13 }
-                                        />
-                                        </div>:
-                                        <PlusButton onClick={ () => props.onPlusButtonClick ( "name" ) }/>
+                                            <img alt={ "edit" }
+                                                 onClick={ () => props.handleEdit ( "name" ) }
+                                                 className={ "editImg" } src={ edit }
+                                                 width={ 13 }
+                                            />
+                                        </div> :
+                                        <PlusButton onClick={ () => props.handleEdit ( "name" ) }/>
                                     }
                                 </div>
-                        </td>
-                    </tr>
-                    <tr className={ "row" }>
-                        <td className={"col"}>E-mail</td>
-                        <td className={"col"}>
-                                <div className={"d-flex"}>
-                                    <textarea className={`textarea ${props.isEditing ==="email"?"select":"noSelect"} ${props.emailValue?"":"notAddedText"}`}
-                                              onChange={props.emailChange}
-                                              readOnly={props.isEditing !== "email"}
-                                              ref={props.email}
-                                              value={props.emailValue?props.emailValue:"No email added"}/>
+                            </td>
+                        </tr>
+                        <tr className={ "row" }>
+                            <td className={ "col" }>E-mail</td>
+                            <td className={ "col" }>
+                                <div className={ "d-flex" }>
+                                        <textarea
+                                            name={ "email" }
+                                            className={ `textarea ${ props.isEditing === "email" ? "select" : "noSelect" } ${ props.emailValue ? "" : "notAddedText" }` }
+                                            onChange={ props.emailChange }
+                                            readOnly={ props.isEditing !== "email" }
+                                            ref={ props.email }
+                                            placeholder={ props.emailValue ? "" : "No email added" }
+                                            value={ props.emailValue ? props.emailValue : "" }/>
                                     { props.emailValue ?
                                         <div>
-                                        <img alt={ "edit" }
-                                             onClick={ () => props.handleEdit ( "email" ) }
-                                             className={ "editImg" } src={ edit }
-                                             width={ 13 }
-                                        />
-                                        </div>:
-                                        <PlusButton onClick={()=>props.onPlusButtonClick("email")}/>
+                                            <img alt={ "edit" }
+                                                 onClick={ () => props.handleEdit ( "email" ) }
+                                                 className={ "editImg" } src={ edit }
+                                                 width={ 13 }
+                                            />
+                                        </div> :
+                                        <PlusButton onClick={ () => props.handleEdit ( "email" ) }/>
                                     }
 
                                 </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                        <tr className="row">
+                            <td className={ "col" }>
+                                <div className={"d-flex"}>
+                                    Locations
+                                    <PlusButton onClick={props.onPlusButtonClick}/>
+                                </div>
+                            { props.userLocation ?
+                                props.userLocation.map ( (thisLocation) => {
+                                    return ( <LocationDisplay key={ thisLocation.locationId } location={ thisLocation }/> )
+                                } ) :
+                                    <div className={ "d-flex" }>
+                                         <textarea
+                                             name={ "location" }
+                                             className={ `textarea noSelect notAddedText` }
+                                             readOnly={ true }
+                                             placeholder={ "No locations added" }/>
+                                    </div>
+                            }
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                <div className="row">
-                        <p className={"col"}>Locations</p>
-
-                            {props.userLocation?
-                                props.userLocation.map((thisLocation)=>{
-                                    return(<LocationDisplay key={thisLocation.locationId} location={thisLocation}/>)})
-                                :
-                                <div className={ "col d-flex" }>
-                                    <i className={ "notAddedText" }>No locations added</i>
-                                    <PlusButton/>
-                                </div>
-                            }
-                    </div>
             </div>
-            {props.changesMade &&
-                <div className={"submitChanges"}>
+            { props.changesMade &&
+                <div className={ "submitChanges" }>
                     <p>
                         Changes have been made. Do you wish to save them?
                     </p>
-                    <button onClick={props.EditUserProfile}>
+                    <button onClick={ props.EditUserProfile }>
                         save changes
                     </button>
                     X
