@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {UpdateUser} from "../../petDTO.tsx";
+import {Location, UpdateUser} from "../../petDTO.tsx";
 import EditProfile from "./EditProfile.tsx";
 import GetMyLocation from "../getMyLocation.tsx";
 import windowWidth from "../../window-width.tsx";
@@ -13,19 +13,20 @@ function EditProfileHandler (){
     const navigate = useNavigate();
     const sendThisToken = ValidateToken();
     const email = useRef<HTMLTextAreaElement>(null);
-    const fullName = useRef<HTMLInputElement>(null);
+    const fullName = useRef<HTMLTextAreaElement>(null);
     const imgRef = useRef<HTMLImageElement>(null);
     const userImageRef = useRef<HTMLImageElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const spanElm = useRef<HTMLSpanElement>(null);
     const [isEditing,setIsEditing] = useState<string|undefined>(undefined);
-    const [changesMade,setChangesMade] = useState<boolean>(false)
-    const [usernameValue,setUsernameValue] = useState<string|false>(false)
-    const [nameValue,setNameValue] = useState<string|false>(false)
-    const [emailValue,setEmailValue]= useState<string|false>(false)
-    const [imgUrl,setImgUrl] = useState<string|false>(false)
-    const user = getProfile()
-    const userLocation = GetMyLocation();
+    const [changesMade,setChangesMade] = useState<boolean>(false);
+    const [usernameValue,setUsernameValue] = useState<string|false>(false);
+    const [nameValue,setNameValue] = useState<string|false>(false);
+    const [emailValue,setEmailValue]= useState<string|false>(false);
+    const [imgUrl,setImgUrl] = useState<string|false>(false);
+    const user = getProfile();
+    const getLocations = GetMyLocation();
+    const [userLocations,setUserLocations] = useState(()=>[...getLocations]);
     const width = windowWidth();
     useEffect(() => {
         /*
@@ -49,7 +50,7 @@ function EditProfileHandler (){
             setUsernameValue(user.username)
             setNameValue(user.name)
             setEmailValue(user.email)
-            setImgUrl(userImageRef.current?.src)
+            setImgUrl(userImageRef.current!.src)
         }
     }, [emailValue,nameValue,usernameValue,imgUrl,user] );
     function usernameChange(e:React.ChangeEvent<HTMLInputElement>) {
@@ -57,14 +58,14 @@ function EditProfileHandler (){
             nameRef.current!.value = e.target.value
             setChangesMade(true);
     }
-    function nameChange(e:React.ChangeEvent<HTMLInputElement>){
+    function nameChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setNameValue(e.target.value)
         fullName.current!.value = e.target.value
         setChangesMade(true);
     }
     function emailChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setEmailValue(e.target.value)
-        email.current.value = e.target.value
+        email.current!.value = e.target.value
         setChangesMade(true);
     }
     function handleEdit(editingThisObject:string){
@@ -87,20 +88,20 @@ function EditProfileHandler (){
 
     }
     const EditUserProfile= async ()=>{
-        if ( nameRef.current.value.length ===0){
+        if ( nameRef.current?.value.length ===0){
             return;
         }
-        if (user?.email? email.current.value.length ===0:false){
+        if (user?.email? email.current?.value.length ===0:false){
             return;
         }
-        if (user?.name? fullName.current.value.length ===0:false){
+        if (user?.name? fullName.current?.value.length ===0:false){
             return;
         }
         const newValues:UpdateUser = {
             username:nameRef.current!.value,
-            email:email.current.value.length === 0?null:email.current.value,
+            email:email.current?.value.length === 0?null:email.current!.value,
             profileImageUrl:userImageRef.current!.src,
-            name:fullName.current.value.length===0?null:fullName.current.value,
+            name:fullName.current?.value.length===0?null:fullName.current!.value,
         }
         console.log(newValues)
         await editMyProfile({...newValues},sendThisToken);
@@ -123,8 +124,13 @@ function EditProfileHandler (){
         setChangesMade(true)
     }
     function onPlusButtonClick(){
-
+        console.log("hola")
+        const newLocationPattern:Location = {country: "", state:" ", city:"", zipCode: null, address:"", name:"" }
+        setUserLocations(prevState => [...prevState,newLocationPattern]);
+        setChangesMade(true)
+        console.log(userLocations)
     }
+
     return(
         <EditProfile
             onPlusButtonClick={onPlusButtonClick}
@@ -145,7 +151,7 @@ function EditProfileHandler (){
             spanElm={spanElm}
             handleEdit={handleEdit}
             isEditing={isEditing}
-            userLocation={userLocation}
+            userLocation={userLocations}
             width={width}
             user={user}
         />

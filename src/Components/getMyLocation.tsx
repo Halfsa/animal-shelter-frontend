@@ -4,7 +4,7 @@ import axios from "axios";
 import ValidateToken from "../ValidateToken.tsx";
 
 function GetMyLocation(){
-    const [locations,setLocations] = useState<Location[]>()
+    const [locations,setLocations] = useState<Location[]>([])
     const tokenToSend = ValidateToken();
     useEffect(() => {
         axios.get('/location/my',{

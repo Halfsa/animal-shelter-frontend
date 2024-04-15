@@ -10,7 +10,7 @@ interface Props{
     fileInput:(e:React.ChangeEvent<HTMLInputElement>)=>void;
     usernameChange: (e:React.ChangeEvent<HTMLInputElement>)=>void;
     usernameValue:string|false;
-    nameChange: (e:React.ChangeEvent<HTMLInputElement>)=>void;
+    nameChange: (e:React.ChangeEvent<HTMLTextAreaElement>)=>void;
     nameValue:string|false;
     EditUserProfile: ()=>void;
     changesMade:boolean;
@@ -19,14 +19,14 @@ interface Props{
     emailValue:string|false;
     emailChange:(e:React.ChangeEvent<HTMLTextAreaElement>)=>void;
     //profileImageUrl:React.RefObject<HTMLImageElement>;
-    fullName:React.RefObject<HTMLInputElement>;
+    fullName:React.RefObject<HTMLTextAreaElement>;
     username:React.RefObject<HTMLInputElement>;
     userImage:React.RefObject<HTMLImageElement>;
     editImage:React.RefObject<HTMLImageElement>;
     spanElm:React.RefObject<HTMLSpanElement>;
     handleEdit:(value:string)=>void;
     isEditing:string|undefined;
-    userLocation:Location[]|undefined;
+    userLocation:Location[];
     width:number;
     user:User|undefined;
     onPlusButtonClick:(string:string)=>void;
@@ -112,9 +112,12 @@ function EditProfile(props:Props){
                                     Locations
                                     <PlusButton onClick={props.onPlusButtonClick}/>
                                 </div>
-                            { props.userLocation ?
+                            { props.userLocation.length !==0 ?
                                 props.userLocation.map ( (thisLocation) => {
-                                    return ( <LocationDisplay key={ thisLocation.locationId } location={ thisLocation }/> )
+                                    return <LocationDisplay
+                                        key={ thisLocation.locationId }
+                                        location={ thisLocation }
+                                    />
                                 } ) :
                                     <div className={ "d-flex" }>
                                          <textarea
