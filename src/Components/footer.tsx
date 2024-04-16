@@ -3,9 +3,9 @@ function Footer(){
         <div className="container-fluid footer-container">
             <footer className="py-3 my-4">
                 <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">Home</a>
+                    <li className="nav-item"><a href="/" className="nav-link px-2 text-body-secondary">Home</a>
                     </li>
-                    <li className="nav-item"><a href="/src/Components/Adoption/adoptionBody"
+                    <li className="nav-item"><a href="/adopt"
                                                 className="nav-link px-2 text-body-secondary">Adoption</a></li>
                     <li className="nav-item"><a href="/donation"
                                                 className="nav-link px-2 text-body-secondary">Help us</a></li>

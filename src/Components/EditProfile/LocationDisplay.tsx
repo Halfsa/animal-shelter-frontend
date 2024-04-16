@@ -5,6 +5,7 @@ import ValidateToken from "../../ValidateToken.tsx";
 
 interface Props{
     location:Location;
+    countryRef: React.RefObject<HTMLTextAreaElement>
 }
 function LocationDisplay(props:Props){
     const [country,setCountry] = useState<string>(props.location.country);
@@ -14,6 +15,7 @@ function LocationDisplay(props:Props){
     const [address,setAddress] = useState<string>(props.location.address);
     const [addressExtra,setAddressExtra] = useState<string|null>(props.location.addressExtra);
     const testarea = useRef<HTMLTextAreaElement>(null);
+    const [isReadOnly,setIsReadOnly] = useState(true);
     const tokenToSend = ValidateToken();
     function onCountryChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setCountry(e.target.value)
@@ -22,7 +24,8 @@ function LocationDisplay(props:Props){
     }function onCityChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setCity(e.target.value);
     }function onZipCodeChange(e:React.ChangeEvent<HTMLTextAreaElement>){
-        setZipCode(e.target.value)
+        const parsedZip = Number.parseInt(e.target.value);
+        setZipCode(parsedZip)
     }function onAddressChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setAddress(e.target.value);
     }function onAddressExtraChange(e:React.ChangeEvent<HTMLTextAreaElement>){
@@ -30,39 +33,39 @@ function LocationDisplay(props:Props){
     }
     function addToMyLocation(){
         const assembleLocation: NewLocation = {
-            country:country,
-            state:state,
-            city:city,
+            country:country.trim(),
+            state:state?state.trim():null,
+            city:city.trim(),
             zipCode:zipCode,
-            address:address,
-            addressExtra:addressExtra
+            address:address.trim(),
+            addressExtra:addressExtra?addressExtra.trim():null
         }
-        addToLocation(assembleLocation,tokenToSend)
+        const addedLocation = addToLocation(assembleLocation,tokenToSend);
     }
     return(
         <div className={"locationDiv"}>
-            <button onClick={addToMyLocation}>
-                save
-            </button>
             <table className={"table table-borderless"}>
                 <tbody>
                     <tr className={"row"}>
                         <td className={"col"}>country:</td>
                         <td className={"col"}>
                             <textarea name={"country"}
+                                      ref={props.countryRef}
+                                      autoComplete={"none"}
                                       className={ "textarea noSelect inputWithoutBorder" }
-                                      readOnly={false}
+                                      readOnly={isReadOnly}
                                       value={country}
                                       onChange={onCountryChange}
                             />
                         </td>
                     </tr>
-                    { props.location.state &&
+                    { props.location.state && props.location.state?.trim().length !== 0 &&
                         <tr className={ "row" }>
                             <td className={ "col" }>state (optional):</td>
                             <td className={"col"}>
                                  <textarea name={"state"}
-                                           readOnly={false}
+                                           autoComplete={"none"}
+                                           readOnly={isReadOnly}
                                            className={"textarea noSelect inputWithoutBorder"}
                                            value={state?state:undefined}
                                            onChange={onStateChange}
@@ -75,7 +78,8 @@ function LocationDisplay(props:Props){
                         <td className={"col"}>city:</td>
                         <td className={"col"}>
                              <textarea name={"city"}
-                                       readOnly={false}
+                                       autoComplete={"none"}
+                                       readOnly={isReadOnly}
                                        className={"textarea noSelect inputWithoutBorder"}
                                        onChange={onCityChange}
                                        value={city}
@@ -87,7 +91,8 @@ function LocationDisplay(props:Props){
                         <td className={"col"}>zipCode:</td>
                         <td className={"col"}>
                              <textarea name={"zipcode"}
-                                       readOnly={false}
+                                       autoComplete={"none"}
+                                       readOnly={isReadOnly}
                                        ref={testarea}
                                        className={"textarea noSelect inputWithoutBorder"}
                                        value={zipCode}
@@ -100,19 +105,21 @@ function LocationDisplay(props:Props){
                         <td className={"col"}>address:</td>
                         <td className={"col"}>
                              <textarea name={"address"}
-                                       readOnly={false}
+                                       autoComplete={"none"}
+                                       readOnly={isReadOnly}
                                        className={"textarea noSelect inputWithoutBorder"}
                                        onChange={onAddressChange}
                                        value={address}
                              />
                         </td>
                     </tr>
-                    {props.location.state &&
+                    {props.location.addressExtra && props.location.addressExtra?.trim().length !== 0&&
                         <tr className="row">
                             <td className={"col"}>extra:</td>
                             <td className={"col"}>
                              <textarea name={"addressExtra"}
-                                       readOnly={false}
+                                       readOnly={isReadOnly}
+                                       autoComplete={"none"}
                                        className={"textarea noSelect inputWithoutBorder"}
                                        onChange={onAddressExtraChange}
                                        value={addressExtra?addressExtra:undefined}

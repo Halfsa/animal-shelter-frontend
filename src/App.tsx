@@ -50,7 +50,7 @@ function App() {
                         element={<LoginHandler />}
                     />
                     <Route
-                        path="/adoption"
+                        path="/adopt"
                         element={<Adoption/>}
                     />
                     <Route

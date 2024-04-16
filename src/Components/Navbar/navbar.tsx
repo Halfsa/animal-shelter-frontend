@@ -28,8 +28,8 @@ function Navbar({yoohoo,...props}:Props){
                                href="/home">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className={props.path === "/adoption" ? "nav-link active" : "nav-link"}
-                               href="/adoption">Adoption</a>
+                            <a className={props.path === "/adopt" ? "nav-link active" : "nav-link"}
+                               href="/adopt">Adoption</a>
                         </li>
                     </ul>
                     <form className="d-flex">

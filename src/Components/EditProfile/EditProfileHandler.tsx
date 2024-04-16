@@ -18,6 +18,7 @@ function EditProfileHandler (){
     const userImageRef = useRef<HTMLImageElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const spanElm = useRef<HTMLSpanElement>(null);
+    const countryRef = useRef<HTMLTextAreaElement>(null)
     const [isEditing,setIsEditing] = useState<string|undefined>(undefined);
     const [changesMade,setChangesMade] = useState<boolean>(false);
     const [usernameValue,setUsernameValue] = useState<string|false>(false);
@@ -26,8 +27,11 @@ function EditProfileHandler (){
     const [imgUrl,setImgUrl] = useState<string|false>(false);
     const user = getProfile();
     const getLocations = GetMyLocation();
-    const [userLocations,setUserLocations] = useState(()=>[...getLocations]);
+    const [userLocations,setUserLocations] = useState<Location[]>([]);
     const width = windowWidth();
+    useEffect ( () => {
+        setUserLocations(getLocations);
+    }, [getLocations] );
     useEffect(() => {
         /*
         if (
@@ -125,14 +129,19 @@ function EditProfileHandler (){
     }
     function onPlusButtonClick(){
         console.log("hola")
-        const newLocationPattern:Location = {country: "", state:" ", city:"", zipCode: null, address:"", name:"" }
+        const newLocationPattern:Location = {country: "", state:" ", city:"", zipCode: null, address:"",addressExtra:"", name:"" }
         setUserLocations(prevState => [...prevState,newLocationPattern]);
-        setChangesMade(true)
+        countryRef.current?.focus();
         console.log(userLocations)
     }
 
+    useEffect ( () => {
+
+    }, [] );
+
     return(
         <EditProfile
+            countryRef={countryRef}
             onPlusButtonClick={onPlusButtonClick}
             fileInput={fileInput}
             usernameValue={usernameValue}

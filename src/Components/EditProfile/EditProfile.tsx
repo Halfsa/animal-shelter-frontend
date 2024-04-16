@@ -30,6 +30,7 @@ interface Props{
     width:number;
     user:User|undefined;
     onPlusButtonClick:(string:string)=>void;
+    countryRef:React.RefObject<HTMLTextAreaElement>;
 }
 function EditProfile(props:Props){
     return (
@@ -45,10 +46,12 @@ function EditProfile(props:Props){
                 </div>
                 <input type={ "file" } onChange={ props.fileInput }/>
                 <input className={ `${ props.isEditing === "username"? "select" : "noSelect" } userName` }
+                       name={"username"}
+                       autoComplete={"none"}
                        ref={ props.username } onChange={ props.usernameChange}
                        readOnly={!(props.isEditing === "username")}
                        value={props.usernameValue?props.usernameValue:""}/>
-                <span ref={props.spanElm} className={"measure"}></span>
+                <span ref={props.spanElm}  className={"measure"}></span>
                 <img ref={props.editImage} alt={"edit"} src={edit} onClick={() => props.handleEdit("username")} width={13} className={"editImg"}/>
             </div>
         </div>
@@ -61,6 +64,7 @@ function EditProfile(props:Props){
                                 <div className={ "d-flex" }>
                                         <textarea
                                             name={ "name" }
+                                            autoComplete={"none"}
                                             className={ `${ props.isEditing === "name" ? "select" : "noSelect" } ${ ! props.nameValue ? "notAddedText" : "" } textarea` }
                                             ref={ props.fullName }
                                             readOnly={ ! ( props.isEditing === "name" ) }
@@ -88,6 +92,7 @@ function EditProfile(props:Props){
                                             name={ "email" }
                                             className={ `textarea ${ props.isEditing === "email" ? "select" : "noSelect" } ${ props.emailValue ? "" : "notAddedText" }` }
                                             onChange={ props.emailChange }
+                                            autoComplete={"none"}
                                             readOnly={ props.isEditing !== "email" }
                                             ref={ props.email }
                                             placeholder={ props.emailValue ? "" : "No email added" }
@@ -115,6 +120,7 @@ function EditProfile(props:Props){
                             { props.userLocation.length !==0 ?
                                 props.userLocation.map ( (thisLocation) => {
                                     return <LocationDisplay
+                                        countryRef={props.countryRef}
                                         key={ thisLocation.locationId }
                                         location={ thisLocation }
                                     />
@@ -122,7 +128,8 @@ function EditProfile(props:Props){
                                     <div className={ "d-flex" }>
                                          <textarea
                                              name={ "location" }
-                                             className={ `textarea noSelect notAddedText` }
+                                             autoComplete={"none"}
+                                                 className={ `textarea noSelect notAddedText` }
                                              readOnly={ true }
                                              placeholder={ "No locations added" }/>
                                     </div>
