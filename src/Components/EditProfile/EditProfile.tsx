@@ -3,7 +3,7 @@ import LocationDisplay from "./LocationDisplay.tsx";
 import placeholderImage from "../../assets/profile-icon.png";
 // @ts-expect-error akcsaalkjkcsjlajcaslkj
 import edit from "../../assets/edit-icon-png-3587.png";
-import React from "react";
+import React, {useRef} from "react";
 import {Location, User} from "../../petDTO.tsx";
 import PlusButton from "./PlusButton.tsx";
 interface Props{
@@ -33,19 +33,22 @@ interface Props{
     countryRef:React.RefObject<HTMLTextAreaElement>;
 }
 function EditProfile(props:Props){
+    const fileInputRef = useRef<HTMLInputElement>(null)
     return (
         //not adoption body
         <div className={"profileBody"}>
         <div className={"container-fluid nameHere"}  style={{height: props.width/3.3}}>
             <div className={"userDiv"} style={{width: props.width / 3}}>
                 <div className={"wrapper-div"}>
-                    <img alt={ "ProfileImage" } ref={ props.userImage } className={ "bigProfileImage" }
-                         width={ props.width / 3 }
-                         src={ props.user && props.user.profileImageUrl ? props.user.profileImageUrl : placeholderImage }/>
-
+                    <img alt={"ProfileImage"} onClick={()=>fileInputRef.current?.click()} ref={props.userImage} className={"bigProfileImage"}
+                         width={props.width / 3}
+                         height={props.width / 3}
+                         src={props.user && props.user.profileImageUrl ? props.user.profileImageUrl : placeholderImage}/>
+                    <p className={"imgOverlayText"}>Change image</p>
+                    <input id={"fileInput"} type={"file"} ref={fileInputRef} onChange={props.fileInput}/>
                 </div>
-                <input type={ "file" } onChange={ props.fileInput }/>
-                <input className={ `${ props.isEditing === "username"? "select" : "noSelect" } userName` }
+
+                <input className={`${ props.isEditing === "username"? "select" : "noSelect" } userName` }
                        name={"username"}
                        autoComplete={"none"}
                        ref={ props.username } onChange={ props.usernameChange}
@@ -147,7 +150,7 @@ function EditProfile(props:Props){
                     <button onClick={ props.EditUserProfile }>
                         save changes
                     </button>
-                    X
+
                 </div>
             }
 

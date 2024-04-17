@@ -22,14 +22,20 @@ function NavbarHandler(){
         });
             localStorage.removeItem('access_token')
             localStorage.removeItem('refresh_token')
-            navigate("/")
+            location.reload()
     }
     function displayPopup(){
         isPopupDisplayed.current = !isPopupDisplayed.current;
         dropdownContent.current!.style.display = isPopupDisplayed.current?"block":"none";
     }
     return(
-        <Navbar redirectToProfile={()=>navigate("/profile/edit")} dropdownContent={dropdownContent} yoohoo={yoohoo} displayPopup={displayPopup} handleSignOut={handleSignOut} path={currentPath}/>
+        <Navbar
+            redirectToProfile={()=>navigate("/profile/edit")}
+            dropdownContent={dropdownContent}
+            yoohoo={yoohoo}
+            displayPopup={displayPopup}
+            handleSignOut={handleSignOut}
+            path={currentPath}/>
     )
 }
 export default NavbarHandler

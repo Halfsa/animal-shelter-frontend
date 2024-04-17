@@ -26,7 +26,7 @@ interface Props{
     femaleCheck:boolean;
     maleCheck:boolean;
     calcAge: (pet:Pet)=>number;
-    toggleDetailPage:(petId:number)=>void;
+    toggleDetailPage:(petId:string)=>void;
     handleSearchBarChange:(e:React.ChangeEvent<HTMLInputElement>)=>void;
 }
 function AdoptionBody(props:Props){
@@ -47,24 +47,22 @@ function AdoptionBody(props:Props){
                                    placeholder={"Search by name..."}/>
                         </div>
                         <div className={"container-fluid filter-section"}>
-                        <label className={"input-labels"}>species: <br/>
                         <select className={"form-select-sm filterInput"} name={'selectSpecies'} defaultValue={'all'}
                                 onChange={props.handleSpeciesChange}>
-                            <option value={'all'}>all</option>
+                            <option value={'all'}>species - all</option>
                             {props.speciesList.map((species) => {
                                 return (
                                     <option value={species.speciesId} key={species.speciesId}>{species.name}</option>
                                 )
                             })}
                         </select>
-                        </label>
                     </div>
                     <div className={(props.breedNeeded.length === 0 ? "gone" : "ungone") + " container-fluid filter-section"}>
-                        <label className={" input-labels"}>breed:
+
                         <select
                             className={" form-select-sm filterInput"}
                             name={'selectBreed'} defaultValue={'any'} onChange={props.handleBreedChange}>
-                            <option value={'any'}>any</option>
+                            <option value={'any'}>breed - any</option>
                             {props.breedNeeded.map((breed) => {
 
                                 return (
@@ -72,7 +70,6 @@ function AdoptionBody(props:Props){
                                 )
                             })}
                         </select>
-                        </label>
                     </div>
                     <div id="checkBoxContainer" className={"container-fluid filter-section"}>
                         <label className={"checkbox-labels"}><p>male</p>

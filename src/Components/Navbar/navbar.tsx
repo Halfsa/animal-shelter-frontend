@@ -32,13 +32,12 @@ function Navbar({yoohoo,...props}:Props){
                                href="/adopt">Adoption</a>
                         </li>
                     </ul>
-                    <form className="d-flex">
                         {yoohoo ? <div className={"dropdown profileImageDiv"}>
-                                <img alt={"show profile"} className={"profilePicture dropbtn"} onClick={props.displayPopup} width={30}
+                                <img alt={"show profile"} className={"profilePicture dropbtn"} onClick={props.displayPopup} width={30} height={30}
                                      src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
                             <div ref={props.dropdownContent} className={"dropdown-content"}>
                                 <div>
-                                    <img className={"dropdownProfile profilePicture"} alt={"your profile image"} width={60}
+                                    <img className={"dropdownProfile profilePicture"} alt={"your profile image"} width={60} height={60}
                                           src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
                                 </div>
                                 <h5 onClick={props.redirectToProfile}>{yoohoo.username}</h5>
@@ -52,7 +51,6 @@ function Navbar({yoohoo,...props}:Props){
                             <a className="btn loginBtn" href={"/register"}>Register
                     </a></div>
                     }
-                </form>
             </div>
             </div>
         </nav>

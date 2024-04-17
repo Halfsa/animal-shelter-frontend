@@ -11,6 +11,7 @@ interface Props{
     navigate:NavigateFunction;
 }
 function LoginPost(props:Props){
+    const pathToReturnTo = localStorage.getItem("pathToReturnTo");
     axios.post('/auth/login', {
         username: props.username,
         password: props.password,
@@ -20,7 +21,7 @@ function LoginPost(props:Props){
         localStorage.setItem("refresh_token",response.data.refresh_token);
         props.setUsername('');
         props.setPassword('');
-        props.navigate("/");
+        location.replace(pathToReturnTo?pathToReturnTo:"/")
     }).catch(function (error) {
         console.log(error.response.data.message);
         if (typeof error.response.data.message === "string"){

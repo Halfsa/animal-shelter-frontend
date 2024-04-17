@@ -1,6 +1,5 @@
 import axios from "axios";
 const adoptThisPet = async (id:string|undefined,sendThisToken:string|null)=>{
-    console.log(sendThisToken)
     if (id) {
         return axios.post ( `/adoption/pet/${id}`,{},{
             headers:{

@@ -16,7 +16,7 @@ function AdoptionFilter(){
     const [checkFemale,setCheckFemale]=useState(false);
     const [breedNeeded,setBreedNeeded]=useState<Breed[]>([]);
     const searchBarInput= useRef('')
-    const allatok = GetPetList();
+    const allatok = GetPetList().filter((allat)=>{return allat.status === "INSHELTER"});
     const speciesSelected = React.useRef<string>('all');
     const breedSelected = React.useRef<string>('any');
     const breeds = GetBreedList();
@@ -164,7 +164,7 @@ function AdoptionFilter(){
         }
         setBreedNeeded(mmm);
     }
-    function toggleDetailPage(id:number){
+    function toggleDetailPage(id:string){
         sessionStorage.setItem('selected-pet',id.toString());
         navigate(`/detail`);
     }

@@ -149,6 +149,7 @@ h1{
 }
 .profilePicture{
     border-radius: 50%;
+    object-fit: cover;
 }
 .dropdown{
     position: relative;
@@ -288,6 +289,7 @@ div{
 }
 .footer-container{
    /* background-color: rgb(162, 255, 36);*/
+    margin-top: 10px;
     background-color: var(--light-green-color);
     background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
     background-blend-mode: darken;
@@ -397,7 +399,7 @@ footer.my-4{
     z-index: 0;
     filter:
         grayscale(0%)
-        opacity(6%)
+        opacity(0)
         sepia(100);
     opacity: 100%;
     width: 50px;
@@ -430,7 +432,7 @@ footer.my-4{
     cursor: pointer;
 }
 .animal-card:hover .paws{
-    filter: opacity(10%);
+    filter: opacity(0%);
 }
 .animal-card:hover #paw{
     animation: walk 3s linear infinite 0.25s;
@@ -453,6 +455,8 @@ footer.my-4{
 }
 .selectedImage{
     width: 100%;
+    height: 500px;
+    object-fit: cover;
     margin: 0;
 }
 .petCardName{
@@ -569,6 +573,17 @@ footer.my-4{
     border-radius: 50%;
     overflow: hidden;
     */
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.wrapper-div p {
+    display: none;
+    cursor: default;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
 }
 .textarea{
     resize: none;
@@ -583,7 +598,9 @@ footer.my-4{
 }
 .bigProfileImage{
     max-width: 350px;
+    max-height: 350px;
     border-radius: 50%;
+    object-fit: cover;
 }
 .imageChangeText{
     display: none;
@@ -592,11 +609,15 @@ footer.my-4{
 .bigProfileImage:hover{
     filter: brightness(60%);
 }
-.bigProfileImage:hover{
+.bigProfileImage:hover + .imgOverlayText {
     display: block;
 }
+#fileInput{
+    display: none;
+}
 .nameHere{
-    background-color: gray;
+    background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?s=612x612&w=0&k=20&c=37qEuwdxyQSx9kuS-_Gz0WiKFX6jMXZN9aRY47mN2vI=");
+    background-size: cover;
     margin-bottom: 25%;
     padding: 30px;
     max-height: 228px;
@@ -621,6 +642,27 @@ footer.my-4{
     position: absolute;
     left: -9999px;
     top: -9999px;
+}
+.submitChanges{
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    display: flex;
+    background-color: rgba(62, 210, 229, 0.64);
+    padding: 4px;
+    align-items: center;
+    min-height: 6%;
+}
+.submitChanges p{
+    margin: auto 0;
+}
+.submitChanges button{
+    position: relative;
+    right: 4%;
+    margin-left: auto;
+    border-radius: 5px;
+    border: 1px solid deepskyblue;
+    background-color: cornflowerblue;
 }
 .noSelect{
     cursor: default;
