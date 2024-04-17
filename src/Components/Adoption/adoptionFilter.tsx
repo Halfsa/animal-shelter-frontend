@@ -14,7 +14,7 @@ function AdoptionFilter(){
     const [checkFemale,setCheckFemale]=useState(false);
     const [breedNeeded,setBreedNeeded]=useState<Breed[]>([]);
     const searchBarInput= useRef('')
-    const allatok = GetPetList().filter((allat)=>{return allat.status === "INSHELTER"});
+    const allatok = GetPetList().filter((allat)=>{return allat.status === "INSHELTER" || allat.status === "UNKNOWN"||allat.status === "INCOMING"});
     const speciesSelected = React.useRef<string>('all');
     const breedSelected = React.useRef<string>('any');
     const breeds = GetBreedList();
