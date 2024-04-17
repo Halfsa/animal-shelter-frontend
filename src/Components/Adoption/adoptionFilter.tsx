@@ -166,7 +166,7 @@ function AdoptionFilter(){
     }
     function toggleDetailPage(id:string){
         sessionStorage.setItem('selected-pet',id.toString());
-        navigate(`/detail`);
+        location.replace("/detail")
     }
     return(
         <AdoptionBody

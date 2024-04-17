@@ -11,6 +11,7 @@ function NavbarHandler(){
     const sendToken = localStorage.getItem('refresh_token');
     const yoohoo = GetProfile();
     const isPopupDisplayed = useRef(false);
+    const pathToReturnTo = localStorage.getItem("pathToReturnTo");
     if (window.location.pathname !== currentPath){
         setCurrentPath(window.location.pathname);
     }
@@ -22,7 +23,12 @@ function NavbarHandler(){
         });
             localStorage.removeItem('access_token')
             localStorage.removeItem('refresh_token')
-            location.reload()
+            if (location.pathname !== "/profile/edit"){
+                location.reload()
+            }
+            else {
+                location.replace(pathToReturnTo?pathToReturnTo:"/")
+            }
     }
     function displayPopup(){
         isPopupDisplayed.current = !isPopupDisplayed.current;
@@ -30,7 +36,7 @@ function NavbarHandler(){
     }
     return(
         <Navbar
-            redirectToProfile={()=>navigate("/profile/edit")}
+            redirectToProfile={()=>location.replace("/profile/edit")}
             dropdownContent={dropdownContent}
             yoohoo={yoohoo}
             displayPopup={displayPopup}

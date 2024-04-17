@@ -15,7 +15,7 @@ import {useState} from "react";
 
 function App() {
     const [myLocation,setMyLocation] = useState(location.pathname)
-    if ( myLocation !== "/login"&& myLocation !== "/register"){
+    if ( myLocation !== "/login"&& myLocation !== "/register"&&myLocation !== "/profile/edit"){
         localStorage.setItem("pathToReturnTo",myLocation)
     }
    /* const body = document.getElementById("body")!;
