@@ -4,10 +4,8 @@ import GetBreedList from "../getBreedList.tsx";
 import GetPetList from "../getPetList.tsx";
 import {Breed, Pet} from "../../petDTO.tsx";
 import GetSpeciesList from "../getSpeciesList.tsx";
-import {useNavigate} from "react-router-dom";
 
 function AdoptionFilter(){
-    const navigate = useNavigate();
     const [yoo,setYoo] = useState<Pet[]>();
     const order = useRef('namAsc');
     const speciesFilter = useRef('all');

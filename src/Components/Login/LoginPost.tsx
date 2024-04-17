@@ -1,5 +1,4 @@
 import axios from "axios";
-import {NavigateFunction} from "react-router-dom";
 
 interface Props{
     username:string|undefined,
@@ -8,7 +7,6 @@ interface Props{
     setPassword:(value:string)=>void,
     setErrorUsername:(value:string[]|undefined)=>void,
     setErrorPassword:(value:string[]|undefined)=>void,
-    navigate:NavigateFunction;
 }
 function LoginPost(props:Props){
     const pathToReturnTo = localStorage.getItem("pathToReturnTo");
