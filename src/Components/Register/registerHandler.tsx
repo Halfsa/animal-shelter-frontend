@@ -25,7 +25,7 @@ function RegisterHandler(){
         const pathToReturnTo = localStorage.getItem("pathToReturnTo");
         axios.defaults.withCredentials = true;
         axios.post('/auth/register', {
-            username: username,
+            username: username?.trim(),
             email:email?.trim().length === 0? null: email,
             password:password,
         }).then(function (response) {

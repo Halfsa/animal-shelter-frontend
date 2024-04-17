@@ -45,7 +45,7 @@ function EditProfile(props:Props){
                          height={props.width / 3}
                          src={props.user && props.user.profileImageUrl ? props.user.profileImageUrl : placeholderImage}/>
                     <p className={"imgOverlayText"}>Change image</p>
-                    <input id={"fileInput"} type={"file"} ref={fileInputRef} onChange={props.fileInput}/>
+                    <input id={"fileInput"} accept={"image/png, image/gif, image/jpeg"} type={"file"} ref={fileInputRef} onChange={props.fileInput}/>
                 </div>
 
                 <input className={`${ props.isEditing === "username"? "select" : "noSelect" } userName` }
