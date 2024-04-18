@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {Location, UpdateUser} from "../../petDTO.tsx";
 import EditProfile from "./EditProfile.tsx";
 import GetMyLocation from "../getMyLocation.tsx";
@@ -8,9 +8,11 @@ import ValidateToken from "../../ValidateToken.tsx";
 import uploadFile from "./uploadFile.ts";
 import getProfile from "../getProfile.tsx";
 import {useNavigate} from "react-router-dom";
+import EventBus from "../../EventBus.ts";
+import eventBus from "../../EventBus.ts";
 //todo: amikor nem használájuk az oldalt és lejár a token, nem jó a cucc. Talán a useQuery segíthet???
 function EditProfileHandler (){
-    const navigate = useNavigate();
+
     const sendThisToken = ValidateToken();
     const email = useRef<HTMLTextAreaElement>(null);
     const fullName = useRef<HTMLTextAreaElement>(null);
@@ -24,14 +26,29 @@ function EditProfileHandler (){
     const [usernameValue,setUsernameValue] = useState<string|false>(false);
     const [nameValue,setNameValue] = useState<string|false>(false);
     const [emailValue,setEmailValue]= useState<string|false>(false);
-    const [imgUrl,setImgUrl] = useState<string|false>(false);
+    const [imgUrl,setImgUrl] = useState<string|null|false>(false);
     const user = getProfile();
     const getLocations = GetMyLocation();
     const [userLocations,setUserLocations] = useState<Location[]>([]);
     const width = windowWidth();
+
     useEffect ( () => {
         setUserLocations(getLocations);
     }, [getLocations] );
+    useEffect ( () => {
+        eventBus.on("imgChanged",
+        ()=>{
+        setImgUrl(user? user.profileImageUrl:false)});
+        return()=>{
+            eventBus.remove("imgChanged",()=>{})
+        }
+    });
+    const IWantToCallThisTwice = ()=>{
+        imgRef.current!.style.left = nameRef.current!.offsetLeft + nameRef.current!.offsetWidth+"px";
+        imgRef.current!.style.top = nameRef.current!.offsetTop +"px";
+        spanElm.current!.textContent = usernameValue? usernameValue:null // the hidden span takes the value of the input;
+        nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
+    }
     useEffect(() => {
         /*
         if (
@@ -44,10 +61,10 @@ function EditProfileHandler (){
             }
         }
          */
-        imgRef.current!.style.left = nameRef.current!.offsetLeft + nameRef.current!.offsetWidth+"px";
-        imgRef.current!.style.top = nameRef.current!.offsetTop +"px";
-        spanElm.current!.textContent = usernameValue? usernameValue:null // the hidden span takes the value of the input;
-        nameRef.current!.style.width = spanElm.current!.offsetWidth + 'px'; // apply width of the span to the input
+       IWantToCallThisTwice()
+    }, [width, changesMade, usernameValue, user]);
+    useLayoutEffect ( () => {
+        IWantToCallThisTwice()
     }, [width, changesMade, usernameValue, user]);
     useEffect ( () => {
        if (user && (usernameValue===false || nameValue === false || emailValue === false || imgUrl === false)){
@@ -73,7 +90,6 @@ function EditProfileHandler (){
         setChangesMade(true);
     }
     function handleEdit(editingThisObject:string){
-        console.log(isEditing)
         setIsEditing(editingThisObject);
         switch (editingThisObject){
             case "username":{
@@ -111,7 +127,7 @@ function EditProfileHandler (){
         await editMyProfile({...newValues},sendThisToken);
         setChangesMade(false)
         setIsEditing(undefined)
-        navigate("/")
+        eventBus.dispatch("imgChanged",userImageRef.current!.src)
     }
     const fileInput= async(e:React.ChangeEvent<HTMLInputElement>)=> {
         console.log ( e.target.files );
@@ -127,22 +143,9 @@ function EditProfileHandler (){
         console.log(changesMade)
         setChangesMade(true)
     }
-    function onPlusButtonClick(){
-        console.log("hola")
-        const newLocationPattern:Location = {country: "", state:" ", city:"", zipCode: null, address:"",addressExtra:"", name:"" }
-        setUserLocations(prevState => [...prevState,newLocationPattern]);
-        countryRef.current?.focus();
-        console.log(userLocations)
-    }
-
-    useEffect ( () => {
-
-    }, [] );
 
     return(
         <EditProfile
-            countryRef={countryRef}
-            onPlusButtonClick={onPlusButtonClick}
             fileInput={fileInput}
             usernameValue={usernameValue}
             usernameChange={usernameChange}

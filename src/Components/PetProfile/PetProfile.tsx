@@ -11,7 +11,7 @@ function PetProfile(){
    // const [imageSrc,setImageSrc] = useState('');
     const selectedPet = sessionStorage.getItem('selected-pet');
     const [open,setOpen] = useState(false)
-    const [modalMessage,setModalMessage] = useState("");
+    const [ modalMessage,setModalMessage] = useState("");
     const whatCode = useRef(200);
     const token = ValidateToken();
     const button = useRef<HTMLAnchorElement>(null);
@@ -33,8 +33,8 @@ function PetProfile(){
     async function startAdoption(){
         if (localStorage.getItem('access_token') !== null){
             const res = adoptThisPet(pet?.petId,token);
-            console.log((await res).response.status);
-            whatCode.current = (await res).response.status
+            console.log((await res).status);
+            whatCode.current = (await res).status
             if ( whatCode.current !== 200){
                 setModalMessage("Something went wrong while starting the adoption process. Please check if the pet you want to adopt is currently in our shelter.")
             }else {
@@ -58,7 +58,7 @@ function PetProfile(){
         p: 4,
     };
     return(
-        <div className={"container-fluid adoptionBody p-0"}>
+        <div className={"container-fluid petprofileBody p-0"}>
             <img alt={"selected animal's image"} className={"selectedImage"} src={pet? pet.imageUrls.length !==0?pet?.imageUrls[0]:empty:empty}/>
             <div className={"container selectedPet-content"}>
                 <h2>{pet?.name}</h2>

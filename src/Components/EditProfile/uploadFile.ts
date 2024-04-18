@@ -2,6 +2,7 @@ import axios from "axios";
 
 
     const uploadFile = async (image:FormData,tokenToSend:string|null): Promise<string>=> {
+        console.log(image)
         return await axios.post ( '/media',
             image,
             {headers: {

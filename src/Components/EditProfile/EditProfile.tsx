@@ -3,9 +3,10 @@ import LocationDisplay from "./LocationDisplay.tsx";
 import placeholderImage from "../../assets/profile-icon.png";
 // @ts-expect-error akcsaalkjkcsjlajcaslkj
 import edit from "../../assets/edit-icon-png-3587.png";
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import {Location, User} from "../../petDTO.tsx";
 import PlusButton from "./PlusButton.tsx";
+import {Modal} from "@mui/material";
 interface Props{
     fileInput:(e:React.ChangeEvent<HTMLInputElement>)=>void;
     usernameChange: (e:React.ChangeEvent<HTMLInputElement>)=>void;
@@ -29,11 +30,10 @@ interface Props{
     userLocation:Location[];
     width:number;
     user:User|undefined;
-    onPlusButtonClick:(string:string)=>void;
-    countryRef:React.RefObject<HTMLTextAreaElement>;
 }
 function EditProfile(props:Props){
     const fileInputRef = useRef<HTMLInputElement>(null)
+    const [displayNewLocation,setDisplayNewLocation] = useState(false)
     return (
         //not adoption body
         <div className={"profileBody"}>
@@ -118,12 +118,17 @@ function EditProfile(props:Props){
                             <td className={ "col" }>
                                 <div className={"d-flex"}>
                                     Locations
-                                    <PlusButton onClick={props.onPlusButtonClick}/>
+                                    <PlusButton onClick={()=>setDisplayNewLocation(true)}/>
+                                    <Modal open={displayNewLocation} onClose={()=>setDisplayNewLocation(false)}>
+                                        <div className={"addNewLocation"}>
+                                            <LocationDisplay location={{}} editable={true} makeMeDisappear={()=>setDisplayNewLocation(false)}/>
+                                        </div>
+                                    </Modal>
                                 </div>
                             { props.userLocation.length !==0 ?
                                 props.userLocation.map ( (thisLocation) => {
                                     return <LocationDisplay
-                                        countryRef={props.countryRef}
+                                        editable={false}
                                         key={ thisLocation.locationId }
                                         location={ thisLocation }
                                     />

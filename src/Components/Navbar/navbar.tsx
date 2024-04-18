@@ -11,8 +11,10 @@ interface Props{
     dropdownContent:React.RefObject<HTMLDivElement>;
     yoohoo:User|undefined;
     redirectToProfile:()=>void;
+    madeChanges:string;
 }
 function Navbar({yoohoo,...props}:Props){
+    const profileImgSrc = props.madeChanges.length >0?props.madeChanges:yoohoo?.profileImageUrl?yoohoo.profileImageUrl:profileImg;
     return (
         <nav className="navbar navbar-fixed-top navbar-expand-sm">
             <div className="container-fluid navbar-contentus">
@@ -34,11 +36,11 @@ function Navbar({yoohoo,...props}:Props){
                     </ul>
                         {yoohoo ? <div className={"dropdown profileImageDiv"}>
                                 <img alt={"show profile"} className={"profilePicture dropbtn"} onClick={props.displayPopup} width={30} height={30}
-                                     src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
+                                     src={profileImgSrc}/>
                             <div ref={props.dropdownContent} className={"dropdown-content"}>
                                 <div>
                                     <img className={"dropdownProfile profilePicture"} alt={"your profile image"} width={60} height={60}
-                                          src={yoohoo.profileImageUrl? yoohoo.profileImageUrl:profileImg}/>
+                                          src={profileImgSrc}/>
                                 </div>
                                 <h5 onClick={props.redirectToProfile}>{yoohoo.username}</h5>
                                 <p>{ yoohoo.email ? <textarea name={"dropDownEmail"} className = {"textarea noSelect"} readOnly={true} value={yoohoo.email } ></textarea> : <i>No email added</i> }</p>

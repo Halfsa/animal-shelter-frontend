@@ -117,6 +117,7 @@ h1{
 .required-field{
     color: red;
     font-size: 14px;
+    cursor: default;
 }
 .navbar{
     background-color: var(--light-green-color);
@@ -304,6 +305,10 @@ footer.my-4{
 }
 .adoptionBody{
     padding-top: var(--navbar-margin);
+
+}.petprofileBody{
+    margin-top: var(--navbar-margin);
+    display: flex;
 }
 .adoptionImage{
     width: 100%;
@@ -454,9 +459,8 @@ footer.my-4{
 
 }
 .selectedImage{
+    height: 100%;
     width: 100%;
-    height: 500px;
-    object-fit: cover;
     margin: 0;
 }
 .petCardName{
@@ -698,6 +702,22 @@ footer.my-4{
 .profileBody{
     margin-top: var(--navbar-margin);
 }
+.addNewLocation{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background-color: white;
+    box-shadow: 2px 4px 5px;
+    text-align: left;
+}
+.addNewLocation .textarea{
+    border: 1px solid black;
+    height: 50%;
+    width: 100%;
+    margin: auto;
+}
 /* EditProfile page css */
 
 /* Add animation (fade in the popup) */
@@ -719,6 +739,9 @@ footer.my-4{
     }
     .testImg{
         height: 70px;
+    }
+    .addNewLocation{
+        width: 100%;
     }
     .hhh{
         padding-top: 16px;
@@ -761,7 +784,7 @@ footer.my-4{
  }
 @keyframes hamster-tremble {
     to{
-        rotate: 6.9deg;
+        rotate: 2deg;
     }
 }
 @keyframes btn-hover {

@@ -2,8 +2,7 @@ import axios from "axios";
 import { NewLocation} from "../../petDTO.tsx";
 
 const addToLocation= async (locationDetails: NewLocation,tokenToSend:string|null)=>{
-
-    axios.post('/location/my',
+    return axios.post('/location/my',
         {
             ...locationDetails
         },{
@@ -12,8 +11,10 @@ const addToLocation= async (locationDetails: NewLocation,tokenToSend:string|null
         }
         }).then(res=>{
             console.log(res)
+            return res;
     }).catch(err=>{
         console.log(err)
+        return err.response;
     })
 }
 export default addToLocation;
