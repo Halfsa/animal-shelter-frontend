@@ -117,6 +117,7 @@ h1{
 .required-field{
     color: red;
     font-size: 14px;
+    cursor: default;
 }
 .navbar{
     background-color: var(--light-green-color);
@@ -147,7 +148,10 @@ h1{
     background-blend-mode: hue;
     color: var(--frame-color);
 }
-
+.profilePicture{
+    border-radius: 50%;
+    object-fit: cover;
+}
 .dropdown{
     position: relative;
     display: inline-block;
@@ -163,7 +167,10 @@ h1{
     width: 200px;
     right: 10%;
     border-radius: 3px;
-
+    align-content: center;
+}
+.dropdown-content .textarea{
+    text-align: center;
 }
 .dropdown-content::after{
     content: "";
@@ -182,6 +189,7 @@ h1{
 .dropdown-content h5{
     text-align: center;
     text-decoration: underline;
+    cursor: pointer;
 }
 .dropdown-content p{
     text-align: center;
@@ -282,6 +290,7 @@ div{
 }
 .footer-container{
    /* background-color: rgb(162, 255, 36);*/
+    margin-top: 10px;
     background-color: var(--light-green-color);
     background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
     background-blend-mode: darken;
@@ -296,6 +305,10 @@ footer.my-4{
 }
 .adoptionBody{
     padding-top: var(--navbar-margin);
+
+}.petprofileBody{
+    margin-top: var(--navbar-margin);
+    display: flex;
 }
 .adoptionImage{
     width: 100%;
@@ -391,7 +404,7 @@ footer.my-4{
     z-index: 0;
     filter:
         grayscale(0%)
-        opacity(6%)
+        opacity(0)
         sepia(100);
     opacity: 100%;
     width: 50px;
@@ -424,7 +437,7 @@ footer.my-4{
     cursor: pointer;
 }
 .animal-card:hover .paws{
-    filter: opacity(10%);
+    filter: opacity(0%);
 }
 .animal-card:hover #paw{
     animation: walk 3s linear infinite 0.25s;
@@ -446,6 +459,7 @@ footer.my-4{
 
 }
 .selectedImage{
+    height: 100%;
     width: 100%;
     margin: 0;
 }
@@ -541,8 +555,12 @@ footer.my-4{
 .locationDiv .row{
     margin-top: 10px;
 }
-.locationDiv .row input{
+.inputWithoutBorder{
     border: 0;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 0;
+    white-space: pre;
 }
 .locationDiv .row p{
     vertical-align: center;
@@ -550,20 +568,111 @@ footer.my-4{
 }
 .notAddedText{
     color: gray;
+    font-style: italic;
+}
+.wrapper-div{
+    /*
+    height: auto;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    */
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.wrapper-div p {
+    display: none;
+    cursor: default;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.textarea{
+    resize: none;
+    border: 0;
+    height: auto;
+    horiz-align: center;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 .bigProfileImage{
-    max-width: 250px;
+    max-width: 350px;
+    max-height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.imageChangeText{
+    display: none;
+    color: white;
+}
+.bigProfileImage:hover{
+    filter: brightness(60%);
+}
+.bigProfileImage:hover + .imgOverlayText {
+    display: block;
+}
+#fileInput{
+    display: none;
 }
 .nameHere{
-    background-color: gray;
+    background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?s=612x612&w=0&k=20&c=37qEuwdxyQSx9kuS-_Gz0WiKFX6jMXZN9aRY47mN2vI=");
+    background-size: cover;
     margin-bottom: 25%;
     padding: 30px;
     max-height: 228px;
 }
-.userName{
+.userDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    max-width: 350px;
+}
+.userName, .measure{
     text-align: center;
-    max-width: 250px;
     margin-top: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    padding: 0;
+    white-space: pre;
+}
+.measure{
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+.submitChanges{
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    display: flex;
+    background-color: rgba(62, 210, 229, 0.64);
+    padding: 4px;
+    align-items: center;
+    min-height: 6%;
+}
+.submitChanges p{
+    margin: auto 0;
+}
+.submitChanges button{
+    position: relative;
+    right: 4%;
+    margin-left: auto;
+    border-radius: 5px;
+    border: 1px solid deepskyblue;
+    background-color: cornflowerblue;
+}
+.noSelect{
+    cursor: default;
+}
+.noSelect:focus-visible{
+    outline: 0;
 }
 .help{
     display: inline-block!important;
@@ -574,9 +683,40 @@ footer.my-4{
     margin-left: 5px;
     vertical-align: top;
     margin-top: 6px;
+    position: absolute;
+}
+.plusButton{
+    border: 0;
+    vertical-align: top;
+    height: 50%;
+    background-color: transparent;
+    color: red;
+    justify-self: end;
+}
+.table-borderless{
+    margin: 0;
+}
+.table-borderless td{
+    padding: 2px;
 }
 .profileBody{
     margin-top: var(--navbar-margin);
+}
+.addNewLocation{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background-color: white;
+    box-shadow: 2px 4px 5px;
+    text-align: left;
+}
+.addNewLocation .textarea{
+    border: 1px solid black;
+    height: 50%;
+    width: 100%;
+    margin: auto;
 }
 /* EditProfile page css */
 
@@ -600,6 +740,9 @@ footer.my-4{
     .testImg{
         height: 70px;
     }
+    .addNewLocation{
+        width: 100%;
+    }
     .hhh{
         padding-top: 16px;
     }
@@ -619,7 +762,7 @@ footer.my-4{
         position: relative;
         left: 68%;
     }
-    .profileImage{
+    .profileImageDiv{
         position: relative;
         left: 91%;
     }

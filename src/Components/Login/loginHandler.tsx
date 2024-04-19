@@ -1,10 +1,8 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import LoginForm from "./loginForm.tsx";
 import LoginPost from "./LoginPost.tsx";
-import {useNavigate} from "react-router-dom";
 
 function LoginHandler(){
-    const navigate = useNavigate();
     const [username,setUsername]=useState<string>();
     const [password,setPassword] = useState<string>();
     const [errorUname,setErrorUname]=useState<string[]|undefined>(undefined);
@@ -28,7 +26,6 @@ function LoginHandler(){
             setPassword:setPassword,
             setErrorUsername:setErrorUname,
             setErrorPassword:setErrorPassword,
-            navigate:navigate,
         });
     }
     function disablePopup(){

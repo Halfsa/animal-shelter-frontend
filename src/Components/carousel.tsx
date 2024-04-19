@@ -9,7 +9,7 @@ function Carousel() {
                             <h5 className="card-title">Easter feaster</h5>
                             <p className="card-text">Adopt now with discounts!
                             And if you are adopting a bunny, we will give you all of the eggs it laid as a gratis!</p>
-                            <p className="card-text"><a href={"/adoption"} className={"btn btn-light btn-outline-dark"}>Take me there</a></p>
+                            <p className="card-text"><a href={"/adopt"} className={"btn btn-light btn-outline-dark"}>Take me there</a></p>
                         </div>
                 </div>
             </div>

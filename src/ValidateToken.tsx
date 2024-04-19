@@ -9,7 +9,7 @@ function ValidateToken(){
         if (token !== null){
         const decodedToken = jwtDecode(token);
         if (decodedToken.exp!- Date.now()*0.001 <=5){
-            axios.post('auth/refresh', {}, {
+            axios.post('/auth/refresh', {}, {
                 headers: {
                     Authorization: `Bearer ${refresh}`
                 }

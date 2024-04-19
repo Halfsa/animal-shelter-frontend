@@ -25,7 +25,7 @@ console.log(useWindowWidth());
                         <label className={"form-label"}>
                             Username: <i title={"This field is required"} className={"required-field"}>*</i>
                         </label>
-                        <input value={props.username} onChange={props.handleUsernameChange} type={"text"}
+                        <input autoFocus={true} value={props.username} onChange={props.handleUsernameChange} type={"text"}
                                placeholder={"Enter your username"}>
                         </input>
                     </div>

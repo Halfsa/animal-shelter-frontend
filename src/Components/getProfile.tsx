@@ -4,7 +4,7 @@ import {User} from "../petDTO.tsx";
 import ValidateToken from "../ValidateToken.tsx";
 
 function GetProfile(){
-    const [yoo,setYoo] = useState<User|undefined>(undefined);
+    const [values,setValues] = useState<User|undefined>(undefined);
     const tokenToSend = ValidateToken();
     useEffect(() => {
         axios.get('/user/me',
@@ -14,11 +14,11 @@ function GetProfile(){
                 }
             }
             ).then((res)=>{
-            setYoo({username:res.data.username,name:res.data.name,email:res.data.email});
+            setValues({...res.data});
         }).catch((err)=>{
             console.log(err);
         });
     }, [tokenToSend]);
-    return yoo
+    return values
 }
 export default GetProfile;

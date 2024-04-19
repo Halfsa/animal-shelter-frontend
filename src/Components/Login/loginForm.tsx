@@ -21,7 +21,7 @@ function LoginForm(props:Props){
                             <label className={"form-label popup"}>
                                 Username:
                                 <span onClick={props.disablePopup} className={props.errorUname?"popuptext show": "popuptext"} id={"hibaPopup"}>{props.errorUname?props.errorUname[0]:""}</span>
-                                <input value={props.username} onChange={props.handleUsernameChange} type={"text"}
+                                <input autoFocus={true} value={props.username} onChange={props.handleUsernameChange} type={"text"}
                                        className={"loginInput"} placeholder={"Enter your username"}/>
                             </label>
                         </div>

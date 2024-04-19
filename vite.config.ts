@@ -31,6 +31,9 @@ export default defineConfig({
           }, '/species':{
               target:'http://localhost:3001/',
               changeOrigin:true,
+          },'/adoption':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
           }
 
       }

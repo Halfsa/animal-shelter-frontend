@@ -10,8 +10,11 @@ interface Props{
     displayPopup: ()=>void;
     dropdownContent:React.RefObject<HTMLDivElement>;
     yoohoo:User|undefined;
+    redirectToProfile:()=>void;
+    madeChanges:string;
 }
 function Navbar({yoohoo,...props}:Props){
+    const profileImgSrc = props.madeChanges.length >0?props.madeChanges:yoohoo?.profileImageUrl?yoohoo.profileImageUrl:profileImg;
     return (
         <nav className="navbar navbar-fixed-top navbar-expand-sm">
             <div className="container-fluid navbar-contentus">
@@ -27,23 +30,20 @@ function Navbar({yoohoo,...props}:Props){
                                href="/home">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className={props.path === "/adoption" ? "nav-link active" : "nav-link"}
-                               href="/adoption">Adoption</a>
+                            <a className={props.path === "/adopt" ? "nav-link active" : "nav-link"}
+                               href="/adopt">Adoption</a>
                         </li>
                     </ul>
-                    <form className="d-flex">
-                        {yoohoo ? <div className={"dropdown profileImage"}>
-                            <a className="dropbtn">
-                                <img alt={"show profile"} onClick={props.displayPopup} width={30}
-                                     src={profileImg}/>
-                            </a>
+                        {yoohoo ? <div className={"dropdown profileImageDiv"}>
+                                <img alt={"show profile"} className={"profilePicture dropbtn"} onClick={props.displayPopup} width={30} height={30}
+                                     src={profileImgSrc}/>
                             <div ref={props.dropdownContent} className={"dropdown-content"}>
                                 <div>
-                                    <img className={"dropdownProfile"} alt={"your profile image"} width={60}
-                                          src={profileImg}/>
+                                    <img className={"dropdownProfile profilePicture"} alt={"your profile image"} width={60} height={60}
+                                          src={profileImgSrc}/>
                                 </div>
-                                <h5>{yoohoo.username}</h5>
-                                <p>{yoohoo.email ? yoohoo.email : <i>No email added</i>}</p>
+                                <h5 onClick={props.redirectToProfile}>{yoohoo.username}</h5>
+                                <p>{ yoohoo.email ? <textarea name={"dropDownEmail"} className = {"textarea noSelect"} readOnly={true} value={yoohoo.email } ></textarea> : <i>No email added</i> }</p>
                                 <button className={"signout"} onClick={props.handleSignOut}>Sign out</button>
                                 <a href={'/profile/edit'}><img alt={"edit profile"} width={15} src={editImg}/> edit
                                     profile</a>
@@ -53,7 +53,6 @@ function Navbar({yoohoo,...props}:Props){
                             <a className="btn loginBtn" href={"/register"}>Register
                     </a></div>
                     }
-                </form>
             </div>
             </div>
         </nav>

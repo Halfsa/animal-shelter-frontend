@@ -4,10 +4,8 @@ import GetBreedList from "../getBreedList.tsx";
 import GetPetList from "../getPetList.tsx";
 import {Breed, Pet} from "../../petDTO.tsx";
 import GetSpeciesList from "../getSpeciesList.tsx";
-import {useNavigate} from "react-router-dom";
 
 function AdoptionFilter(){
-    const navigate = useNavigate();
     const [yoo,setYoo] = useState<Pet[]>();
     const order = useRef('namAsc');
     const speciesFilter = useRef('all');
@@ -16,7 +14,7 @@ function AdoptionFilter(){
     const [checkFemale,setCheckFemale]=useState(false);
     const [breedNeeded,setBreedNeeded]=useState<Breed[]>([]);
     const searchBarInput= useRef('')
-    const allatok = GetPetList();
+    const allatok = GetPetList().filter((allat)=>{return allat.status === "INSHELTER" || allat.status === "UNKNOWN"||allat.status === "INCOMING"});
     const speciesSelected = React.useRef<string>('all');
     const breedSelected = React.useRef<string>('any');
     const breeds = GetBreedList();
@@ -164,9 +162,9 @@ function AdoptionFilter(){
         }
         setBreedNeeded(mmm);
     }
-    function toggleDetailPage(id:number){
+    function toggleDetailPage(id:string){
         sessionStorage.setItem('selected-pet',id.toString());
-        navigate(`/detail`);
+        location.assign("/detail")
     }
     return(
         <AdoptionBody

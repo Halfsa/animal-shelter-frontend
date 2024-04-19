@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import RegisterForm from "./registerForm.tsx";
 
@@ -8,7 +7,6 @@ function RegisterHandler(){
     const [password,setPassword] = useState<string>();
     const [email,setEmail] = useState<string>();
     const [errorPassword,setErrorPassword]=useState<string[]|undefined>(undefined);
-    const navigate = useNavigate();
     const body = document.getElementById("body")!;
     body.classList.replace("color", "image");
     function handleUsernameChange(e:React.ChangeEvent<HTMLInputElement>){
@@ -24,16 +22,19 @@ function RegisterHandler(){
         console.log(e.target.value);
     }
     function FetchRegister(username:string|undefined,email:string|undefined,password:string|undefined){
+        const pathToReturnTo = localStorage.getItem("pathToReturnTo");
         axios.defaults.withCredentials = true;
         axios.post('/auth/register', {
-            username: username,
-            email:email,
+            username: username?.trim(),
+            email:email?.trim().length === 0? null: email,
             password:password,
         }).then(function (response) {
                 console.log(response.data.message);
                 setUsername('');
                 setPassword('');
-                navigate('/');
+                localStorage.setItem("access_token",response.data.access_token);
+                localStorage.setItem("refresh_token",response.data.refresh_token);
+                location.replace(pathToReturnTo?pathToReturnTo:"/")
                 return response.data.message;
             })
             .catch(function (error) {
