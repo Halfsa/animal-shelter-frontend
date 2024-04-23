@@ -4,11 +4,14 @@
     --font-color:#F8FAF9;
     --frame-color: #2F362F;*/
     --background-base-color: #ffffff;
-    --dark-green-color: #2c1703 ;
-    --light-green-color: #946A44;
+    --navbar-footer-font: #2c1703 ;
+    --navbar-and-footer: #ffffffff;
     --font-color:#2D3331;
     --frame-color: #D9AD93 ;
-    --navbar-margin:56px;
+    --transparent-blue: #68BCD3C6;
+    --baige: #f3eed1;
+    --green: #8d9615;
+    --navbar-margin:75px;
     /*
     kutyás palette:
     5E372B
@@ -44,9 +47,6 @@
       animation-name: spinner-grow;
       animation-duration:10s;
       animation-iteration-count: infinite;*/
-}
-.btn-confirm:active{
-    background-color: red;
 }
 
 
@@ -120,14 +120,15 @@ h1{
     cursor: default;
 }
 .navbar{
-    background-color: var(--light-green-color);
-    box-shadow: 1px 1px 5px 0.5px var(--dark-green-color);
+    background-color: var(--navbar-and-footer);
+    box-shadow: 0.4px 0.4px 7px 0.5px lightgray;
+    min-height: 75px;
 }
 .nav-link{
-    color: var(--dark-green-color)!important;
+    color: var(--navbar-footer-font)!important;
 }
 .nav-link.active{
-    color: var(--background-base-color) !important;
+    color: var(--transparent-blue   ) !important;
 }
 .signout{
     border: 0;
@@ -138,15 +139,25 @@ h1{
     align-items: center;
 }
 .loginBtn{
-    border: 1px solid var(--dark-green-color);
+    /*border: 1px solid var(--navbar-footer-font);
     margin-left: 5px;
-    position: relative;
+    position: relative;*/
+    border: none;
+    box-shadow: 1px 1px 4px aquamarine;
+    color: var(--font-color);
+    margin: 5px;
 }
 
 .loginBtn:hover{
-    background-color: var(--dark-green-color);
+    /*
+    background-color: var(--navbar-footer-font);
     background-blend-mode: hue;
     color: var(--frame-color);
+    */
+    background-color: deepskyblue;
+    position: relative;
+    border: none;
+    color: white;
 }
 .profilePicture{
     border-radius: 50%;
@@ -257,6 +268,65 @@ h1{
 }
 
 
+.homeBody{
+    margin-top: var(--navbar-margin);
+    padding: 0;
+}
+.homeBody .container-fluid{
+    padding: 0;
+}
+
+.promotionImage{
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+.homeBody label{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+}
+.informationDiv{
+    margin: auto;
+    width: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.informationDiv *{
+    margin: 10px auto;
+    text-align: center;
+}
+.featureNavigation{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+.featureNavigation label{
+    margin: auto;
+    padding: 20px;
+}
+.featureNavigation img{
+    filter: hue-rotate(50deg);
+}
+.preFooter{
+    margin: 20px auto;
+    width: auto;
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.preFooter * {
+    margin: 10px auto;
+    text-align: center;
+}
 .ho{
     margin-top: 20px;
     width: 100%;
@@ -274,7 +344,7 @@ div{
     height: 103.5px;
     left: 20%;
     position: absolute;
-    top: 1px;
+    top: -38px;
     transform: translateX(-50%);
     width: auto;
 
@@ -286,12 +356,12 @@ div{
     animation-name: hamster-tremble;
 }
 .hhh{
-    padding-top: 40px;
+    margin-top: 40px
 }
 .footer-container{
    /* background-color: rgb(162, 255, 36);*/
     margin-top: 10px;
-    background-color: var(--light-green-color);
+    background-color: var(--navbar-and-footer);
     background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
     background-blend-mode: darken;
 
@@ -301,7 +371,7 @@ footer.my-4{
     margin-bottom: 0!important;
 }
 .text-body-secondary{
-    color: var(--dark-green-color)!important;
+    color: var(--navbar-footer-font)!important;
 }
 .adoptionBody{
     padding-top: var(--navbar-margin);
@@ -624,7 +694,7 @@ footer.my-4{
     background-size: cover;
     margin-bottom: 25%;
     padding: 30px;
-    max-height: 228px;
+    max-height: 250px;
 }
 .userDiv{
     display: flex;
@@ -739,6 +809,7 @@ footer.my-4{
     }
     .testImg{
         height: 70px;
+        top: -14px;
     }
     .addNewLocation{
         width: 100%;

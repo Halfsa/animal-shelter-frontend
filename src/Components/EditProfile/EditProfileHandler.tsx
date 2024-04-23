@@ -139,7 +139,14 @@ function EditProfileHandler (){
         if (files === null||files.length === 0){
             return
         }
-        userImageRef.current!.src = await uploadFile(data,sendThisToken);
+        const res = await uploadFile(data,sendThisToken);
+        if (res.response?.status){
+            alert("Problem while uploading file. Please try again later")
+            e.target.value = "";
+            console.log(e.target.files)
+            return;
+        }
+        userImageRef.current!.src = res
         console.log(changesMade)
         setChangesMade(true)
     }

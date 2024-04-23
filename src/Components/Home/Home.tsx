@@ -1,5 +1,3 @@
-import Navbar from "../Navbar/navbar.tsx";
-import Carousel from "../carousel.tsx";
 import HomeBody from "./homeBody.tsx";
 import Footer from "../footer.tsx";
 import NavbarHandler from "../Navbar/NavbarHandler.tsx";
@@ -10,7 +8,6 @@ function Home(){
     return(
         <div>
             <NavbarHandler/>
-            <Carousel/>
             <HomeBody/>
             <Footer/>
         </div>

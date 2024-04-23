@@ -158,6 +158,7 @@ function EditProfile(props:Props){
 
                 </div>
             }
+            <a href="profile/adoptions">Adoptációk megjelenítése</a>
 
         </div>
     )

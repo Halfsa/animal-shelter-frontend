@@ -15,7 +15,7 @@ import axios from "axios";
         ).catch ( err => {
             console.log ( err )
             console.log ( err.message )
-            return err.message;
+            return err;
         } )
     }
 export default uploadFile
