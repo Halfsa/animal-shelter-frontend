@@ -15,7 +15,7 @@ export default function AdoptionDisplay(props:Props){
     const pet = selectedPet[0];
     return(
         <div className={"adoptionDisplay"}>
-            <img src={pet?.imageUrls[0]} alt=""/>
+            <img width={100} height={100} src={pet?.imageUrls[0]} alt=""/>
             <div className={"adoptionDisplayContent"}>
                 <p>{pet?.name}</p>
                 <p>status: {props.adoption.status}</p>

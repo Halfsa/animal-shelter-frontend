@@ -11,7 +11,7 @@
     --transparent-blue: #68BCD3C6;
     --baige: #f3eed1;
     --green: #8d9615;
-    --navbar-margin:80px;
+    --navbar-margin:76px;
     /*
     kutyás palette:
     5E372B
@@ -796,8 +796,8 @@ footer.my-4{
 }
 .adoptionDisplay{
     display: flex;
-    height: 100px;
-    width: 60%;
+    height: auto;
+    width: 70%;
     margin: 10px auto;
     box-shadow: 0.5px 0.5px 5px var(--transparent-blue);
 }
@@ -805,16 +805,66 @@ footer.my-4{
     padding: 10px;
     display: flex;
     flex-direction: column;
+    word-break: break-word;
     align-content: center;
     position: relative;
     width: 100%;
 }
 .cancelButton{
     position: absolute;
-    bottom: 6%;
-    left: 75%;
+    bottom: 6px;
+    right: 6px;
 }
 /* ShowAdoptions page css */
+/*ManageUsers page css*/
+.manageUsersBody{
+    margin-top: var(--navbar-margin);
+}
+.manageUsersBody p {
+    margin-bottom: 0;
+}
+.manageUsersDisplay{
+    padding-right: 10px;
+    display: flex;
+    height: auto;
+    width: 70%;
+    margin: 10px auto;
+    box-shadow: 0.5px 0.5px 5px var(--transparent-blue);
+}
+/*.showRolesImgHolder{
+    position: relative;
+}
+.showRolesImg{
+    position: absolute;
+    top: 40%;
+    right: 5px;
+}*/
+.rolesContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 200px;
+}
+.roleDisplay{
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 5px;
+    text-align: center;
+    max-height: 35px;
+    margin: auto;
+    background-color: white;
+}
+
+.manageUsersDisplayContent{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+    align-content: center;
+    position: relative;
+    width: 100%;
+}
+/*ManageUsers page css*/
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
     from {opacity: 0;}

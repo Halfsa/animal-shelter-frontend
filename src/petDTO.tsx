@@ -24,7 +24,8 @@ export interface User{
     profileImageUrl:string|null,
     name:string,
     email:string,
-    roles: string[]
+    roles: string[],
+    userId:string
 }
 export interface UpdateUser{
     username:string,
@@ -48,5 +49,11 @@ export interface Adoption{
     reason:string,
     userId:string,
     petId:string
+}
+export interface Role{
+    roleId:string,
+    roleName:string,
+    description:string
+    permissions:string[]
 }
 export type NewLocation = Omit<Location, "locationId" | "name">

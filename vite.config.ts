@@ -34,6 +34,9 @@ export default defineConfig({
           },'/adoption':{
               target:'http://localhost:3001/',
               changeOrigin:true,
+          },'/role':{
+              target:'http://localhost:3001/',
+              changeOrigin:true,
           }
 
       }

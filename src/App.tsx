@@ -13,6 +13,8 @@ import PetProfileAssembler from "./Components/PetProfile/PetProfileAssembler.tsx
 import EditProfileAssembler from "./Components/EditProfile/EditProfileAssembler.tsx";
 import {useState} from "react";
 import ShowAdoptionsAssembler from "./showAllAdoptions/showAdoptionsAssembler.tsx";
+import ManageUsers from "./ManageUsers/ManageUsers.tsx";
+import ManageUsersAssembler from "./ManageUsers/ManageUsersAssembler.tsx";
 
 function App() {
     const [myLocation,setMyLocation] = useState(location.pathname)
@@ -69,6 +71,9 @@ function App() {
                         <Route
                             path={`/profile/adoptions`}
                             element={<ShowAdoptionsAssembler/>}/>
+                        <Route
+                            path={`/profile/users/manage`}
+                            element={<ManageUsersAssembler/>}/>
                         <Route
                             path="*"
                             element={<Navigate to="/" />}
