@@ -12,7 +12,6 @@ import RegisterHandler from "./Components/Register/registerHandler.tsx";
 import PetProfileAssembler from "./Components/PetProfile/PetProfileAssembler.tsx";
 import EditProfileAssembler from "./Components/EditProfile/EditProfileAssembler.tsx";
 import {useState} from "react";
-import ShowAdoptions from "./showAllAdoptions/ShowAdoptions.tsx";
 import ShowAdoptionsAssembler from "./showAllAdoptions/showAdoptionsAssembler.tsx";
 
 function App() {

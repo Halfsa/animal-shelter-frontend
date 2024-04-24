@@ -7,8 +7,6 @@ import editMyProfile from "./EditMyProfile.ts";
 import ValidateToken from "../../ValidateToken.tsx";
 import uploadFile from "./uploadFile.ts";
 import getProfile from "../getProfile.tsx";
-import {useNavigate} from "react-router-dom";
-import EventBus from "../../EventBus.ts";
 import eventBus from "../../EventBus.ts";
 //todo: amikor nem használájuk az oldalt és lejár a token, nem jó a cucc. Talán a useQuery segíthet???
 function EditProfileHandler (){
@@ -20,7 +18,6 @@ function EditProfileHandler (){
     const userImageRef = useRef<HTMLImageElement>(null);
     const nameRef = useRef<HTMLInputElement>(null);
     const spanElm = useRef<HTMLSpanElement>(null);
-    const countryRef = useRef<HTMLTextAreaElement>(null)
     const [isEditing,setIsEditing] = useState<string|undefined>(undefined);
     const [changesMade,setChangesMade] = useState<boolean>(false);
     const [usernameValue,setUsernameValue] = useState<string|false>(false);

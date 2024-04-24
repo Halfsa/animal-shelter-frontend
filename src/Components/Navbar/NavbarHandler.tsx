@@ -1,7 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import Navbar from "./navbar.tsx";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import GetProfile from "../getProfile.tsx";
 import eventBus from "../../EventBus.ts";
 
