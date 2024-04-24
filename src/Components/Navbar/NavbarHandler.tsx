@@ -33,12 +33,13 @@ function NavbarHandler(){
         });
             localStorage.removeItem('access_token')
             localStorage.removeItem('refresh_token')
-            if (location.pathname !== "/profile/edit"){
+            /*if (location.pathname !== "/profile/edit"){
                 location.reload()
             }
             else {
                 location.assign(pathToReturnTo?pathToReturnTo:"/")
-            }
+            }*/
+        location.assign(pathToReturnTo?pathToReturnTo:"/")
     }
     function displayPopup(){
         isPopupDisplayed.current = !isPopupDisplayed.current;

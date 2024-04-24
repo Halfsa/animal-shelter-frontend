@@ -24,6 +24,7 @@ export interface User{
     profileImageUrl:string|null,
     name:string,
     email:string,
+    roles: string[]
 }
 export interface UpdateUser{
     username:string,
@@ -40,5 +41,12 @@ export interface Location{
     zipCode:number,
     address:string,
     addressExtra:string|null,
+}
+export interface Adoption{
+    adoptionId:string,
+    status:string,
+    reason:string,
+    userId:string,
+    petId:string
 }
 export type NewLocation = Omit<Location, "locationId" | "name">

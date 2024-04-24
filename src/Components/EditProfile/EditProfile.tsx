@@ -35,7 +35,6 @@ function EditProfile(props:Props){
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [displayNewLocation,setDisplayNewLocation] = useState(false)
     return (
-        //not adoption body
         <div className={"profileBody"}>
         <div className={"container-fluid nameHere"}  style={{height: props.width/3.3}}>
             <div className={"userDiv"} style={{width: props.width / 3}}>
@@ -158,8 +157,8 @@ function EditProfile(props:Props){
 
                 </div>
             }
-            <a href="profile/adoptions">Adoptációk megjelenítése</a>
-
+            <a href="adoptions">My adoptions</a>
+            {props.user?.roles.includes("ADMIN")&&<a href={"users/manage"}>Manage users</a>}
         </div>
     )
 }

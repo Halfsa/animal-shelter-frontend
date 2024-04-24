@@ -12,10 +12,12 @@ import RegisterHandler from "./Components/Register/registerHandler.tsx";
 import PetProfileAssembler from "./Components/PetProfile/PetProfileAssembler.tsx";
 import EditProfileAssembler from "./Components/EditProfile/EditProfileAssembler.tsx";
 import {useState} from "react";
+import ShowAdoptions from "./showAllAdoptions/ShowAdoptions.tsx";
+import ShowAdoptionsAssembler from "./showAllAdoptions/showAdoptionsAssembler.tsx";
 
 function App() {
     const [myLocation,setMyLocation] = useState(location.pathname)
-    if ( myLocation !== "/login"&& myLocation !== "/register"&&myLocation !== "/profile/edit"){
+    if ( myLocation !== "/login"&& myLocation !== "/register"&&myLocation !== "/profile/edit" &&myLocation !== "/profile/adoptions" &&myLocation !== "/profile/users/manage" ){
         localStorage.setItem("pathToReturnTo",myLocation)
     }
    /* const body = document.getElementById("body")!;
@@ -66,9 +68,13 @@ function App() {
                             path={`/profile/edit`}
                             element={<EditProfileAssembler/>}/>
                         <Route
+                            path={`/profile/adoptions`}
+                            element={<ShowAdoptionsAssembler/>}/>
+                        <Route
                             path="*"
                             element={<Navigate to="/" />}
                         />
+
                     </Routes>
                 </Router>
         </>
