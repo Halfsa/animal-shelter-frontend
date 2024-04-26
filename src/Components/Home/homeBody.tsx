@@ -8,6 +8,12 @@ import noodleBirthday from "../../assets/noodle-birthday.jpg"
 import guineaPigTwerking from "../../assets/guinea-pig-twerks.webp"
 // @ts-expect-error image being weird
 import catPic from "../../assets/jamaica-cabahug-eV4K50SxYfU-unsplash.jpg"
+// @ts-expect-error image being weird
+import facebook from "../../assets/pngfind.com-facebook-icons-png-transparent-2570866.png"
+// @ts-expect-error image being weird
+import instagram from "../../assets/instagram.png"
+// @ts-expect-error image being weird
+import twitter from "../../assets/twitter.png"
 function Body(){
     return(
         <div className="container-fluid homeBody">
@@ -89,8 +95,16 @@ function Body(){
                 </div>
             </div>
             <div className={"preFooter container-fluid"}>
-                <p>Check out our social media for extra information or contact us at</p>
-                <img src="" alt=""/>
+                <div className={"preFooter-content"}>
+                    <p>Check out our social media for extra information</p>
+                    <div className={"preFooter-images"}>
+                        <img className={"social-icons"} onClick={()=>window.open("http://facebook.com/wuff_animal_shelter","_blank")} src={facebook} alt="our facebook page" title={"Wuff_animal_shelter"}/>
+                        <img className={"social-icons"} onClick={()=>window.open("http://instagram.com/wuffshelter","_blank")} src={instagram} alt="our instagram page" title={"@wuffshelter"}/>
+                        <img className={"social-icons"} onClick={()=>window.open("http://twitter.com/wuffanimalshelter","_blank")} src={twitter} alt="our twitter page" title={"@wuffanimalshelter"}/>
+                    </div>
+                    <p> or contact us at</p>
+                    <b>wuff.animalshelter@gmail.com</b>
+                </div>
             </div>
         </div>
     )

@@ -317,16 +317,24 @@ h1{
     filter: hue-rotate(50deg);
 }
 .preFooter{
-    margin: 20px auto;
+    margin: 20px auto 0 auto;
     width: auto;
     padding: 20px !important;
     display: flex;
     flex-direction: column;
     align-content: center;
+    background-color: #214289;
+    color: white;
 }
 .preFooter * {
     margin: 10px auto;
     text-align: center;
+}
+
+.social-icons{
+    height: 30px;
+    margin: 10px;
+    cursor: pointer;
 }
 .ho{
     margin-top: 20px;
@@ -361,7 +369,6 @@ div{
 }
 .footer-container{
    /* background-color: rgb(162, 255, 36);*/
-    margin-top: 10px;
     background-color: var(--navbar-and-footer);
     background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
     background-blend-mode: darken;
