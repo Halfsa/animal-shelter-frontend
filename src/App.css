@@ -5,7 +5,7 @@
     --frame-color: #2F362F;*/
     --background-base-color: #ffffff;
     --navbar-footer-font: #2c1703 ;
-    --navbar-and-footer: #ffffffff;
+    --navbar-and-footer: rgba(255, 255, 255, 0.97);
     --font-color:#2D3331;
     --frame-color: #D9AD93 ;
     --transparent-blue: #68BCD3C6;
@@ -222,6 +222,11 @@ h1{
     width: 100%;
     height: 500px;
 }
+.carousel{
+    height: 100%;
+    width: 100%;
+    padding: 0 !important;
+}
 .carousel-card{
     border-radius: 0;
     --bs-card-inner-border-radius: 0;
@@ -261,6 +266,8 @@ h1{
 .carousel{
     padding-top: var(--navbar-margin);
     padding-bottom: 50px;
+    border-right: 1px solid lightgray;
+    box-shadow: 1px 0 2px lightgray;
 }
 @media screen and (max-width: 1200px){
     .login{
@@ -279,8 +286,9 @@ h1{
 
 .promotionImage{
     width: 100%;
-    max-height: 500px;
+    max-height: 600px;
     object-fit: cover;
+    box-shadow: 0 1px 2px grey;
 }
 .homeBody label{
     display: flex;
@@ -301,6 +309,10 @@ h1{
 .informationDiv *{
     margin: 10px auto;
     text-align: center;
+    font-size: 20px;
+}
+.informationDiv h2{
+    font-size: 25px;
 }
 .featureNavigation{
     margin-top: 20px;
@@ -319,15 +331,16 @@ h1{
 .preFooter{
     margin: 20px auto 0 auto;
     width: auto;
-    padding: 20px !important;
+    padding: 40px !important;
     display: flex;
     flex-direction: column;
     align-content: center;
     background-color: #214289;
     color: white;
+    font-size: 20px;
 }
 .preFooter * {
-    margin: 10px auto;
+    margin: 15px auto;
     text-align: center;
 }
 
@@ -364,15 +377,18 @@ div{
     animation-iteration-count: infinite;
     animation-name: hamster-tremble;
 }
+.borderThis{
+    border-top: 1px solid grey;
+}
 .hhh{
     margin-top: 40px
 }
 .footer-container{
    /* background-color: rgb(162, 255, 36);*/
+    background-image: url("https://as1.ftcdn.net/v2/jpg/02/38/12/82/1000_F_238128223_ndv9hCQrhrmMcdL19HstU7T522IQrtHU.jpg");
     background-color: var(--navbar-and-footer);
-    background-image: url("https://www.hartney.com/media/f4vbo3wc/when-is-the-best-time-to-grow-grass.jpg?width=1920&height=672&rnd=133052167425230000&format=webp&quality=45");
-    background-blend-mode: darken;
-
+    background-blend-mode: lighten;
+    font-size: 20px;
 }
 footer.my-4{
     margin-top:0!important;
@@ -384,7 +400,11 @@ footer.my-4{
 .adoptionBody{
     padding-top: var(--navbar-margin);
 
-}.petprofileBody{
+}
+.adoptionContent{
+    margin: 10px !important;
+}
+.petprofileBody{
     margin-top: var(--navbar-margin);
     display: flex;
 }
@@ -469,7 +489,7 @@ footer.my-4{
     margin: auto;
 }
 .animal-card{
-    margin: 3px;
+    margin: 5px;
     width:13rem;
     background-color: #fffff9;
     animation: ease-in;
@@ -477,6 +497,7 @@ footer.my-4{
     animation-name: card-hover-out;
     font-size: small;
     overflow: hidden;
+    padding: 0 !important;
 }
 .paws{
     z-index: 0;
@@ -537,8 +558,6 @@ footer.my-4{
 
 }
 .selectedImage{
-    height: 100%;
-    width: 100%;
     margin: 0;
 }
 .petCardName{
@@ -547,11 +566,14 @@ footer.my-4{
 }
 #breedDescription{
     margin: 0 0 10px 10px;
-    border: 2px solid darkgreen;
-    background-color: #e5ffbe;
+    background-size: cover;
+    background-position: center;
     border-radius: 5px;
     padding: 10px;
+    font-size: 15px;
+    font-style: italic;
 }
+
 #status > span.INSHELTER{
     color: limegreen;
 }#status > span{
@@ -561,13 +583,32 @@ footer.my-4{
      font-style: italic;
      margin: 5px;
  }
+ .selectedPet-content{
+     background-color: #f1f1f1;
+     background-image: url("https://i.pinimg.com/originals/75/72/d7/7572d7a7f463c9e17b1e31c10a6eeaf2.jpg");
+     background-size: cover;
+     padding: 6.5% 30px 30px 10%;
+ }
  .selectedPet-content >h2{
      margin-top: 10px;
+ }
+ .selectedPet-content p{
+     padding-left: 10px;
+ }
+ .noway{
+     display: flex;
+     flex-direction: column;
+ }
+ .carousel-indicators{
+     position: relative;
+ }
+ .carousel-indicators [data-bs-target]{
+     width: 20%;
+     height: 20%;
  }
 .animal-img{
     height: 10rem;
     width: 100%;
-    padding-top: 10px;
     z-index: 1;
 }
 .animal-list{
@@ -629,6 +670,7 @@ footer.my-4{
     border: 1px solid gray;
     margin: 10px 10px 10px 10px;
     padding: 10px;
+    border-radius: 7px;
 }
 .locationDiv .row{
     margin-top: 10px;
@@ -659,13 +701,14 @@ footer.my-4{
     text-align: center;
     color: white;
 }
-.wrapper-div p {
+.imgOverlayText {
     display: none;
     cursor: default;
     position: absolute;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
+    z-index: 99999;
 }
 .textarea{
     resize: none;
@@ -678,11 +721,20 @@ footer.my-4{
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
+textarea{
+    background: transparent;
+}
 .bigProfileImage{
     max-width: 350px;
     max-height: 350px;
     border-radius: 50%;
     object-fit: cover;
+    position: relative;
+    z-index: 100;
+    box-shadow: 1px 1px 5px lightblue;
+}
+.profileDetails{
+    margin-top: 15%;
 }
 .imageChangeText{
     display: none;
@@ -698,11 +750,17 @@ footer.my-4{
     display: none;
 }
 .nameHere{
-    background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?s=612x612&w=0&k=20&c=37qEuwdxyQSx9kuS-_Gz0WiKFX6jMXZN9aRY47mN2vI=");
+    background-image: url("https://www.freewebheaders.com/wp-content/gallery/dogs/bernese-mountain-puppy-dog-in-swiss-alps-snow-web-header.jpg");
     background-size: cover;
-    margin-bottom: 25%;
+    width: 100%;
     padding: 30px;
     max-height: 250px;
+    position: relative;
+    z-index: -1;
+}
+.pawDividers{
+    width: 30px;
+    filter: opacity(70%);
 }
 .userDiv{
     display: flex;
@@ -779,16 +837,29 @@ footer.my-4{
 }
 .profileBody{
     margin-top: var(--navbar-margin);
+    position: relative;
+    z-index: 0;
 }
 .addNewLocation{
     position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    background-color: white;
+    width:700px;
+    background-image: radial-gradient(#9cede4 1%,var(--transparent-blue) );
     box-shadow: 2px 4px 5px;
     text-align: left;
+    padding: 20px;
+    border-radius: 20px;
+}
+.addNewLocation *{
+    background-color:transparent!important;
+}
+.addNewLocation button{
+    color: black;
+}
+.addNewLocation .locationDiv{
+    border: none;
 }
 .addNewLocation .textarea{
     border: 1px solid black;
@@ -800,13 +871,19 @@ footer.my-4{
 /* ShowAdoptions page css */
 .showAdoptionsBody{
     margin-top: var(--navbar-margin);
+    display: flex;
+    flex-direction: column;
 }
 .adoptionDisplay{
     display: flex;
     height: auto;
-    width: 70%;
+    width: 60%;
     margin: 10px auto;
     box-shadow: 0.5px 0.5px 5px var(--transparent-blue);
+}
+.select{
+    width: 60%;
+    margin: 10px auto;
 }
 .adoptionDisplayContent{
     padding: 10px;
@@ -822,10 +899,11 @@ footer.my-4{
     bottom: 6px;
     right: 6px;
 }
+
 /* ShowAdoptions page css */
 /*ManageUsers page css*/
 .manageUsersBody{
-    margin-top: var(--navbar-margin);
+    margin-top: 90px;
 }
 .manageUsersBody p {
     margin-bottom: 0;
@@ -834,7 +912,7 @@ footer.my-4{
     padding-right: 10px;
     display: flex;
     height: auto;
-    width: 70%;
+    width: 60%;
     margin: 10px auto;
     box-shadow: 0.5px 0.5px 5px var(--transparent-blue);
 }
@@ -937,7 +1015,7 @@ footer.my-4{
  }
 @keyframes hamster-tremble {
     to{
-        rotate: 2deg;
+        rotate: 3deg;
     }
 }
 @keyframes btn-hover {

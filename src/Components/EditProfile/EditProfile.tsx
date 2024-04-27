@@ -6,7 +6,8 @@ import edit from "../../assets/edit-icon-png-3587.png";
 import React, {useRef, useState} from "react";
 import {Location, User} from "../../petDTO.tsx";
 import PlusButton from "./PlusButton.tsx";
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
+import PawDivider from "./PawDivider.tsx";
 interface Props{
     fileInput:(e:React.ChangeEvent<HTMLInputElement>)=>void;
     usernameChange: (e:React.ChangeEvent<HTMLInputElement>)=>void;
@@ -34,33 +35,45 @@ interface Props{
 function EditProfile(props:Props){
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [displayNewLocation,setDisplayNewLocation] = useState(false)
+    const allThePaws = [];
+    for (let i = 0; i < 12; i++) {
+        allThePaws.push(i)
+    }
     return (
         <div className={"profileBody"}>
-        <div className={"container-fluid nameHere"}  style={{height: props.width/3.3}}>
-            <div className={"userDiv"} style={{width: props.width / 3}}>
-                <div className={"wrapper-div"}>
-                    <img alt={"ProfileImage"} onClick={()=>fileInputRef.current?.click()} ref={props.userImage} className={"bigProfileImage"}
-                         width={props.width / 3}
-                         height={props.width / 3}
-                         src={props.user && props.user.profileImageUrl ? props.user.profileImageUrl : placeholderImage}/>
-                    <p className={"imgOverlayText"}>Change image</p>
-                    <input id={"fileInput"} accept={"image/png, image/gif, image/jpeg"} type={"file"} ref={fileInputRef} onChange={props.fileInput}/>
+            <div className={"container-fluid nameHere"} style={{height: props.width / 3.3}}>
+                <div className={"userDiv"} style={{width: props.width / 3}}>
+                    <div className={"wrapper-div"}>
+                        <img alt={"ProfileImage"} onClick={() => fileInputRef.current?.click()} ref={props.userImage}
+                             className={"bigProfileImage"}
+                             width={props.width / 3}
+                             height={props.width / 3}
+                             src={props.user && props.user.profileImageUrl ? props.user.profileImageUrl : placeholderImage}/>
+                        <p className={"imgOverlayText"}>Change image</p>
+                        <input id={"fileInput"} accept={"image/png, image/gif, image/jpeg"} type={"file"}
+                               ref={fileInputRef} onChange={props.fileInput}/>
+                    </div>
+                    <input className={`${props.isEditing === "username" ? "select" : "noSelect"} userName`}
+                           name={"username"}
+                           autoComplete={"none"}
+                           ref={props.username} onChange={props.usernameChange}
+                           readOnly={!(props.isEditing === "username")}
+                           value={props.usernameValue ? props.usernameValue : ""}/>
+                    <span ref={props.spanElm} className={"measure"}></span>
+                    <img ref={props.editImage} alt={"edit"} src={edit} onClick={() => props.handleEdit("username")}
+                         width={13} className={"editImg"}/>
                 </div>
-
-                <input className={`${ props.isEditing === "username"? "select" : "noSelect" } userName` }
-                       name={"username"}
-                       autoComplete={"none"}
-                       ref={ props.username } onChange={ props.usernameChange}
-                       readOnly={!(props.isEditing === "username")}
-                       value={props.usernameValue?props.usernameValue:""}/>
-                <span ref={props.spanElm}  className={"measure"}></span>
-                <img ref={props.editImage} alt={"edit"} src={edit} onClick={() => props.handleEdit("username")} width={13} className={"editImg"}/>
+                    {allThePaws.map(id => {
+                        return (<PawDivider key={id} id={id}/>)
+                    })}
             </div>
-        </div>
-            <div className={"container"}>
-                <table className={ "table" }>
+            <div className={"container profileDetails"}>
+
+                <Button href="adoptions">My adoptions</Button>
+                {props.user?.roles.includes("ADMIN")&&<Button href={"users/manage"}>Manage users</Button>}
+                <table className={"table"}>
                     <tbody>
-                        <tr className="row">
+                    <tr className="row">
                             <td className={ "col" }>Full name</td>
                             <td className={ "col" }>
                                 <div className={ "d-flex" }>
@@ -157,8 +170,7 @@ function EditProfile(props:Props){
 
                 </div>
             }
-            <a href="adoptions">My adoptions</a>
-            {props.user?.roles.includes("ADMIN")&&<a href={"users/manage"}>Manage users</a>}
+
         </div>
     )
 }

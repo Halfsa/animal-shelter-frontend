@@ -2,6 +2,8 @@ import {Location, NewLocation} from "../../petDTO.tsx";
 import React, {useRef, useState} from "react";
 import addToLocation from "./addToLocation.ts";
 import ValidateToken from "../../ValidateToken.tsx";
+import {Button} from "@mui/material";
+import eventBus from "../../EventBus.ts";
 
 interface Props{
     location:Location;
@@ -12,7 +14,7 @@ function LocationDisplay(props:Props){
     const [country,setCountry] = useState<string>(props.location.country);
     const [state,setState] = useState<string|null>(props.location.state);
     const [city,setCity] = useState<string>(props.location.city);
-    const [zipCode,setZipCode] = useState<string>(props.location.zipCode);
+    const [zipCode,setZipCode] = useState<string|undefined>(props.location.zipCode);
     const [address,setAddress] = useState<string>(props.location.address);
     const [addressExtra,setAddressExtra] = useState<string|null>(props.location.addressExtra);
     const testarea = useRef<HTMLTextAreaElement>(null);
@@ -24,7 +26,7 @@ function LocationDisplay(props:Props){
     }function onCityChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setCity(e.target.value);
     }function onZipCodeChange(e:React.ChangeEvent<HTMLTextAreaElement>){
-        setZipCode(e.target.value)
+            setZipCode( e.target.value)
     }function onAddressChange(e:React.ChangeEvent<HTMLTextAreaElement>){
         setAddress(e.target.value);
     }function onAddressExtraChange(e:React.ChangeEvent<HTMLTextAreaElement>){
@@ -49,7 +51,8 @@ function LocationDisplay(props:Props){
             return;
         }
         else {
-            return props.makeMeDisappear();
+            eventBus.dispatch("locationsChanged","");
+            return props.makeMeDisappear?props.makeMeDisappear():"";
         }
     }
     const textareaStyles = !props.editable?"noSelect inputWithoutBorder":"";
@@ -144,7 +147,7 @@ function LocationDisplay(props:Props){
                     {props.editable&&
                         <tr className={"row"}>
                             <td className={"col"}>
-                                <button onClick={()=>{ addToMyLocation()}}>Save</button>
+                                <Button onClick={()=>{ addToMyLocation()}}>Save</Button>
                             </td>
                             <td className={"col"} style={{textAlign:"end",fontStyle:"italic",fontSize:12}}>
                                 <p>

@@ -44,6 +44,9 @@ function Body(){
                     </div>
                 </div>
             </div>
+            <div className={"borderThis"}>
+                <img className={"promotionImage"} src="https://d2yy7txqjmdbsq.cloudfront.net/fundraiserevents/92c869c4-9500-4a68-875b-ab475672d44c/banner_cropped_banner_Background%202.png" alt=""/>
+            </div>
             <div className={"container-fluid position-relative hhh"}>
                 <img alt={"this hamster twerks"} className={"testImg"} src={guineaPigTwerking}/>
                 <h1 className={"body-h1"}>
@@ -96,14 +99,14 @@ function Body(){
             </div>
             <div className={"preFooter container-fluid"}>
                 <div className={"preFooter-content"}>
-                    <p>Check out our social media for extra information</p>
+                    <p>Check out our social media for additional information</p>
                     <div className={"preFooter-images"}>
                         <img className={"social-icons"} onClick={()=>window.open("http://facebook.com/wuff_animal_shelter","_blank")} src={facebook} alt="our facebook page" title={"Wuff_animal_shelter"}/>
                         <img className={"social-icons"} onClick={()=>window.open("http://instagram.com/wuffshelter","_blank")} src={instagram} alt="our instagram page" title={"@wuffshelter"}/>
                         <img className={"social-icons"} onClick={()=>window.open("http://twitter.com/wuffanimalshelter","_blank")} src={twitter} alt="our twitter page" title={"@wuffanimalshelter"}/>
                     </div>
                     <p> or contact us at</p>
-                    <b>wuff.animalshelter@gmail.com</b>
+                    <b>wuffshelter@shelter.com</b>
                 </div>
             </div>
         </div>

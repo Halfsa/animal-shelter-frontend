@@ -62,20 +62,26 @@ export default function ShowAdoptions(){
         <div className={"showAdoptionsBody"}>
             {allAdoptions.length === 0?<p>No adoptions started yet. <a href={"/adopt"}>start one? </a></p>:
                 <>
-                    <select onChange={filterAdoptions}>
-                        <option key={"all"} value={"ALL"}>ALL</option>
-                        {allAdoptions.map(adoption=>{
-                            if (!statuses.includes(adoption.status)){
-                                statuses.push(adoption.status);
-                                return <option key={adoption.status} value={adoption.status}>{adoption.status}</option>
-                            }
-                            return;
-                        })}
-                    </select>
-                {displayAdoptions   .map(adoption=>{
-                        return(
-                            <AdoptionDisplay key={adoption.adoptionId} cancelAdoption={cancelAdoption} adoption={adoption}/>
-                        )})}
+                    <div className={"select"}>
+                        <select onChange={filterAdoptions}>
+                            <option key={"all"} value={"ALL"}>ALL</option>
+                            {allAdoptions.map(adoption => {
+                                if (!statuses.includes(adoption.status)) {
+                                    statuses.push(adoption.status);
+                                    return <option key={adoption.status}
+                                                   value={adoption.status}>{adoption.status}</option>
+                                }
+                                return;
+                            })}
+                        </select>
+                    </div>
+
+                    {displayAdoptions.map(adoption => {
+                        return (
+                            <AdoptionDisplay key={adoption.adoptionId} cancelAdoption={cancelAdoption}
+                                             adoption={adoption}/>
+                        )
+                    })}
                 </>
             }
 

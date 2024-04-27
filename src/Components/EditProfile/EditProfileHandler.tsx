@@ -36,6 +36,9 @@ function EditProfileHandler (){
         eventBus.on("imgChanged",
         ()=>{
         setImgUrl(user? user.profileImageUrl:false)});
+        eventBus.on("locationsChanged",()=>{
+            setUserLocations(getLocations)
+        })
         return()=>{
             eventBus.remove("imgChanged",()=>{})
         }

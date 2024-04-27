@@ -32,13 +32,13 @@ interface Props{
 function AdoptionBody(props:Props){
     return (
         <div className={"adoptionBody"}>
-            <div className={"container-fluid card p-0"}>
-                <img alt={"Many dogs await adoption"} className={"adoptionImage"} src={happyDogs}/>
+            <div className={"container-fluid card p-0 "}>
+                <img  alt={"Many dogs await adoption"} className={"adoptionImage promotionImage"} src={happyDogs}/>
                 <div className=" container card-img-overlay">
                     <h5 className="adoptionImageOverlayText"></h5>
                 </div>
             </div>
-            <div className={"row"}>
+            <div className={"row adoptionContent"}>
                 <div className={"container filter"}>
                     <form className={"form-control"}>
                         <div className={"container-fluid filter-section"}>
