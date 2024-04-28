@@ -884,7 +884,7 @@ textarea{
     margin: 10px auto;
     box-shadow: 0.5px 0.5px 5px var(--transparent-blue);
 }
-.select{
+.showAdoptionsSelect{
     width: 60%;
     margin: 10px auto;
 }

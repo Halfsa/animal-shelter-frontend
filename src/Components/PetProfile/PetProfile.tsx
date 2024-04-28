@@ -7,7 +7,6 @@ import ValidateToken from "../../ValidateToken.tsx";
 import {Box, Modal, Typography} from "@mui/material";
 import React, {useEffect, useRef, useState} from "react";
 import eventBus from "../../EventBus.ts";
-import getPet from "../getPet.tsx";
 function PetProfile(){
     let petId:string = '-1';
    // const [imageSrc,setImageSrc] = useState('');
@@ -122,8 +121,9 @@ function PetProfile(){
                 <p><q>{pet?.description}</q></p>
                 <p id={"status"}><b>status: </b><span
                     className={status}>{status === "INSHELTER" ? "IN SHELTER" : status}</span></p>
-                <button className={"adoptButton btn btn-confirm"} style={{color:"white"}} onClick={startAdoption}>I want to
+                {(status !== "ADOPTING")&&<button className={"adoptButton btn btn-confirm"} style={{color:"white"}} onClick={startAdoption}>I want to
                     adopt {pet?.name}</button>
+                }
                 <a href={"/login"} style={{display: "none"}} ref={button}></a>
                 <Modal
                     open={open}

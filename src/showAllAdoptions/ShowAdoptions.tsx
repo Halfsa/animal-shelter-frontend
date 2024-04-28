@@ -62,7 +62,7 @@ export default function ShowAdoptions(){
         <div className={"showAdoptionsBody"}>
             {allAdoptions.length === 0?<p>No adoptions started yet. <a href={"/adopt"}>start one? </a></p>:
                 <>
-                    <div className={"select"}>
+                    <div className={"showAdoptionsSelect"}>
                         <select onChange={filterAdoptions}>
                             <option key={"all"} value={"ALL"}>ALL</option>
                             {allAdoptions.map(adoption => {

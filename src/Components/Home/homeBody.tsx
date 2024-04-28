@@ -14,6 +14,14 @@ import facebook from "../../assets/pngfind.com-facebook-icons-png-transparent-25
 import instagram from "../../assets/instagram.png"
 // @ts-expect-error image being weird
 import twitter from "../../assets/twitter.png"
+// @ts-expect-error image being weird
+import house from "../../assets/house-blue-outline.svg.hi.png"
+// @ts-expect-error image being weird
+import catOutline from "../../assets/cat-silhouette.avif"
+// @ts-expect-error image being weird
+import info from "../../assets/ICON 3 - Information_0.png"
+// @ts-expect-error image being weird
+import coin from "../../assets/1493125.webp"
 function Body(){
     return(
         <div className="container-fluid homeBody">
@@ -21,7 +29,7 @@ function Body(){
                 <img className={"promotionImage"} src={catPic} alt=""/>
                 <div className={"informationDiv"}>
                     <img alt={"information about our shelter"} width={30}
-                         src={"https://www.tsirc.qld.gov.au/sites/default/files/ICON%203%20-%20Information_0.png"}/>
+                         src={info}/>
                     <h2>Wuff animal shelter</h2>
                     <p>More than 2000 animals rescued each year</p>
                     <p>We provide all animals with a safe place until they find their very own home</p>
@@ -30,15 +38,15 @@ function Body(){
                     <div className={"featureNavigation"}>
                         <label htmlFor="">
                             <img width={60}
-                                 src="https://www.clker.com//cliparts/Y/0/9/B/E/Y/house-blue-outline.svg.hi.png"
+                                 src={house}
                                  alt=""/>About us
                         </label><label htmlFor="">
                         <img width={100}
-                             src="https://images.onlinepets.com/uploads/2021/02/780X450.jpg?auto=format&width=500&height=500&dpr=1.25"
+                             src={catOutline}
                              alt=""/>Animals
                     </label><label htmlFor="">
                         <img width={60}
-                             src="https://cdn.iconscout.com/icon/free/png-256/free-coin-1750311-1493125.png?f=webp"
+                             src={coin}
                              alt=""/>Donate
                     </label>
                     </div>
@@ -78,7 +86,7 @@ function Body(){
                                 <h5 className="card-title">Easter sales</h5>
                                 <p className="card-text">Spring is here, so that must mean Easter is also near. Surprise
                                     yourself or your family with one of our adorable bunnies. </p>
-                                <a href="/public" className="btn btn-success btn-outline-warning">Details</a>
+                                <a href="/adopt" className="btn loginBtn">Details</a>
                             </div>
                         </div>
                     </div>
