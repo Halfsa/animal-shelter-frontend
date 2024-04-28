@@ -6,6 +6,6 @@ interface  Props{
 export default function PawDivider(props:Props){
     const id = props.id
     return(
-            <img className={"pawDividers"} style={{position:"absolute",top:(id%2===0?100:90)+"%",left:(id*8.7)+"%",zIndex:0,rotate:"40deg"}} src={paw} alt=""/>
+            <img className={"pawDividers"} style={{position:"absolute",top:(id%2===0?100:90)+"%",left:(id*4.24)+"%",zIndex:0,rotate:"40deg"}} src={paw} alt=""/>
     )
 }

@@ -736,6 +736,9 @@ textarea{
 .profileDetails{
     margin-top: 15%;
 }
+.profileDetails a{
+    color: black;
+}
 .imageChangeText{
     display: none;
     color: white;

@@ -36,7 +36,7 @@ function EditProfile(props:Props){
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [displayNewLocation,setDisplayNewLocation] = useState(false)
     const allThePaws = [];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 24; i++) {
         allThePaws.push(i)
     }
     return (
