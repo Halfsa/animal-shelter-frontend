@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+# Animal Shelter frontend dokumentáció
+## [Használati útmutató](https://1drv.ms/w/c/f5d198d8a2b3ea38/EXIG_EQfV1NMts5fzctL7jkBZSAKyxpeNHW9hmPXjcOFAw?e=AmKEhM)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Felhasznált technológiák: Vite & React
 
-Currently, two official plugins are available:
+### formázás: CSS, bootstrap, MaterialUI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Backenddel való kommunikációra használt eszközök: Axios
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Telepítési útmutató:
+klónozza a github repot:
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+  git clone https://github.com/Halfsa/animal-shelter-frontend.git
+```
+nyissa meg a projektet és futtassa a következő parancsot:
+```
+  npm install
+```
+majd futtassa a frontend applikációt:
+```
+  vite
+```
